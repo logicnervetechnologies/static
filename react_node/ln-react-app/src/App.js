@@ -30,10 +30,17 @@ var user_data = {
 const App = () => {
 
   return (
-    <div className="App">
+    <div className="dashboard">
+    <div className="mainbar">
       <h1>List of modules</h1>
+    </div>
+    <div className="Sidebar">
+      <br />
+      <br />
+      <a href='/profile'>My Profile</a>
       <hr />
       <Sidebar modules={modules} />
+    </div>
     </div>
   );
 }
