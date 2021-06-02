@@ -1,93 +1,102 @@
 import React, {useState} from 'react'
 import Sidebar from './components/user/sidebar'
 import Search from './components/user/Search'
+import ReactDOM from 'react-dom';
 
-// var modules = [
-//   {
-//     module_name: 'Banana form',
-//     hyperlink: '/modules/banana'
-    
-//   },
-//   {
-//     module_name: 'Apple form',
-//     hyperlink: '/modules/apple'
-//   },
-//   {
-//     module_name: 'Avacado form',
-//     hyperlink: '/modules/avacado'
-//   },
-//   {
-//     module_name: 'Pear form',
-//     hyperlink: '/modules/pear'
-//   }
-// ];
+const user_data = {
+  name:'banana man',
+  role:'patient',
+  email:'banana@fruit.com'
+}
 
-
-// var user_data = {
-//   name:'banana man',
-//   role:'patient',
-//   email:'banana@fruit.com'
-// }
-
-var users_data = [
-  {
-    name:'Emma Cooper',
-    role:'patient',
-    email:'ecooper@fruit.com',
-    uid:'lkj2343@3l2k3rs'
-  },
-  {
-    name:'Oliver Miller',
-    role:'patient',
-    email:'omiller@fruit.com',
-    uid:'l341lkjm,mdfmafdss'
-  },
-  {
-    name:'Hamza Shaikh',
-    role:'patient',
-    email:'hshaikh@fruit.com',
-    uid:'djfalfjkdlsflkm32lml'
-  },
-  {
-    name:'Tiger Lee',
-    role:'patient',
-    email:'tiger@fruit.com',
-    uid: 'sklfdsalk321e12'
-  },
-
-]
-
-
-
-const App = () => {
-
-  const [searchText, setSearchText] = useState('');
-
-  const handleSearch = event => {
-    //console.log(event.target.value);
-    setSearchText(event.target.value);
-  }
-
-  // const filteredModules = modules.filter(module=> {
-  //   return module.module_name.includes(searchText) || module.hyperlink.includes(searchText)
-  // })
-
-  const filterUsers = users_data.filter(user=> {
-    return user.name.includes(searchText) || user.email.includes(searchText)
-  })
-
+function LoginButton(props) {
   return (
-    <div className="mainbar">
-    <div>
-      <hr />
-      <Search onSearch={handleSearch} />
-      <Sidebar users_data={filterUsers} />
-
-    </div>
-    </div>
+    <button onClick={props.onClick}>
+      Login
+    </button>
   );
 }
 
+function SignUpButton(props) {
+  return (
+    <button onClick={props.onClick}>
+      Sign Up
+    </button>
+  );
+}
 
+function UserGreeting(props) {
+  return (
+  <h2>Welcome back {props.user.name}!</h2>
+  );
+}
+
+function GuestGreeting(props){ 
+  return (
+    <div>
+    <h2>Welcome! Please sign up or log in.</h2>
+    </div>
+  );
+  
+}
+
+function Greeting(props) {
+  const isLoggedIn = props.isLoggedIn;
+  if (isLoggedIn) {
+    return <UserGreeting user={user_data}/>;
+  }
+  return <GuestGreeting SignUp={props.SignUpClick} LogIn={props.LogInClick}/>;
+  
+}
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleLoginClick = this.handleLoginClick.bind(this);
+    this.handleSignUpClick = this.handleSignUpClick.bind(this);
+    this.state = {
+      isLoggedIn:false,
+      user:null
+    }
+  }
+
+  handleLoginClick() {
+    this.setState({isLoggedIn: true,
+      user: user_data});
+  }
+
+  handleSignUpClick() {
+    //this should probably do soemthing else
+    this.setState({isLoggedIn: false});
+  }
+
+  render() {
+
+    const isLoggedIn = this.state.isLoggedIn;
+    let role;
+    if (isLoggedIn) {
+      if (this.state.user.role === 'patient') {
+        role = <h1>Patient View</h1>;
+      } else {
+        role = <h1>Doctor View</h1>;
+      }
+      
+    }
+
+    return (
+      <div className="mainbar">
+      <div>
+        <hr />
+        <h1>App Landing page</h1>
+        <Greeting isLoggedIn={this.state.isLoggedIn}/>
+        <SignUpButton onClick={this.handleSignUpClick} />
+        <LoginButton onClick={this.handleLoginClick} />
+        {role}
+      </div>
+      </div>
+    );
+  }
+}
 
 export default App
+
