@@ -6,10 +6,10 @@
 //       })
 // }
 
-const Sidebar = ({modules}) => {
-    return modules.map(module => {
-        return <div key={module.module_name}>
-          <a href = {module.hyperlink}>{module.module_name}</a>
+const Sidebar = ({users_data}) => {
+    return users_data.map(user => {
+        return <div key={user.name}>
+          <a href = {user.email}>{user.name}</a>
           </div>
       })
 }
