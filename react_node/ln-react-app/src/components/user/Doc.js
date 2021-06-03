@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
-import Sidebar from './components/user/sidebar'
-import Search from './components/user/Search'
+import Sidebar from './sidebar'
+import Search from './Search'
 
 // var modules = [
 //   {
@@ -73,7 +73,7 @@ const App = () => {
   // })
 
   const filterUsers = users_data.filter(user=> {
-    return user.name.includes(searchText) || user.email.includes(searchText)
+    return user.name.includes(searchText.toLowerCase()) || user.email.includes(searchText.toLowerCase())
   })
 
   return (
@@ -82,7 +82,6 @@ const App = () => {
       <hr />
       <Search onSearch={handleSearch} />
       <Sidebar users_data={filterUsers} />
-
     </div>
     </div>
   );
