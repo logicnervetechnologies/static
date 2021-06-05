@@ -13,10 +13,14 @@ const Sidebar = ({users_data}) => {
         {users_data.map(user => {
         return <tr key={user.name}>
           <a href = {user.uid}>{user.name}</a>
-          <p>Mods: </p>
+          <button class='dropdown=btn'>dropdown
+            <i class = "fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container">
           {user.mods.map((mod)=> {
             return <a href={"/mods/" + mod.id}>{mod.name}</a>
           })}
+          </div>
           <p></p>
           </tr>
         })}

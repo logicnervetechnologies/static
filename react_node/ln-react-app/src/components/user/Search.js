@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Search = ({value, onSearch}) => {
+const Search = ({value, onSearch, style}) => {
     return (
     <div>
         <tr>
-    <label htmlFor="searchInput">Search: </label>
+    <label style={{color:'white', alignItems:'center'}} htmlFor="searchInput">Search: </label>
     <input id="searchInput" type="text"
         value={value}
         onChange={onSearch} />

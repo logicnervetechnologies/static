@@ -1,8 +1,20 @@
 import React, {useState, useEffect} from 'react'
-import Sidebar from './components/user/sidebar'
+//import Sidebar from './components/user/sidebar'
 import Search from './components/user/Search'
 //import Navbar from './components/Navbar'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+//import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
+import './App.css'
+import Sidebar from './components/Sidebar';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Overview from './pages/Overview';
+import { Reports, ReportsOne, ReportsTwo, ReportsThree } from './pages/Reports';
+import Team from './pages/Team';
+import USERDATA from './USERDATA'
+
+
+
+const users_data = USERDATA()
 // var modules = [
 //   {
 //     module_name: 'Banana form',
@@ -30,52 +42,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 //   email:'banana@fruit.com'
 // }
 
-var users_data = [
-  {
-    name:'Emma Cooper',
-    role:'patient',
-    email:'ecooper@fruit.com',
-    uid:'lkj2343@3l2k3rs',
-    mods:[
-      {name:"Heartbeat Collection",id:"1231293r209"},
-      {name:"Sugar Levels",id:"12312afdssf209"},
-      {name:"Blood Pressure Tracker",id:"13DASF3r593"}
-    ]
-  },
-  {
-    name:'Oliver Miller',
-    role:'patient',
-    email:'omiller@fruit.com',
-    uid:'l341lkjm,mdfmafdss',
-    mods:[
-      {name:"Blood Collection",id:"1231293r209"},
-      {name:"Sugar Levels",id:"12312afdssf209"}
-    ]
-  },
-  {
-    name:'Hamza Shaikh',
-    role:'patient',
-    email:'hshaikh@fruit.com',
-    uid:'djfalfjkdlsflkm32lml',
-    mods:[
-      {name:"Height Tracker",id:"12dsfafdsvv209"},
-      {name:"Feedback Form",id:"123dfasfsadf09"},
-      {name:"Blood Pressure Tracker",id:"1323DAScr593"}
-    ]
-  },
-  {
-    name:'Tiger Lee',
-    role:'patient',
-    email:'tiger@fruit.com',
-    uid: 'sklfdsalk321e12',
-    mods:[
-      {name:"Height Tracker",id:"12dsfafdsvv209"},
-      {name:"Feedback Form",id:"123dfasfsadf09"},
-      {name:"Blood Pressure Tracker",id:"1323DAScr593"}
-    ]
-  },
 
-]
 
 
 
@@ -88,53 +55,40 @@ var users_data = [
 //   }
 // };
 
-
 const App = () => {
   
-
-  const [searchText, setSearchText] = useState(
-      localStorage.getItem('searchText') || ''
-    )
-
-  const handleSearch = event => {
-    //console.log(event.target.value);
-    setSearchText(event.target.value);
-   }
-
-  useEffect(()=> {
-    localStorage.setItem('searchText', searchText);
-
-  }, [searchText])
-  // const filteredModules = modules.filter(module=> {
-  //   return module.module_name.includes(searchText) || module.hyperlink.includes(searchText)
-  // })
-
-  const filterUsers = users_data.filter(user=> {
-    return user.name.toLowerCase().includes(searchText.toLowerCase()) || user.email.toLowerCase().includes(searchText.toLowerCase())
-  })
-
   return (
-    <div className="mainbar">
-    <hr />
-    <div>
-      <nav id='sidebar'>
-        <div class="sidebar-header">
-          <h3>Sidebar</h3>
-        </div>
-          <Search value={searchText} onSearch={handleSearch} />
-          <Sidebar users_data={filterUsers} />
-      </nav>
-      {/* <Router>
-        <Navbar />
-        <Switch>
-          <Route path= '/' />
-        </Switch>
-      </Router> */}
-    </div>
-    </div>
+    // <div className="mainbar">
+    // <hr />
+    // <div>
+    //   <nav id='sidebar'>
+    //     <div class="sidebar-header">
+    //       <h3>Sidebar</h3>
+    //     </div>
+    //       <Search value={searchText} onSearch={handleSearch} />
+    //       <Sidebar users_data={filterUsers} />
+    //   </nav>
+    //   {/* <Router>
+    //     <Navbar />
+    //     <Switch>
+    //       <Route path= '/' />
+    //     </Switch>
+    //   </Router> */}
+    // </div>
+    // </div>
+    <Router>
+    <Sidebar />
+    <Switch>
+      <Route path='/overview' exact component={Overview} />
+      <Route path='/reports' exact component={Reports} />
+      <Route path='/reports/reports1' exact component={ReportsOne} />
+      <Route path='/reports/reports2' exact component={ReportsTwo} />
+      <Route path='/reports/reports3' exact component={ReportsThree} />
+      <Route path='/team' exact component={Team} />
+    </Switch>
+  </Router>
   );
 }
 
-
-
 export default App
+
