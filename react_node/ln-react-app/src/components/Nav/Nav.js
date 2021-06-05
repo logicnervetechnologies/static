@@ -1,7 +1,7 @@
-import React, { useState, useRef} from 'react'
+import React, {useRef} from 'react'
 import styled from 'styled-components';
 import * as FaIcons from 'react-icons/fa';
-import * as AiIcons from 'react-icons/ai';
+import * as MdIcons from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { IconContext } from 'react-icons/lib';
 import Sidebar from '../Sidebar/Sidebar'
@@ -9,13 +9,27 @@ import Sidebar from '../Sidebar/Sidebar'
 const Navbar = styled.div`
   background: #15171c;
   height: 80px;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 `;
 
-const NavIcon = styled(Link)`
+const NavLeftIcon = styled(Link)`
   margin-left: 2rem;
+  font-size: 2rem;
+  height: 80px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  `;
+
+  const NavIcon = styled(Link)`
+    margin-right: 2rem;
+`;
+  const NavRightIcons = styled(Link)`
+  margin-left: auto;
+  margin-right: 0rem;
   font-size: 2rem;
   height: 80px;
   display: flex;
@@ -52,10 +66,19 @@ return (
     <>
     <IconContext.Provider value={{ color: '#fff' }}>
     <Navbar>
-        <NavIcon to='#'>
+        <NavLeftIcon to='#'>
                 <FaIcons.FaBars onClick={showSidebar} />
                 
+        </NavLeftIcon>
+        <NavRightIcons>
+            <NavIcon to='/dashboard'>
+                <MdIcons.MdDashboard />
             </NavIcon>
+
+            <NavIcon to='/profile'>
+                <FaIcons.FaUserCircle />
+            </NavIcon>
+        </NavRightIcons>
     </Navbar>
     <Sidebar ref={ref} />
     </IconContext.Provider>   

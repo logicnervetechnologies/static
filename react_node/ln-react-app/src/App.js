@@ -1,16 +1,14 @@
-import React from 'react' /*{useState, useEffect}*/ 
-//import Sidebar from './components/user/sidebar'
-//import Search from './components/user/Search'
-//import Navbar from './components/Navbar'
-//import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-
+import React from 'react'
 import './App.css'
-//import Sidebar from './components/Sidebar/Sidebar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Overview from './pages/Overview';
-import { Reports, ReportsOne, ReportsTwo, ReportsThree } from './pages/Reports';
+
+// Page imports
+import Dashboard from './pages/Dashboard'
+import Profile from './pages/Profile';
 import Team from './pages/Team';
-//import { IconContext } from 'react-icons/lib';
+
+
+// Component imports
 import Nav from './components/Nav/Nav'
 
 //import USERDATA from './USERDATA'
@@ -53,11 +51,12 @@ const App = () => {
     {/* Navigation*/}
     <Nav />
     <Switch>
-      <Route path='/overview' exact component={Overview} />
-      <Route path='/reports' exact component={Reports} />
+      <Route path='/dashboard' exact component={Dashboard} />
+      <Route path='/profile' exact component={Profile} />
+      {/* <Route path='/reports' exact component={Reports} />
       <Route path='/reports/reports1' exact component={ReportsOne} />
       <Route path='/reports/reports2' exact component={ReportsTwo} />
-      <Route path='/reports/reports3' exact component={ReportsThree} />
+      <Route path='/reports/reports3' exact component={ReportsThree} /> */}
       <Route path='/team' exact component={Team} />
     </Switch>
   </Router>
