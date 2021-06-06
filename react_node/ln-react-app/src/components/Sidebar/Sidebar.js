@@ -7,7 +7,7 @@ import * as AiIcons from 'react-icons/ai';
 import SubMenu from './SubMenu';
 //import { IconContext } from 'react-icons/lib';
 import USERDATA from '../../USERDATA'
-import Search from '../user/Search'
+import Search from './Search'
 //import {handleSearch, searchText} from '../../App'
 const users_data = USERDATA()
 
@@ -101,7 +101,7 @@ const Sidebar = forwardRef((props, ref) => {
     
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
-            <NavIcon to='#'>
+            <NavIcon>
               <AiIcons.AiOutlineClose onClick={hideSidebar} />
             </NavIcon>
             <Search style={{color:"white"}} value={searchText} onSearch={handleSearch} />

@@ -41,11 +41,22 @@ const DropdownLink = styled(Link)`
 const SubMenu = ({ item }) => {
   const [subnav, setSubnav] = useState(false);
 
-  const showSubnav = () => setSubnav(!subnav);
+  const showSubnav = () => {
+    setSubnav(!subnav)
+  };
 
   return (
     <>
-      <SidebarLink to={"/user/" + item.uid} onClick={item.mods && showSubnav}>
+      <SidebarLink to={
+        
+        {
+        pathname:"/patient",
+        state : {
+          pid : item.uid
+        }
+        }} onClick= {
+          item.mods && showSubnav
+          }>
         <div>
           {
           //item.icon

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // Page imports
 import Dashboard from './pages/Dashboard'
 import Profile from './pages/Profile';
+import Patient from './pages/Patient'
 import Team from './pages/Team';
 
 
@@ -29,30 +30,15 @@ import Nav from './components/Nav/Nav'
 const App = () => {
   
   return (
-    // <div className="mainbar">
-    // <hr />
-    // <div>
-    //   <nav id='sidebar'>
-    //     <div class="sidebar-header">
-    //       <h3>Sidebar</h3>
-    //     </div>
-    //       <Search value={searchText} onSearch={handleSearch} />
-    //       <Sidebar users_data={filterUsers} />
-    //   </nav>
-    //   {/* <Router>
-    //     <Navbar />
-    //     <Switch>
-    //       <Route path= '/' />
-    //     </Switch>
-    //   </Router> */}
-    // </div>
-    // </div>
+
     <Router>
     {/* Navigation*/}
     <Nav />
     <Switch>
       <Route path='/dashboard' exact component={Dashboard} />
       <Route path='/profile' exact component={Profile} />
+      {/*<Route path='/patient' exact component={Patient} />*/}
+      <Route path="/patient" render={(props) => <Patient {...props} key={Date.now()}/>} />
       {/* <Route path='/reports' exact component={Reports} />
       <Route path='/reports/reports1' exact component={ReportsOne} />
       <Route path='/reports/reports2' exact component={ReportsTwo} />
