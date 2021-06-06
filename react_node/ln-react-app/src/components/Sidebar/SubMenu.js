@@ -48,12 +48,11 @@ const SubMenu = ({ item }) => {
   return (
     <>
       <SidebarLink to={
-        
         {
-        pathname:"/patient",
-        state : {
-          pid : item.uid
-        }
+          pathname:"/patient",
+          state : {
+            pid : item.uid
+          }
         }} onClick= {
           item.mods && showSubnav
           }>
@@ -74,10 +73,13 @@ const SubMenu = ({ item }) => {
       {subnav &&
         item.mods.map((item, index) => {
           return (
-            <DropdownLink to={"/mod/" + item.id} key={index}>
+            <DropdownLink to={
               {
-              //item.icon
-            }
+                pathname:"/module",
+                state : {
+                  modId : item.id
+                }
+              }              } key={index}>
               <SidebarLabel>{item.name}</SidebarLabel>
             </DropdownLink>
           );
