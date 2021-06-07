@@ -1,10 +1,12 @@
 import React, {useRef} from 'react'
 import styled from 'styled-components';
 import * as FaIcons from 'react-icons/fa';
+import * as FiIcons from 'react-icons/fi';
 import * as MdIcons from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { IconContext } from 'react-icons/lib';
 import Sidebar from '../Sidebar/Sidebar'
+import Firebase from '../Firebase'
 
 const Navbar = styled.div`
   background: #15171c;
@@ -74,7 +76,9 @@ return (
             <NavIcon to='/dashboard'>
                 <MdIcons.MdDashboard />
             </NavIcon>
-
+            <NavIcon onClick={()=> {Firebase.auth().signOut()}}>
+                <FiIcons.FiLogOut />
+            </NavIcon>
             <NavIcon to='/profile'>
                 <FaIcons.FaUserCircle />
             </NavIcon>

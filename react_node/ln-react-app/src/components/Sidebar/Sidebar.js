@@ -49,7 +49,7 @@ const SidebarWrap = styled.div`
 
 const Sidebar = forwardRef((props, ref) => {
 
-  const [sidebar, setSidebar] = useState(true);
+  const [sidebar, setSidebar] = useState(false);
     //localStorage.getItem('sidebar') || true
     //sidebartoggle = !sidebartoggle
 
