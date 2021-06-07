@@ -10,7 +10,7 @@ const SignUp = ({ history }) => {
       await Firebase
         .auth()
         .createUserWithEmailAndPassword(email.value, password.value);
-      history.push("/");
+      history.push("/dashboard");
     } catch (error) {
       alert(error);
     }

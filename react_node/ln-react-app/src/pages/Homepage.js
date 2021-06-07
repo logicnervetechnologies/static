@@ -12,6 +12,7 @@ const Homepage = () => {
         <div>
         <h1>Logic Nerve</h1>
         <p>Please Log In</p>
+        <a href={"/login"}>LOG IN</a>
         </div>
     </TT>
   );
