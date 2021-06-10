@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
+import * as IoIcons from 'react-icons/io'
 const SidebarLink = styled(Link)`
   display: flex;
   color: #e1e9fc;
@@ -18,7 +18,11 @@ const SidebarLink = styled(Link)`
     cursor: pointer;
   }
 `;
-
+const DropdownButton = styled(Link)`
+display: "flex", 
+justifyContent:"space-between",
+alignItems: "center"
+`;
 const SidebarLabel = styled.span`
   margin-left: 16px;
 `;
@@ -47,20 +51,22 @@ const SubMenu = ({ item }) => {
 
   return (
     <>
-      <SidebarLink to={
-        {
-          pathname:"/patient",
-          state : {
-            pid : item.uid
-          }
-        }} onClick= {
-          item.mods && showSubnav
-          }>
+      <SidebarLink 
+                to={
+                  {
+                    pathname:"/patient",
+                    state : {
+                      pid : item.uid
+                    }
+                  }}
+      >
         <div>
           {
           //item.icon
           }
-          <SidebarLabel>{item.name}</SidebarLabel>
+          <SidebarLabel
+
+           >{item.name}</SidebarLabel>
         </div>
         <div>
           {item.subNav && subnav
@@ -69,6 +75,16 @@ const SubMenu = ({ item }) => {
             ? item.iconClosed
             : null}
         </div>
+        <DropdownButton onClick= {
+          item.mods && showSubnav
+          }>
+            { !subnav &&
+              <IoIcons.IoIosArrowDropdown size={30} />
+            }
+            { subnav &&
+              <IoIcons.IoIosArrowDropup size={30} />
+            }
+        </DropdownButton>
       </SidebarLink>
       {subnav &&
         item.mods.map((item, index) => {

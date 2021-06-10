@@ -76,6 +76,9 @@ return (
             <NavIcon to='/dashboard'>
                 <MdIcons.MdDashboard />
             </NavIcon>
+            <NavIcon to='/add_patient'>
+                <MdIcons.MdPersonAdd />
+            </NavIcon>
             <NavIcon onClick={()=> {Firebase.auth().signOut()}}>
                 <FiIcons.FiLogOut />
             </NavIcon>
