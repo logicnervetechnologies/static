@@ -59,7 +59,8 @@ const Nav = () => {
 
 
     const ref = useRef(null);
-    const showSidebar = () => {
+    const showSidebar = (e) => {
+        e.preventDefault();
         ref.current.showSidebar();
         console.log('tryign to sho')
     };

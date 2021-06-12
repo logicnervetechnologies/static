@@ -58,7 +58,8 @@ const Sidebar = forwardRef((props, ref) => {
     setSidebar(true)
     //localStorage.setItem('sidebar', true)
   };
-  const hideSidebar = () => {
+  const hideSidebar = (e) => {
+    e.preventDefault();
     setSidebar(false)
     //localStorage.setItem('sidebar', false)
   };

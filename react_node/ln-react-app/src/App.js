@@ -3,6 +3,7 @@ import './App.css'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // Page imports
+import Add_Patient from './pages/Add_Patient';
 import Dashboard from './pages/Dashboard'
 import Homepage from './pages/Homepage'
 import Login from './pages/Login'
@@ -18,6 +19,7 @@ import Team from './pages/Team';
 import Nav from './components/Nav/Nav'
 import { AuthProvider } from "./Auth"
 import PrivateRoute from './PrivateRoute'
+
 
 const App = () => {
   var login = false;
@@ -47,6 +49,7 @@ const App = () => {
     <AuthProvider>
       <Router>
         <div>
+        <PrivateRoute path="/add_patient" exact component={Add_Patient} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
           <Route exact path="/" component={Homepage} />
           <PrivateRoute path='/profile' exact component={Profile} />
