@@ -26,7 +26,7 @@ const Profile = ({props}) => {
   if (error) {
     return <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
-    return <h1>Loading...</h1>;
+    return <h1>{/* Loading message goes here */}</h1>;
   } else return (
       <div className='home'>
         <h1>Profile {items}</h1>
