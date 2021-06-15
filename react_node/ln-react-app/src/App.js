@@ -19,6 +19,7 @@ import Team from './pages/Team';
 import Nav from './components/Nav/Nav'
 import { AuthProvider } from "./Auth"
 import PrivateRoute from './PrivateRoute'
+import Cookie_tester from './pages/Cookie_tester';
 
 
 const App = () => {
@@ -56,6 +57,7 @@ const App = () => {
           <PrivateRoute path="/patient" exact component={Patient} />
           <PrivateRoute path="/module" exact component={Module} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/cookie" component={Cookie_tester} />
           <Route exact path="/signup" component={Signup} />
         </div>
       </Router>
