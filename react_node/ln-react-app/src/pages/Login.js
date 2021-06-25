@@ -2,6 +2,9 @@ import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 import Firebase from "../components/Firebase";
 import { AuthContext } from "../Auth";
+import axios from "axios"
+
+axios.defaults.withCredentials = true;
 
 const Login = ({ history }) => {
   const handleLogin = useCallback(
@@ -11,8 +14,19 @@ const Login = ({ history }) => {
       try {
         await Firebase
           .auth()
-          .signInWithEmailAndPassword(email.value, password.value);
+          .signInWithEmailAndPassword(email.value, password.value)
+          .then(function(result) {
+            axios.post('localhost:4000/login', {"id_token": result.user.getIdTokenResult})
+              .then(loginResponse => {
+                console.log(loginResponse);
+              })
+          })
+          .catch(err => {
+            console.log(err);
+          });
         //TODO: GET ID TOKEN, SEND TO BACKEND AND GET ISSUED JWT
+
+        let id_token = 
 
         history.push("/dashboard");
       } catch (error) {
