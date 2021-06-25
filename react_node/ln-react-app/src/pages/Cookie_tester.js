@@ -6,7 +6,7 @@ const Cookie_tester = () => {
 
 
 const createCookie = () => {
-  axios.post('http://localhost:4000/login'/*,{ withCredentials: true }*/).then((res) =>{
+  axios.post('http://localhost:4000/login',/*{ withCredentials: true }*/).then((res) =>{
     console.log(res.data)
   })
 }

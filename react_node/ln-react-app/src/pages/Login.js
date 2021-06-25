@@ -12,6 +12,8 @@ const Login = ({ history }) => {
         await Firebase
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
+        //TODO: GET ID TOKEN, SEND TO BACKEND AND GET ISSUED JWT
+
         history.push("/dashboard");
       } catch (error) {
         alert(error);
