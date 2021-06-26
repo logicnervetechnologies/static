@@ -15,8 +15,10 @@ const Login = ({ history }) => {
         await Firebase
           .auth()
           .signInWithEmailAndPassword(email.value, password.value)
-          .then(function(result) {
-            axios.post('localhost:4000/login', {"id_token": result.user.getIdTokenResult})
+          .then(async function(result) {
+            const id_token = await result.user.getIdToken()
+            console.log(id_token)
+            axios.post('http://localhost:4000/login', {"id_token": id_token})
               .then(loginResponse => {
                 console.log(loginResponse);
               })
@@ -24,9 +26,6 @@ const Login = ({ history }) => {
           .catch(err => {
             console.log(err);
           });
-        //TODO: GET ID TOKEN, SEND TO BACKEND AND GET ISSUED JWT
-
-        let id_token = 
 
         history.push("/dashboard");
       } catch (error) {

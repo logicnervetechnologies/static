@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom';
 import { IconContext } from 'react-icons/lib';
 import Sidebar from '../Sidebar/Sidebar'
 import Firebase from '../Firebase'
+import axios from 'axios'
+
+axios.defaults.withCredentials = true
 
 const Navbar = styled.div`
   background: #15171c;
@@ -80,7 +83,10 @@ return (
             <NavIcon to='/add_patient'>
                 <MdIcons.MdPersonAdd />
             </NavIcon>
-            <NavIcon onClick={()=> {Firebase.auth().signOut()}}>
+            <NavIcon onClick={()=> {
+                axios.post('http://localhost:4000/logout')
+                Firebase.auth().signOut()
+                }}>
                 <FiIcons.FiLogOut />
             </NavIcon>
             <NavIcon to='/profile'>

@@ -5,15 +5,15 @@ axios.defaults.withCredentials = true
 const Cookie_tester = () => {
 
 
-const createCookie = () => {
+const createCookie = (e) => {
+
   axios.post('http://localhost:4000/login',/*{ withCredentials: true }*/).then((res) =>{
     console.log(res.data)
   })
 }
-const deleteCookie = () => {
-  axios.post('http://localhost:4000/logout'/*,{ withCredentials: true }*/).then((res) =>{
-    console.log(res.data)
-  })
+const deleteCookie = (e) => {
+
+  axios.post('http://localhost:4000/logout'/*,{ withCredentials: true }*/)
 }
 
 
