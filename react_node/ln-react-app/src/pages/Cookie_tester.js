@@ -7,13 +7,12 @@ const Cookie_tester = () => {
 
 const createCookie = (e) => {
 
-  axios.post('http://localhost:4000/login',/*{ withCredentials: true }*/).then((res) =>{
+  axios.post('http://localhost:4000/login').then((res) =>{
     console.log(res.data)
   })
 }
 const deleteCookie = (e) => {
-
-  axios.post('http://localhost:4000/logout'/*,{ withCredentials: true }*/)
+  axios.post('http://localhost:4000/logout')
 }
 
 

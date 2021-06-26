@@ -83,6 +83,12 @@ return (
             <NavIcon to='/add_patient'>
                 <MdIcons.MdPersonAdd />
             </NavIcon>
+            <NavIcon onClick={(e)=>{
+                e.preventDefault()
+                axios.post("http://localhost:4000/token")
+            }}>
+                <MdIcons.MdRefresh />
+            </NavIcon>
             <NavIcon onClick={()=> {
                 axios.post('http://localhost:4000/logout')
                 Firebase.auth().signOut()

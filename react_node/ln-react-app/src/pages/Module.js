@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios'
+
+axios.defaults.withCredentials = true
 
 const Module = (props) => {
     if (props.location.state &&( props.location.state.modId !== localStorage.getItem('modId'))) {
@@ -13,6 +16,12 @@ const [modId, ] = useState(localStorage.getItem('modId') || null);
     return (
         <div className='home'>
           <h1>Module: {modId}</h1>
+          <br />
+          <button onClick={
+              () => {
+              axios.post("http://localhost:7000/posts")
+              }
+          }>Make Request To Form Module Example</button>
         </div>
         )
 
