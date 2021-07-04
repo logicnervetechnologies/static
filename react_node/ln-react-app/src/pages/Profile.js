@@ -43,10 +43,32 @@ const Profile = ({props}) => {
         console.log(response)
       })
     }
+    const createUser = () => {
+      axios.post("http://localhost:8000/createUser", {
+        firstName:"Johnny",
+        lastName:"Sins"
+      }).then((response) => {
+      console.log(response)
+    })
+  }
+    const editUser = () => {
+      axios.post("http://localhost:8000/editUser", {
+        firstName:"Johnathan",
+        lastName:"Sins",
+        title:"Dr."
+      }).then((response) => {
+      console.log(response)
+    })
+  }
     return (
       <div id="profile">
         <button onClick={getUserInfo}>GET USER INFO</button>
+
+        {/* DeVonn Buttons */}
+        <button onClick={createUser}>Create User</button>
+        <button onClick={editUser}>Edit User</button>
       </div>
+
     )
 
 }
