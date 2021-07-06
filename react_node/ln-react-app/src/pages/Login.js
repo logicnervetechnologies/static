@@ -42,19 +42,21 @@ const Login = ({ history }) => {
   }
 
   return (
-    <div>
+    <div class="account-handler">
       <h1>Log in</h1>
+      <div class="login-form">
       <form onSubmit={handleLogin}>
-        <label>
-          Email
+        <label class="login-label">
+          Email:
           <input name="email" type="email" placeholder="Email" />
         </label>
-        <label>
-          Password
+        <label class="login-label">
+          Password: 
           <input name="password" type="password" placeholder="Password" />
         </label>
         <button type="submit">Log in</button>
       </form>
+      </div>
     </div>
   );
 };
