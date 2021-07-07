@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
-html, body, #root, #page, .wrapper{
+html, body, #root, .wrapper {
   height: 100%;
 }
 
@@ -53,7 +53,7 @@ html, body, #root, #page, .wrapper{
   background-color: #76BFDC;
 }
 
-.login-form label {
+.login-label {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -76,6 +76,86 @@ html, body, #root, #page, .wrapper{
   background-color: #76BFDC;
   outline:none;
 }
+
+.homepage {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  display: flex;
+  flex-flow: row;
+  background-color: #BBDFEE;
+}
+
+.homepage h1 {
+  font-size: xxx-large;
+  text-align: center;
+  margin: 10px;
+}
+
+.homepage .leftside {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.homepage .button-panel {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: center;
+}
+
+.homepage .login {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.homepage .signup {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.homepage .button {
+  background-color: #048ABF;
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+  margin: 5px 10px;
+}
+.homepage .button:hover {
+  background-color: #03587A;
+}
+
+.homepage .rightside {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.homepage .rightside img {
+  width: 100%;
+  padding: 20px;
+  max-height: 100%;
+}
+
+.signup-page {
+  display:block;
+  margin: auto;
+  height: 100%;
+  text-align: center;
+  padding: 10px;
+  background-color: #BBDFEE;
+}
+
+.signup-page h1 {
+  margin: 20px;
+  font-size: xxx-large;
+}
+
 
 .home,
 .reports,
