@@ -9,7 +9,13 @@ const SignUp = ({ history }) => {
     try {
       await Firebase
         .auth()
-        .createUserWithEmailAndPassword(email.value, password.value);
+        .createUserWithEmailAndPassword(email.value, password.value)
+        .then((user) => {
+          console.log(user)
+          const code = user.user.sendEmailVerification()
+          console.log(code)
+        })
+
       history.push("/dashboard");
     } catch (error) {
       alert(error);
