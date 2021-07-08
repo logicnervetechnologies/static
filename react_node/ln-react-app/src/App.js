@@ -12,7 +12,7 @@ import Profile from './pages/Profile';
 import Patient from './pages/Patient'
 import Signup from './pages/Signup'
 import Team from './pages/Team';
-
+import VerifyEmail from './pages/VerifyEmail'
 
 // Component imports
 import { AuthProvider } from "./Auth"
@@ -25,7 +25,7 @@ const App = () => {
     <AuthProvider>
       <Router>
         <div>
-        <PrivateRoute path="/add_patient" exact component={Add_Patient} />
+          <PrivateRoute path="/add_patient" exact component={Add_Patient} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
           <Route exact path="/" component={Homepage} />
           <PrivateRoute path='/profile' exact component={Profile} />
@@ -34,6 +34,7 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <Route exact path="/cookie" component={Cookie_tester} />
           <Route exact path="/signup" component={Signup} />
+          <Route exact path="/verify" component={VerifyEmail} />
         </div>
       </Router>
     </AuthProvider>

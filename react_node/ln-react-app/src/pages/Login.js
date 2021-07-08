@@ -12,6 +12,7 @@ const Login = ({ history }) => {
       event.preventDefault();
       const { email, password } = event.target.elements;
       try {
+        var noErr = true
         await Firebase
           .auth()
           .signInWithEmailAndPassword(email.value, password.value)
@@ -21,14 +22,24 @@ const Login = ({ history }) => {
             axios.post('http://localhost:4000/login', {"id_token": id_token})
               .then(loginResponse => {
                 console.log(loginResponse);
+              }).catch(err => {
+                result.user.sendEmailVerification()
+                Firebase.auth().signOut()
+                console.log("err")
+                console.log(err)
+                if(err.response.status === 403) {
+                  history.push("/verify")
+                  noErr = false
+                  return
+                }
               })
           })
           .catch(err => {
             console.log(err);
           });
-
-        history.push("/dashboard");
+        if (noErr) history.push("/dashboard");
       } catch (error) {
+        console.log("bananass")
         alert(error);
       }
     },
