@@ -15,8 +15,8 @@ const SignUp = ({ history }) => {
           const code = user.user.sendEmailVerification()
           console.log(code)
         })
-
-      history.push("/dashboard");
+      await Firebase.auth().signOut()
+      history.push("/login");
     } catch (error) {
       alert(error);
     }
