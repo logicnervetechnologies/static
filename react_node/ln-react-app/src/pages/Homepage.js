@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import '../styles/homepage.css'
 
 const TT = styled.div`
 white-space: pre-line;

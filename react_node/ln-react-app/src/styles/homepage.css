@@ -1,0 +1,64 @@
+.homepage {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    display: flex;
+    flex-flow: row;
+    background-color: #BBDFEE;
+  }
+  
+  h1 {
+    font-size: xxx-large;
+    text-align: center;
+    margin: 10px;
+  }
+  
+  .leftside {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .button-panel {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  .login {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .signup {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .button {
+    background-color: #048ABF;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+    margin: 5px 10px;
+  }
+  .button:hover {
+    background-color: #03587A;
+  }
+  
+  .rightside {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .rightside img {
+    width: 100%;
+    padding: 20px;
+    max-height: 100%;
+  }

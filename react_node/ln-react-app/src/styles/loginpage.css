@@ -1,0 +1,13 @@
+.login-page {
+    display:block;
+    margin: auto;
+    height: 100%;
+    text-align: center;
+    padding: 10px;
+    background-color: #BBDFEE;
+  }
+  
+  .login-page h1 {
+    margin: 20px;
+    font-size: xxx-large;
+  }

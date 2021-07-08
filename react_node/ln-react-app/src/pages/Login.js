@@ -3,6 +3,8 @@ import { withRouter, Redirect } from "react-router";
 import Firebase from "../components/Firebase";
 import { AuthContext } from "../Auth";
 import axios from "axios"
+import '../styles/loginpage.css'
+import '../styles/loginform.css'
 
 axios.defaults.withCredentials = true;
 
@@ -42,7 +44,7 @@ const Login = ({ history }) => {
   }
 
   return (
-    <div class="account-handler">
+    <div class="login-page">
       <h1>Log in</h1>
       <div class="login-form">
       <form onSubmit={handleLogin}>
