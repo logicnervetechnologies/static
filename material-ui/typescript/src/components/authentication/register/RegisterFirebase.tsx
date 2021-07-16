@@ -14,6 +14,20 @@ import {
 import useAuth from '../../../hooks/useAuth';
 import useMounted from '../../../hooks/useMounted';
 
+// function equalTo(ref: any, msg: any) {
+//   return Yup.mixed().test({
+//     name: 'equalTo',
+//     exclusive: false,
+//     message: msg || 'Passwords must be the same',
+//     params: {
+//       reference: ref.path,
+//     },
+//     test: (value) => value === this.resolve(ref)
+//   });
+// }
+
+// Yup.addMethod(Yup.string, 'equalTo', equalTo);
+
 const RegisterFirebase: FC = (props) => {
   const mounted = useMounted();
   const { createUserWithEmailAndPassword } = useAuth() as any;
@@ -79,6 +93,7 @@ const RegisterFirebase: FC = (props) => {
         initialValues={{
           email: '',
           password: '',
+          passwordVerify: '',
           policy: false,
           submit: null
         }}
@@ -96,6 +111,11 @@ const RegisterFirebase: FC = (props) => {
                 .min(7)
                 .max(255)
                 .required('Password is required'),
+              passwordVerify: Yup
+                .string()
+                .min(7)
+                .max(255)
+                .oneOf([Yup.ref('password'), null], 'Passwords must match'),
               policy: Yup
                 .boolean()
                 .oneOf([true], 'You must agree to the Logic Nerve terms of agreement to create an account.')
@@ -107,6 +127,11 @@ const RegisterFirebase: FC = (props) => {
           setSubmitting
         }): Promise<void> => {
           try {
+            if (values.password !== values.passwordVerify) {
+              setStatus({ success: false });
+              setSubmitting(false);
+              setErrors({ submit: 'Passwords must match' });
+            }
             await createUserWithEmailAndPassword(values.email, values.password)
               .then((result) => {
                 result.user.sendEmailVerification();
@@ -164,6 +189,19 @@ const RegisterFirebase: FC = (props) => {
               onChange={handleChange}
               type="password"
               value={values.password}
+              variant="outlined"
+            />
+            <TextField
+              error={Boolean(touched.passwordVerify && errors.passwordVerify)}
+              fullWidth
+              helperText={touched.passwordVerify && errors.passwordVerify}
+              label="Verify Password"
+              margin="normal"
+              name="passwordVerify"
+              onBlur={handleBlur}
+              onChange={handleChange}
+              type="password"
+              value={values.passwordVerify}
               variant="outlined"
             />
             <Box

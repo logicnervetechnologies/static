@@ -18,7 +18,7 @@ const AuthorizationRequired: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Error: Authorization Required | Material Kit Pro</title>
+        <title>Error: Authorization Required | Logic Nerve</title>
       </Helmet>
       <Box
         sx={{

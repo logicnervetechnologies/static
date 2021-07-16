@@ -21,7 +21,7 @@ const Chat: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Dashboard: Chat | Material Kit Pro</title>
+        <title>Dashboard: Chat | Logic Nerve</title>
       </Helmet>
       <Box
         sx={{

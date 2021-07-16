@@ -48,7 +48,7 @@ const ProjectBrowse: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Dashboard: Project Browse | Material Kit Pro</title>
+        <title>Dashboard: Project Browse | Logic Nerve</title>
       </Helmet>
       <Box
         sx={{

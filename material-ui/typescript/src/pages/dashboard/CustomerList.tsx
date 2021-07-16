@@ -50,7 +50,7 @@ const CustomerList: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Dashboard: Customer List | Material Kit Pro</title>
+        <title>Dashboard: Customer List | Logic Nerve</title>
       </Helmet>
       <Box
         sx={{

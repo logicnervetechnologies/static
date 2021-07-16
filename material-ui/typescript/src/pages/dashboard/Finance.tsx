@@ -35,7 +35,7 @@ const Finance: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Dashboard: Finance | Material Kit Pro</title>
+        <title>Dashboard: Finance | Logic Nerve</title>
       </Helmet>
       <Box
         sx={{
