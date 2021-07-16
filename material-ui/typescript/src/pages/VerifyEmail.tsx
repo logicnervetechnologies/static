@@ -77,7 +77,7 @@ const VerifyEmail: FC = () => {
             <Button
               color="primary"
               variant="outlined"
-              onClick={() => window.location.reload(false)}
+              onClick={() => window.location.reload()}
               sx={{
                 m: 1
               }}

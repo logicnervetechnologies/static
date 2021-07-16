@@ -39,7 +39,7 @@ const Register: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Register | Material Kit Pro</title>
+        <title>Register | Logic Nerve</title>
       </Helmet>
       <Box
         sx={{
@@ -98,7 +98,7 @@ const Register: FC = () => {
                     color="textSecondary"
                     variant="body2"
                   >
-                    Register on the internal platform
+                    Create a Logic Nerve Account
                   </Typography>
                 </div>
                 <Box

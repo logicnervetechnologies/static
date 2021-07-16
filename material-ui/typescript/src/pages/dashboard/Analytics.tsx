@@ -34,7 +34,7 @@ const Analytics: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Dashboard: Analytics | Material Kit Pro</title>
+        <title>Dashboard: Analytics | Logic Nerve</title>
       </Helmet>
       <Box
         sx={{

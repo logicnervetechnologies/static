@@ -257,7 +257,7 @@ const Browse: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Browse | Material Kit Pro</title>
+        <title>Browse | Logic Nerve</title>
       </Helmet>
       <Box
         sx={{

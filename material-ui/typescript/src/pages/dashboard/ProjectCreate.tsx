@@ -25,7 +25,7 @@ const ProjectCreate: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Dashboard: Project Create | Material Kit Pro</title>
+        <title>Dashboard: Project Create | Logic Nerve</title>
       </Helmet>
       <Box
         sx={{

@@ -73,7 +73,7 @@ const SocialProfile: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Dashboard: Social Profile | Material Kit Pro</title>
+        <title>Dashboard: Social Profile | Logic Nerve</title>
       </Helmet>
       <Box
         sx={{

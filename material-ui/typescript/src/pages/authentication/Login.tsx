@@ -39,7 +39,7 @@ const Login: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Login | Material Kit Pro</title>
+        <title>Login | Logic Nerve</title>
       </Helmet>
       <Box
         sx={{

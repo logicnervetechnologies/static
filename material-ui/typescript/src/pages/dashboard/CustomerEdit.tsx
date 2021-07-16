@@ -43,7 +43,7 @@ const CustomerEdit: FC = () => {
   return (
     <>
       <Helmet>
-        <title>Dashboard: Customer Edit | Material Kit Pro</title>
+        <title>Dashboard: Customer Edit | Logic Nerve</title>
       </Helmet>
       <Box
         sx={{
