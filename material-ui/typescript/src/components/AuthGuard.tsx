@@ -4,6 +4,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import useAuth from '../hooks/useAuth';
 import Login from '../pages/authentication/Login';
+import VerifyEmail from '../pages/VerifyEmail';
 
 interface AuthGuardProps {
   children: ReactNode;
@@ -21,6 +22,9 @@ const AuthGuard: FC<AuthGuardProps> = (props) => {
     }
 
     return <Login />;
+  }
+  if (!auth.user.emailVerified) {
+    return <VerifyEmail />;
   }
 
   // This is done so that in case the route changes by any chance through other

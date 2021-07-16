@@ -3,6 +3,9 @@ import type { FC, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import firebase from '../lib/firebase';
 import type { User } from '../types/user';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 interface State {
   isInitialized: boolean;
@@ -81,6 +84,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
             id: user.uid,
             avatar: user.photoURL,
             email: user.email,
+            emailVerified: user.emailVerified,
             name: 'Jane Rotanson',
             plan: 'Premium'
           }
@@ -114,6 +118,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
   ): Promise<any> => firebase.auth().createUserWithEmailAndPassword(email, password);
 
   const logout = async (): Promise<void> => {
+    await axios.post('http://localhost:4000/logout');
     await firebase.auth().signOut();
   };
 

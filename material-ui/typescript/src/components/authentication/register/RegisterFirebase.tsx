@@ -107,7 +107,10 @@ const RegisterFirebase: FC = (props) => {
           setSubmitting
         }): Promise<void> => {
           try {
-            await createUserWithEmailAndPassword(values.email, values.password);
+            await createUserWithEmailAndPassword(values.email, values.password)
+              .then((result) => {
+                result.user.sendEmailVerification();
+              });
 
             if (mounted.current) {
               setStatus({ success: true });
