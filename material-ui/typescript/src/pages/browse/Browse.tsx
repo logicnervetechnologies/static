@@ -44,7 +44,7 @@ const getSections = (mode: 'light' | 'dark'): Section[] => (
           newTab: true,
           subtitle: '3 screens',
           image: `/static/browse/screens-dashboard_${mode}.png`,
-          path: '/authentication/login-unguarded'
+          path: '/authentication/login'
         },
         {
           title: 'Contact',

@@ -16,8 +16,9 @@ import useMounted from '../../../hooks/useMounted';
 
 const RegisterFirebase: FC = (props) => {
   const mounted = useMounted();
-  const { createUserWithEmailAndPassword, signInWithGoogle } = useAuth() as any;
-
+  const { createUserWithEmailAndPassword } = useAuth() as any;
+  // signInWithGoogle
+  /*
   const handleGoogleClick = async (): Promise<void> => {
     try {
       await signInWithGoogle();
@@ -25,9 +26,11 @@ const RegisterFirebase: FC = (props) => {
       console.error(err);
     }
   };
+  */
 
   return (
     <>
+      {/*
       <Button
         fullWidth
         onClick={handleGoogleClick}
@@ -50,11 +53,12 @@ const RegisterFirebase: FC = (props) => {
         />
         Google
       </Button>
+      */}
       <Box
         sx={{
           alignItems: 'center',
           display: 'flex',
-          mt: 2
+          mt: 0
         }}
       >
         <Box sx={{ flexGrow: 1 }}>
@@ -65,7 +69,7 @@ const RegisterFirebase: FC = (props) => {
           sx={{ m: 2 }}
           variant="body1"
         >
-          OR
+          Create Account
         </Typography>
         <Box sx={{ flexGrow: 1 }}>
           <Divider orientation="horizontal" />
@@ -75,7 +79,7 @@ const RegisterFirebase: FC = (props) => {
         initialValues={{
           email: '',
           password: '',
-          policy: true,
+          policy: false,
           submit: null
         }}
         validationSchema={
@@ -94,7 +98,7 @@ const RegisterFirebase: FC = (props) => {
                 .required('Password is required'),
               policy: Yup
                 .boolean()
-                .oneOf([true], 'This field must be checked')
+                .oneOf([true], 'You must agree to the Logic Nerve terms of agreement to create an account.')
             })
         }
         onSubmit={async (values, {

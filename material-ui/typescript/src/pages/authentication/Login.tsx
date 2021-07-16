@@ -11,7 +11,7 @@ import {
   Link,
   Typography
 } from '@material-ui/core';
-import AuthBanner from '../../components/authentication/AuthBanner';
+// import AuthBanner from '../../components/authentication/AuthBanner';
 import {
   LoginAmplify,
   LoginAuth0,
@@ -49,7 +49,7 @@ const Login: FC = () => {
           minHeight: '100vh'
         }}
       >
-        <AuthBanner />
+        {/* <AuthBanner /> */}
         <Container
           maxWidth="sm"
           sx={{ py: '80px' }}
@@ -136,7 +136,7 @@ const Login: FC = () => {
               >
                 Create new account
               </Link>
-              { platform === 'JWT' && (
+              { platform === 'Amplify' && (
                 <Link
                   color="textSecondary"
                   component={RouterLink}

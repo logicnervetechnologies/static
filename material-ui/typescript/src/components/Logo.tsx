@@ -2,12 +2,15 @@ import type { FC } from 'react';
 import type { Theme } from '@material-ui/core';
 import { experimentalStyled } from '@material-ui/core/styles';
 import type { SxProps } from '@material-ui/system';
+// import logo_img from './logo_image/checkmark.svg';
 
 interface LogoProps {
   sx?: SxProps<Theme>;
 }
 
 const LogoRoot = experimentalStyled('svg')``;
+
+// const Logo = <img src={logo_img} alt="Logo" />;
 
 const Logo: FC<LogoProps> = (props) => (
   <LogoRoot

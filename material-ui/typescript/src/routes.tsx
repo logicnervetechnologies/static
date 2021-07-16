@@ -106,10 +106,10 @@ const routes: PartialRouteObject[] = [
           </GuestGuard>
         )
       },
-      {
+      /* {
         path: 'login-unguarded',
         element: <Login />
-      },
+      }, */
       {
         path: 'password-recovery',
         element: <PasswordRecovery />
@@ -126,10 +126,10 @@ const routes: PartialRouteObject[] = [
           </GuestGuard>
         )
       },
-      {
+      /* {
         path: 'register-unguarded',
         element: <Register />
-      },
+      }, */
       {
         path: 'verify-code',
         element: <VerifyCode />

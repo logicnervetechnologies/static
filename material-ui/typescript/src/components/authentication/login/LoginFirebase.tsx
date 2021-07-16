@@ -15,8 +15,9 @@ import useMounted from '../../../hooks/useMounted';
 
 const LoginFirebase: FC = (props) => {
   const mounted = useMounted();
-  const { signInWithEmailAndPassword, signInWithGoogle } = useAuth() as any;
-
+  const { signInWithEmailAndPassword } = useAuth() as any;
+  // signInWithGoogle
+  /*
   const handleGoogleClick = async (): Promise<void> => {
     try {
       await signInWithGoogle();
@@ -24,9 +25,11 @@ const LoginFirebase: FC = (props) => {
       console.error(err);
     }
   };
+  */
 
   return (
     <div {...props}>
+      {/*
       <Button
         fullWidth
         onClick={handleGoogleClick}
@@ -49,11 +52,12 @@ const LoginFirebase: FC = (props) => {
         />
         Google
       </Button>
+      */}
       <Box
         sx={{
           alignItems: 'center',
           display: 'flex',
-          mt: 2
+          mt: 0
         }}
       >
         <Box sx={{ flexGrow: 1 }}>
@@ -64,7 +68,7 @@ const LoginFirebase: FC = (props) => {
           sx={{ m: 2 }}
           variant="body1"
         >
-          OR
+          Welcome
         </Typography>
         <Box sx={{ flexGrow: 1 }}>
           <Divider orientation="horizontal" />
@@ -72,8 +76,8 @@ const LoginFirebase: FC = (props) => {
       </Box>
       <Formik
         initialValues={{
-          email: 'demo@devias.io',
-          password: 'Password123!',
+          email: 'hmshaikh19@gmail.com',
+          password: '',
           submit: null
         }}
         validationSchema={
@@ -97,7 +101,12 @@ const LoginFirebase: FC = (props) => {
           setSubmitting
         }): Promise<void> => {
           try {
-            await signInWithEmailAndPassword(values.email, values.password);
+            await signInWithEmailAndPassword(values.email, values.password)
+              .then(async (result) => {
+                const idToken = await result.user.getIdToken();
+                console.log(idToken);
+                console.log(props);
+              });
 
             if (mounted.current) {
               setStatus({ success: true });
@@ -177,11 +186,11 @@ const LoginFirebase: FC = (props) => {
                 <div>
                   You can use
                   {' '}
-                  <b>demo@devias.io</b>
+                  <b>hmshaikh19@gmail.com</b>
                   {' '}
                   and password
                   {' '}
-                  <b>Password123!</b>
+                  <b>Banana123!</b>
                 </div>
               </Alert>
             </Box>

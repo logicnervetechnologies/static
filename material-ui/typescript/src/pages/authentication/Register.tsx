@@ -11,7 +11,7 @@ import {
   Link,
   Typography
 } from '@material-ui/core';
-import AuthBanner from '../../components/authentication/AuthBanner';
+// import AuthBanner from '../../components/authentication/AuthBanner';
 import {
   RegisterAmplify,
   RegisterAuth0,
@@ -49,7 +49,7 @@ const Register: FC = () => {
           minHeight: '100vh'
         }}
       >
-        <AuthBanner />
+        {/* <AuthBanner /> */}
         <Container
           maxWidth="sm"
           sx={{ py: '80px' }}
@@ -134,7 +134,7 @@ const Register: FC = () => {
                 to="/authentication/login"
                 variant="body2"
               >
-                Having an account
+                Already have account
               </Link>
             </CardContent>
           </Card>
