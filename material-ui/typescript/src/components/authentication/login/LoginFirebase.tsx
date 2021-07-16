@@ -12,6 +12,9 @@ import {
 } from '@material-ui/core';
 import useAuth from '../../../hooks/useAuth';
 import useMounted from '../../../hooks/useMounted';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 const LoginFirebase: FC = (props) => {
   const mounted = useMounted();
@@ -106,6 +109,16 @@ const LoginFirebase: FC = (props) => {
                 const idToken = await result.user.getIdToken();
                 console.log(idToken);
                 console.log(props);
+                axios.post('http://localhost:4000/login', { id_token: idToken })
+                  .then((loginResponse) => {
+                    console.log(loginResponse);
+                  }).catch((err) => {
+                    console.log(err);
+                    if (err.response.data.data === 'unverified_email') {
+                      result.user.sendEmailVerification();
+                      // logout();
+                    }
+                  });
               });
 
             if (mounted.current) {
