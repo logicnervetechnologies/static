@@ -23,6 +23,7 @@ const Login = ({ history }) => {
               .then(loginResponse => {
                 console.log(loginResponse);
               }).catch(err => {
+                console.log(err)
                 result.user.sendEmailVerification()
                 Firebase.auth().signOut()
                 console.log("err")
