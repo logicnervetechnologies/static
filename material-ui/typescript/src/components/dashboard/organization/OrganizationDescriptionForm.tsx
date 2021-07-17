@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import { Box, Button, Card, FormHelperText, Paper, Typography } from '@material-ui/core';
 import QuillEditor from '../../QuillEditor';
 
-interface ProjectDescriptionFormProps {
+interface OrganizationDescriptionFormProps {
   onBack?: () => void;
   onComplete?: () => void;
 }
 
-const ProjectDescriptionForm: FC<ProjectDescriptionFormProps> = (props) => {
+const OrganizationDescriptionForm: FC<OrganizationDescriptionFormProps> = (props) => {
   const { onBack, onComplete, ...other } = props;
   const [content, setContent] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -106,9 +106,9 @@ const ProjectDescriptionForm: FC<ProjectDescriptionFormProps> = (props) => {
   );
 };
 
-ProjectDescriptionForm.propTypes = {
+OrganizationDescriptionForm.propTypes = {
   onBack: PropTypes.func,
   onComplete: PropTypes.func
 };
 
-export default ProjectDescriptionForm;
+export default OrganizationDescriptionForm;

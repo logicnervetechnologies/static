@@ -91,7 +91,6 @@ const SocialProfile = Loadable(lazy(() => import('./pages/dashboard/SocialProfil
 
 const OrganizationCreate = Loadable(lazy(() => import('./pages/dashboard/OrganizationCreate')));
 
-
 // Other pages
 
 const Checkout = Loadable(lazy(() => import('./pages/Checkout')));
