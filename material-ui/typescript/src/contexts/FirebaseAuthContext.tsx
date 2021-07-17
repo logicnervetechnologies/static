@@ -118,7 +118,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
   ): Promise<any> => firebase.auth().createUserWithEmailAndPassword(email, password);
 
   const logout = async (): Promise<void> => {
-    await axios.post('http://localhost:4000/logout');
+    axios.post('http://localhost:4000/logout');
     await firebase.auth().signOut();
   };
 

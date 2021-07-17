@@ -87,6 +87,11 @@ const ProjectDetails = Loadable(lazy(() => import('./pages/dashboard/ProjectDeta
 const SocialFeed = Loadable(lazy(() => import('./pages/dashboard/SocialFeed')));
 const SocialProfile = Loadable(lazy(() => import('./pages/dashboard/SocialProfile')));
 
+// Organization pages
+
+const OrganizationCreate = Loadable(lazy(() => import('./pages/dashboard/OrganizationCreate')));
+
+
 // Other pages
 
 const Checkout = Loadable(lazy(() => import('./pages/Checkout')));
@@ -308,6 +313,15 @@ const routes: PartialRouteObject[] = [
             path: ':projectId',
             element: <ProjectDetails />
           }
+        ]
+      },
+      {
+        path: 'organizations',
+        children: [
+          {
+            path: 'new',
+            element: <OrganizationCreate />
+          },
         ]
       },
       {
