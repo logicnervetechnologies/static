@@ -18,18 +18,18 @@ interface OrganizationOwnerFormProps {
 
 const typeOptions = [
   {
-    description: 'I\'m looking for teammates to join in a personal project',
-    title: 'I\'m a freelancer',
-    value: 'freelancer'
+    description: 'I\'m the owner/head of this organization.',
+    title: 'I\'m the owner',
+    value: 'organizationOwner'
   },
   {
-    description: 'I\'m looking for freelancer or contractors to take care of my project',
-    title: 'I’m a project owner',
-    value: 'projectOwner'
+    description: 'I\'m an administrator of the organization and am creating this on behalf of the owner.',
+    title: 'I\'m an admin',
+    value: 'organizationAdmin'
   },
   {
-    description: 'I\'m looking for freelancer or contractors to take care of my project',
-    title: 'I want to join affiliate',
+    description: 'I\'m creating this organiztion on behalf of my employer, but am not an administrator of the organization.',
+    title: 'I\'m neither admin nor owner',
     value: 'affiliate'
   }
 ];
@@ -79,8 +79,7 @@ const OrganizationOwnerForm: FC<OrganizationOwnerFormProps> = (props) => {
           color="textSecondary"
           variant="body1"
         >
-          Proin tincidunt lacus sed ante efficitur efficitur.
-          Quisque aliquam fringilla velit sit amet euismod.
+          What role do you play in the structure of this organization?
         </Typography>
         <Box sx={{ mt: 2 }}>
           {typeOptions.map((typeOption) => (
