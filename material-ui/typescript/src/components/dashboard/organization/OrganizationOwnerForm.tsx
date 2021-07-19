@@ -36,7 +36,7 @@ const typeOptions = [
 
 const OrganizationOwnerForm: FC<OrganizationOwnerFormProps> = (props) => {
   const { onBack, onNext, ...other } = props;
-  const [type, setType] = useState<string>(typeOptions[1].value);
+  const [type, setType] = useState<string>(typeOptions[0].value);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 

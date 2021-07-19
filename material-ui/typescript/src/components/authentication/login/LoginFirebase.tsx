@@ -104,23 +104,7 @@ const LoginFirebase: FC = (props) => {
           setSubmitting
         }): Promise<void> => {
           try {
-            await signInWithEmailAndPassword(values.email, values.password)
-              .then(async (result) => {
-                const idToken = await result.user.getIdToken();
-                console.log(idToken);
-                console.log(props);
-                axios.post('http://localhost:4000/login', { id_token: idToken })
-                  .then((loginResponse) => {
-                    console.log(loginResponse);
-                  }).catch((err) => {
-                    console.log(err);
-                    if (err.response.data.data === 'unverified_email') {
-                      result.user.sendEmailVerification();
-                      // logout();
-                    }
-                  });
-              });
-
+            await signInWithEmailAndPassword(values.email, values.password);
             if (mounted.current) {
               setStatus({ success: true });
               setSubmitting(false);

@@ -13,8 +13,8 @@ import {
 
 const paymentMethods = [
   {
-    label: 'Visa Credit/Debit Card',
-    value: 'visa'
+    label: 'Credit/Debit Card',
+    value: 'card'
   },
   {
     label: 'PayPal',
