@@ -11,7 +11,7 @@ import {
   Typography
 } from '@material-ui/core';
 
-interface ProjectOwnerFormProps {
+interface OrganizationOwnerFormProps {
   onNext?: () => void;
   onBack?: () => void;
 }
@@ -23,20 +23,20 @@ const typeOptions = [
     value: 'organizationOwner'
   },
   {
-    description: 'I\'m an admin of the organization creating this on behalf of the owner.',
-    title: 'I’m an admin',
+    description: 'I\'m an administrator of the organization and am creating this on behalf of the owner.',
+    title: 'I\'m an admin',
     value: 'organizationAdmin'
   },
   {
-    description: 'I\'m creating this organiztion on behalf of my employer, but am not an admin for this organization.',
-    title: 'I am neither admin nor owner',
+    description: 'I\'m creating this organiztion on behalf of my employer, but am not an administrator of the organization.',
+    title: 'I\'m neither admin nor owner',
     value: 'affiliate'
   }
 ];
 
-const ProjectOwnerForm: FC<ProjectOwnerFormProps> = (props) => {
+const OrganizationOwnerForm: FC<OrganizationOwnerFormProps> = (props) => {
   const { onBack, onNext, ...other } = props;
-  const [type, setType] = useState<string>(typeOptions[1].value);
+  const [type, setType] = useState<string>(typeOptions[0].value);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -153,9 +153,9 @@ const ProjectOwnerForm: FC<ProjectOwnerFormProps> = (props) => {
   );
 };
 
-ProjectOwnerForm.propTypes = {
+OrganizationOwnerForm.propTypes = {
   onBack: PropTypes.func,
   onNext: PropTypes.func
 };
 
-export default ProjectOwnerForm;
+export default OrganizationOwnerForm;

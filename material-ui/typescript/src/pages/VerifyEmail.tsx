@@ -19,6 +19,11 @@ const VerifyEmail: FC = () => {
     firebase.auth().currentUser.sendEmailVerification();
   };
 
+  const refreshToLogin = () => {
+    auth.logout();
+    window.location.reload();
+  };
+
   useEffect(() => {
     gtm.push({ event: 'page_view' });
   }, []);
@@ -77,7 +82,7 @@ const VerifyEmail: FC = () => {
             <Button
               color="primary"
               variant="outlined"
-              onClick={() => window.location.reload()}
+              onClick={refreshToLogin}
               sx={{
                 m: 1
               }}

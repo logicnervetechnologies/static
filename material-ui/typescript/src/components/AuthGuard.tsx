@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import useAuth from '../hooks/useAuth';
 import Login from '../pages/authentication/Login';
 import VerifyEmail from '../pages/VerifyEmail';
+import FinishCreatingUser from '../pages/FinishCreatingUser';
 
 interface AuthGuardProps {
   children: ReactNode;
@@ -26,7 +27,12 @@ const AuthGuard: FC<AuthGuardProps> = (props) => {
   if (!auth.user.emailVerified) {
     return <VerifyEmail />;
   }
-
+  if (!auth.user.setupComplete) {
+    auth.refreshUserDataComplete();
+    console.log('user setup incomplete');
+    console.log(auth.user);
+    return <FinishCreatingUser />;
+  }
   // This is done so that in case the route changes by any chance through other
   // means between the moment of request and the render we navigate to the initially
   // requested route.

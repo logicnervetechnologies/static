@@ -108,6 +108,25 @@ const sections = [
         ]
       },
       {
+        title: 'Organizations',
+        path: '/dashboard/organizations',
+        icon: <BriefcaseIcon fontSize="small" />,
+        children: [
+          {
+            title: 'Browse',
+            path: '/dashboard/organizations/browse'
+          },
+          {
+            title: 'Details',
+            path: '/dashboard/organizations/1'
+          },
+          {
+            title: 'Create',
+            path: '/dashboard/organizations/new'
+          }
+        ]
+      },
+      {
         title: 'Invoices',
         path: '/dashboard/invoices',
         icon: <ReceiptIcon fontSize="small" />,

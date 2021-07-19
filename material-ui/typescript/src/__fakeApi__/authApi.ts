@@ -107,6 +107,8 @@ class AuthApi {
           id: user.id,
           avatar: user.avatar,
           email: user.email,
+          fName: user.name,
+          lName: user.name,
           name: user.name,
           plan: user.plan
         });
