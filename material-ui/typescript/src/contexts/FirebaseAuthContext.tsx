@@ -86,43 +86,64 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
       let fName = 'N/A';
       let lName = 'N/A';
       let plan = 'N/A';
+      let error = null;
       await axios.post('http://localhost:4000/login', { id_token: idToken })
         .then((loginResponse) => {
           console.log(loginResponse);
         }).catch((err) => {
           console.log(err);
           if (err.response.data.data === 'unverified_email') {
+            error = err;
             user.sendEmailVerification();
+            dispatch({
+              type: 'AUTH_STATE_CHANGED',
+              payload: {
+                isAuthenticated: true,
+                user: {
+                  id: 'N/A',
+                  avatar: 'N/A',
+                  email: 'N/A',
+                  emailVerified: false,
+                  setupComplete: false,
+                  name: 'N/A',
+                  fName: 'N/A',
+                  lName: 'N/A',
+                  plan: 'N/A',
+                }
+              }
+            });
             // logout();
           }
         });
-      await axios.post('http://localhost:8000/getMyUserData').then((response) => {
-        if (response.status === 200) {
-          const userObj = response.data;
-          setupComplete = true;
-          fName = userObj.fName;
-          lName = userObj.lName;
-          name = `${fName} ${lName}`;
-          plan = 'N/A';
-        }
-      });
-      dispatch({
-        type: 'AUTH_STATE_CHANGED',
-        payload: {
-          isAuthenticated: true,
-          user: {
-            id: user.uid,
-            avatar: user.photoURL,
-            email: user.email,
-            emailVerified: user.emailVerified,
-            setupComplete,
-            name,
-            fName,
-            lName,
-            plan
+      if (!error) {
+        await axios.post('http://localhost:8000/getMyUserData').then((response) => {
+          if (response.status === 200) {
+            const userObj = response.data;
+            setupComplete = true;
+            fName = userObj.fName;
+            lName = userObj.lName;
+            name = `${fName} ${lName}`;
+            plan = 'N/A';
           }
-        }
-      });
+        });
+        dispatch({
+          type: 'AUTH_STATE_CHANGED',
+          payload: {
+            isAuthenticated: true,
+            user: {
+              id: user.uid,
+              avatar: user.photoURL,
+              email: user.email,
+              emailVerified: user.emailVerified,
+              setupComplete,
+              name,
+              fName,
+              lName,
+              plan
+            }
+          }
+        });
+      }
     } else {
       dispatch({
         type: 'AUTH_STATE_CHANGED',
@@ -152,9 +173,11 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
     password: string
   ): Promise<any> => {
     firebase.auth().createUserWithEmailAndPassword(email, password);
+    window.location.href = 'http://localhost:3000/authentication/login';
   };
 
   const refreshUserDataComplete = async (): Promise<any> => {
+    console.log('entering refresh');
     const auth = useAuth();
     const { user } = auth;
     axios.post('http://localhost:8000/getMyUserData').then((result) => {
@@ -168,10 +191,24 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
             user: userClone
           }
         });
+      }
+      if (result.status === 401) {
         auth.logout();
+        window.location.reload();
+      }
+      if (result.status === 403 && result.data === 'unverified_email') {
+        const userClone = { ...user, emailVerified: false };
+        console.log(userClone);
+        dispatch({
+          type: 'AUTH_STATE_CHANGED',
+          payload: {
+            isAuthenticated: true,
+            user: userClone
+          }
+        });
+        window.location.reload();
       }
     });
-    auth.logout();
   };
 
   const logout = async (): Promise<void> => {
