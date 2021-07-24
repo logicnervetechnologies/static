@@ -24,6 +24,8 @@ const AuthGuard: FC<AuthGuardProps> = (props) => {
 
     return <Login />;
   }
+  console.log('User info');
+  console.log(auth.user);
   if (!auth.user.emailVerified) {
     return <VerifyEmail />;
   }
