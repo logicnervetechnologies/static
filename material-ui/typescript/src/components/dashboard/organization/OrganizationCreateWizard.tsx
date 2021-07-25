@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { Avatar, Box, Button, Card, CardContent, Typography } from '@material-ui/core';
 import StarIcon from '@material-ui/icons/Star';
-import OrganizationDescriptionForm from './OrganizationDescriptionForm';
+// import OrganizationDescriptionForm from './OrganizationDescriptionForm';
 import OrganizationDetailsForm from './OrganizationDetailsForm';
 import OrganizationOwnerForm from './OrganizationOwnerForm';
 
@@ -20,6 +20,7 @@ const OrganizationCreateWizard: FC = (props) => {
   };
 
   const handleComplete = (): void => {
+    console.log('completed');
     setCompleted(true);
   };
 
@@ -35,13 +36,7 @@ const OrganizationCreateWizard: FC = (props) => {
               {activeStep === 1 && (
                 <OrganizationDetailsForm
                   onBack={handleBack}
-                  onNext={handleNext}
-                />
-              )}
-              {activeStep === 2 && (
-                <OrganizationDescriptionForm
-                  onBack={handleBack}
-                  onComplete={handleComplete}
+                  onNext={handleComplete}
                 />
               )}
             </>
@@ -85,8 +80,7 @@ const OrganizationCreateWizard: FC = (props) => {
                       color="textSecondary"
                       variant="subtitle1"
                     >
-                      Donec ut augue sed nisi ullamcorper posuere
-                      sit amet eu mauris. Ut eget mauris scelerisque.
+                      Your Organization has been added.
                     </Typography>
                   </Box>
                   <Box
@@ -102,7 +96,7 @@ const OrganizationCreateWizard: FC = (props) => {
                       to="/dashboard/projects/1"
                       variant="contained"
                     >
-                      View project
+                      View Organization
                     </Button>
                   </Box>
                 </Box>

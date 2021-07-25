@@ -3,6 +3,7 @@ import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
+import valid from 'card-validator';
 // import MobileDatePicker from '@material-ui/lab/MobileDatePicker';
 import {
   Box,
@@ -14,6 +15,10 @@ import {
   // Typography
 } from '@material-ui/core';
 // import PlusIcon from '../../../icons/Plus';
+import axios from 'axios';
+import { userDataService } from '../../../contexts/LNurl';
+
+axios.defaults.withCredentials = true;
 
 interface OrganizationDetailsProps {
   onBack?: () => void;
@@ -33,8 +38,12 @@ const OrganizationDetailsForm: FC<OrganizationDetailsProps> = (props) => {
         streetAddress1: '',
         streetAddress2: '',
         phoneNumber: '',
-        startDate: new Date(),
-        endDate: new Date(),
+        billingAddress: '',
+        cardOwner: '',
+        cardNumber: '',
+        cardExpirationDate: '',
+        cardSecurityCode: '',
+        cardPostalCode: '',
         submit: null
       }}
       validationSchema={
@@ -74,8 +83,38 @@ const OrganizationDetailsForm: FC<OrganizationDetailsProps> = (props) => {
               .min(3, 'Must be at least 3 characters')
               .max(255)
               .required('Required'),
-            startDate: Yup.date(),
-            endDate: Yup.date()
+            billingAddress: Yup
+              .string()
+              .min(3, 'Please enter billing street address')
+              .max(255),
+            cardOwner: Yup
+              .string()
+              .min(3, 'Please enter billing street address')
+              .required('Please enter full name on card'),
+            cardNumber: Yup
+              .string()
+              .test('test-number', // this is used internally by yup
+                'Credit Card number is invalid', // validation message
+                (value) => valid.number(value).isValid) // return true false based on validation
+              .required(),
+            cardExpirationDate: Yup
+              .string()
+              .test('test-number', // this is used internally by yup
+                'Credit Card expiration date is invalid', // validation message
+                (value) => valid.expirationDate(value).isValid) // return true false based on validation
+              .required(),
+            cardSecurityCode: Yup
+              .string()
+              .test('test-number', // this is used internally by yup
+                'Credit Card security code is invalid', // validation message
+                (value) => valid.cvv(value).isValid) // return true false based on validation
+              .required(),
+            cardPostalCode: Yup
+              .string()
+              .test('test-number', // this is used internally by yup
+                'Credit Card postal code is invalid', // validation message
+                (value) => valid.postalCode(value).isValid) // return true false based on validation
+              .required()
           })
       }
       onSubmit={async (values, {
@@ -83,13 +122,16 @@ const OrganizationDetailsForm: FC<OrganizationDetailsProps> = (props) => {
         setStatus,
         setSubmitting
       }): Promise<void> => {
+        console.log('Entered finish');
         try {
           // Call API to store step data in server session
+          console.log(values);
+          const response = await axios.post(userDataService('createOrganization'), values);
+          console.log(response);
           // It is important to have it on server to be able to reuse it if user
           // decides to continue later.
           setStatus({ success: true });
           setSubmitting(false);
-
           if (onNext) {
             onNext();
           }
@@ -241,6 +283,120 @@ const OrganizationDetailsForm: FC<OrganizationDetailsProps> = (props) => {
                   onChange={handleChange}
                   value={values.phoneNumber}
                   variant="outlined"
+                />
+              </Grid>
+            </Grid>
+            <Grid
+              mt={6}
+              container
+              spacing={3}
+            >
+              <Grid
+                item
+                md={6}
+                xs={12}
+              >
+                <TextField
+                  fullWidth
+                  label="Billing Address"
+                  name="billingAddress"
+                  error={Boolean(touched.billingAddress && errors.billingAddress)}
+                  helperText={touched.billingAddress && errors.billingAddress}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.billingAddress}
+                  variant="outlined"
+                  placeholder="123 Banana Drive, Raleigh, NC"
+                />
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+              >
+                <TextField
+                  fullWidth
+                  label="Card Owner"
+                  name="cardOwner"
+                  error={Boolean(touched.cardOwner && errors.cardOwner)}
+                  helperText={touched.cardOwner && errors.cardOwner}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.cardOwner}
+                  variant="outlined"
+                  placeholder="Winston Churchill"
+                />
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+              >
+                <TextField
+                  fullWidth
+                  label="Card Number"
+                  name="cardNumber"
+                  error={Boolean(touched.cardNumber && errors.cardNumber)}
+                  helperText={touched.cardNumber && errors.cardNumber}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.cardNumber}
+                  variant="outlined"
+                  placeholder="XXXXXXXXXXXXXXXX"
+                />
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+              >
+                <TextField
+                  fullWidth
+                  label="Card Expiration Date"
+                  name="cardExpirationDate"
+                  error={Boolean(touched.cardExpirationDate && errors.cardExpirationDate)}
+                  helperText={touched.cardExpirationDate && errors.cardExpirationDate}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.cardExpirationDate}
+                  variant="outlined"
+                  placeholder="MM/YY"
+                />
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+              >
+                <TextField
+                  fullWidth
+                  label="Security Code"
+                  name="cardSecurityCode"
+                  error={Boolean(touched.cardSecurityCode && errors.cardSecurityCode)}
+                  helperText={touched.cardSecurityCode && errors.cardSecurityCode}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.cardSecurityCode}
+                  variant="outlined"
+                  placeholder="XXX or XXXX"
+                />
+              </Grid>
+              <Grid
+                item
+                md={6}
+                xs={12}
+              >
+                <TextField
+                  fullWidth
+                  label="Postal Code"
+                  name="cardPostalCode"
+                  error={Boolean(touched.cardPostalCode && errors.cardPostalCode)}
+                  helperText={touched.cardPostalCode && errors.cardPostalCode}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.cardPostalCode}
+                  variant="outlined"
+                  placeholder="XXXXX"
                 />
               </Grid>
             </Grid>

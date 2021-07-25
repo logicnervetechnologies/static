@@ -92,7 +92,8 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
           console.log(loginResponse);
         }).catch((err) => {
           console.log(err);
-          if (err.response.data.data === 'unverified_email') {
+          console.log(err.response);
+          if (err.response && err.response.data.data === 'unverified_email') {
             error = err;
             user.sendEmailVerification();
             dispatch({
@@ -113,6 +114,8 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
               }
             });
             // logout();
+          } else {
+            firebase.auth().signOut();
           }
         });
       if (!error) {
