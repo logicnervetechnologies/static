@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import firebase from '../lib/firebase';
 import type { User } from '../types/user';
 import useAuth from '../hooks/useAuth';
+import { authService } from './LNurl';
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
@@ -85,9 +86,10 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
       let name = 'N/A';
       let fName = 'N/A';
       let lName = 'N/A';
+      let organizations = [];
       let plan = 'N/A';
       let error = null;
-      await axios.post('http://localhost:4000/login', { id_token: idToken })
+      await axios.post(authService('login'), { id_token: idToken })
         .then((loginResponse) => {
           console.log(loginResponse);
         }).catch((err) => {
@@ -106,6 +108,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
                   email: 'N/A',
                   emailVerified: false,
                   setupComplete: false,
+                  organizations: [],
                   name: 'N/A',
                   fName: 'N/A',
                   lName: 'N/A',
@@ -125,6 +128,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
             setupComplete = true;
             fName = userObj.fName;
             lName = userObj.lName;
+            organizations = userObj.organizations;
             name = `${fName} ${lName}`;
             plan = 'N/A';
           }
@@ -140,6 +144,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
               emailVerified: user.emailVerified,
               setupComplete,
               name,
+              organizations,
               fName,
               lName,
               plan

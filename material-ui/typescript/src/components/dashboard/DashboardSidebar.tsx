@@ -118,7 +118,7 @@ const sections = [
           },
           {
             title: 'Details',
-            path: '/dashboard/organizations/1'
+            path: '/dashboard/organizations/details'
           },
           {
             title: 'Create',

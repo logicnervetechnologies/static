@@ -10,6 +10,8 @@
 export { default as OrganizationCreateWizard } from './OrganizationCreateWizard';
 export { default as OrganizationDescriptionForm } from './OrganizationDescriptionForm';
 export { default as OrganizationDetailsForm } from './OrganizationDetailsForm';
+export { default as OrganizationMemberListTable } from './OrganizationMemberListTable';
+export { default as OrganizationOverview } from './OrganizationOverview';
 // export { default as ProjectFileCard } from './ProjectFileCard';
 // export { default as ProjectMembers } from './ProjectMembers';
 // export { default as ProjectMetadata } from './ProjectMetadata';

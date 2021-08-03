@@ -90,7 +90,7 @@ const SocialProfile = Loadable(lazy(() => import('./pages/dashboard/SocialProfil
 // Organization pages
 
 const OrganizationCreate = Loadable(lazy(() => import('./pages/dashboard/OrganizationCreate')));
-
+const OrganizationDetails = Loadable(lazy(() => import('./pages/dashboard/OrganizationDetails')));
 // Other pages
 
 const Checkout = Loadable(lazy(() => import('./pages/Checkout')));
@@ -320,6 +320,10 @@ const routes: PartialRouteObject[] = [
           {
             path: 'new',
             element: <OrganizationCreate />
+          },
+          {
+            path: 'details',
+            element: <OrganizationDetails />
           },
         ]
       },
