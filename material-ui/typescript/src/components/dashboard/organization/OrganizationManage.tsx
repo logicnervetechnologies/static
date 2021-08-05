@@ -20,12 +20,12 @@ import {
   Grid,
   // Link,
   // Tab,
-  // Table,
-  // TableBody,
-  // TableCell,
-  // TableHead,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
   // TablePagination,
-  // TableRow,
+  TableRow,
   // Tabs,
   // TextField,
   // Typography
@@ -34,15 +34,74 @@ import {
 // import PencilAltIcon from '../../../icons/PencilAlt';
 // import SearchIcon from '../../../icons/Search';
 import type { Organization } from '../../../types/organization';
+import type { User } from '../../../types/user';
 // import getInitials from '../../../utils/getInitials';
 // import Scrollbar from '../../Scrollbar';
 
 interface OrganizationManageProps {
   organization: Organization;
+  user: User;
 }
 
 const OrganizationManage: FC<OrganizationManageProps> = (props) => {
-  const { organization, ...other } = props;
+  const { organization, user, ...other } = props;
+
+  const adminTable = (
+    <Card {...other}>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>
+              Admins
+            </TableCell>
+          </TableRow>
+        </TableHead>
+        <CardContent>
+          <TableBody>
+            {organization.admins.map((admin) => (
+              <TableRow
+                hover
+                key={admin}
+              >
+                {admin}
+              </TableRow>
+            ))}
+          </TableBody>
+        </CardContent>
+      </Table>
+    </Card>
+  );
+
+  const rolesTable = (
+    organization.roles.map((entry) => (
+      <>
+        <Card {...other}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  {entry.role}
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <CardContent>
+              <TableBody>
+                {entry.users.map((roleUser) => (
+                  <TableRow
+                    hover
+                    key={roleUser}
+                  >
+                    {roleUser}
+                  </TableRow>
+                ))}
+              </TableBody>
+            </CardContent>
+          </Table>
+        </Card>
+        <br />
+      </>
+    ))
+  );
 
   return (
     <Grid
@@ -56,13 +115,9 @@ const OrganizationManage: FC<OrganizationManageProps> = (props) => {
         xl={9}
         xs={12}
       >
-        <Card {...other}>
-          <CardContent>
-            Admins:
-            <br />
-            Test
-          </CardContent>
-        </Card>
+        {adminTable}
+        <br />
+        {rolesTable}
       </Grid>
     </Grid>
   );
@@ -70,7 +125,8 @@ const OrganizationManage: FC<OrganizationManageProps> = (props) => {
 
 OrganizationManage.propTypes = {
   // @ts-ignore
-  organization: PropTypes.object.isRequired
+  organization: PropTypes.object.isRequired,
+  user: PropTypes.any.isRequired
 };
 
 export default OrganizationManage;

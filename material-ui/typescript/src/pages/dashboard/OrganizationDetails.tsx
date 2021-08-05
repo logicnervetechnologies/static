@@ -46,7 +46,7 @@ const tabs = [
   { label: 'Overview', value: 'overview' },
   { label: 'Members', value: 'members' },
   { label: 'Activity', value: 'activity' },
-  { label: 'Manage', value: 'manage' }
+  { label: 'Detail / Manage', value: 'manage' }
 ];
 
 const OrganizationDetails: FC = () => {
@@ -125,6 +125,9 @@ const OrganizationDetails: FC = () => {
   if (!organization) {
     console.log('No org');
     return null;
+  }
+  if (!auth.user) {
+    console.log('No user obj');
   }
 
   return (
@@ -271,7 +274,12 @@ const OrganizationDetails: FC = () => {
             {/* {currentTab === 'activity'
             && <ProjectActivities activities={organization.activities} />} */}
             {currentTab === 'manage'
-            && <OrganizationManage organization={organization} />}
+            && (
+              <OrganizationManage
+                organization={organization}
+                user={auth.user}
+              />
+            )}
           </Box>
         </Container>
       </Box>

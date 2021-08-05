@@ -1,6 +1,6 @@
 export interface OrganizationRole {
   role: string;
-  members: [string];
+  users: [string];
 }
 
 export interface Organization {
