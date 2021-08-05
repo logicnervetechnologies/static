@@ -10,6 +10,7 @@
 export { default as OrganizationCreateWizard } from './OrganizationCreateWizard';
 export { default as OrganizationDescriptionForm } from './OrganizationDescriptionForm';
 export { default as OrganizationDetailsForm } from './OrganizationDetailsForm';
+export { default as OrganizationManage } from './OrganizationManage';
 export { default as OrganizationMemberListTable } from './OrganizationMemberListTable';
 export { default as OrganizationOverview } from './OrganizationOverview';
 // export { default as ProjectFileCard } from './ProjectFileCard';

@@ -28,7 +28,8 @@ import { customerApi } from '../../__fakeApi__/customerApi';
 // } from '../../components/dashboard/project';
 import {
   OrganizationOverview,
-  OrganizationMemberListTable
+  OrganizationMemberListTable,
+  OrganizationManage
 } from '../../components/dashboard/organization';
 import useMounted from '../../hooks/useMounted';
 import useSettings from '../../hooks/useSettings';
@@ -45,7 +46,7 @@ const tabs = [
   { label: 'Overview', value: 'overview' },
   { label: 'Members', value: 'members' },
   { label: 'Activity', value: 'activity' },
-  { label: 'Applicants', value: 'applicants' }
+  { label: 'Manage', value: 'manage' }
 ];
 
 const OrganizationDetails: FC = () => {
@@ -268,9 +269,9 @@ const OrganizationDetails: FC = () => {
             {currentTab === 'members'
             && <OrganizationMemberListTable members={customers} />}
             {/* {currentTab === 'activity'
-            && <ProjectActivities activities={organization.activities} />}
-            {currentTab === 'applicants'
-            && <ProjectApplicants applicants={organization.applicants} />} */}
+            && <ProjectActivities activities={organization.activities} />} */}
+            {currentTab === 'manage'
+            && <OrganizationManage organization={organization} />}
           </Box>
         </Container>
       </Box>
