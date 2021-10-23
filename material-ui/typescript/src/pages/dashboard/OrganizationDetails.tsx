@@ -50,13 +50,18 @@ const tabs = [
 ];
 
 const OrganizationDetails: FC = () => {
+  const auth = useAuth();
   const mounted = useMounted();
   const { settings } = useSettings();
   const [currentTab, setCurrentTab] = useState<string>('overview');
+  const basicOrgsDef = {};
+  auth.user.organizations.forEach((org) => {
+    basicOrgsDef[org] = org;
+  });
+  const [orgBasicInfo, setOrgBasicInfo] = useState<Object | null>(basicOrgsDef);
   const [organization, setOrganization] = useState<Organization | null>(null);
   const [orgPos, setOrgPos] = useState(0);
   // const [isApplicationOpen, setIsApplicationOpen] = useState<boolean>(false);
-  const auth = useAuth();
 
   useEffect(() => {
     gtm.push({ event: 'page_view' });
@@ -76,9 +81,22 @@ const OrganizationDetails: FC = () => {
     }
   }, [mounted]);
 
+  const getBasicOrgInfoArray = useCallback(async (orgIds: any) => {
+    try {
+      const data : any = await organizationApi.getOrganizationsBasic(orgIds);
+      console.log(data.orgs);
+      if (data !== null) {
+        setOrgBasicInfo(data.orgs);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }, [mounted]);
+
   useEffect(() => {
     getOrganization(0);
-  }, [getOrganization]);
+    getBasicOrgInfoArray(auth.user.organizations);
+  }, [getOrganization, getBasicOrgInfoArray]);
 
   // TEMP CUSTORMERS MUST BE DEPRECATED IN FUTURE
   const [customers, setCustomers] = useState<Customer[]>([]);
@@ -166,10 +184,7 @@ const OrganizationDetails: FC = () => {
                 >
                   {auth.user.organizations.map((org, index) => (
                     <MenuItem value={index}>
-                      Org_
-                      {index}
-                      _
-                      {org}
+                      {orgBasicInfo[org]}
                     </MenuItem>
                   ))}
                 </Select>

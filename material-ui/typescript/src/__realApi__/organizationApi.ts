@@ -16,6 +16,13 @@ class OrganizationApi {
     return Promise.resolve(organizations);
   }
 
+  getOrganizationsBasic = async (orgIds) : Promise<any> => {
+    const request = axios.post(userDataService('getBasicOrganization'), { orgIds });
+    return request
+      .then((result) => Promise.resolve(result.data))
+      .catch((err) => Promise.reject(err));
+  };
+
   getOrganization = async (orgId) : Promise<Organization> => {
     // let organization : Organization = null;
     const request = axios.post(userDataService('getOrganization'), { orgId });
