@@ -1,9 +1,9 @@
 FROM node:14.17.5-alpine3.14
 
-WORKDIR /app/material-ui/typescript 
+WORKDIR /app/frontend 
 
-COPY ./material-ui/typescript/package.json .
-COPY ./material-ui/typescript/package-lock.json .
+COPY ./frontend/package.json .
+COPY ./frontend/package-lock.json .
 RUN npm install
 
 CMD npm start
