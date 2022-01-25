@@ -1,13 +1,13 @@
 import type { FC } from 'react';
 import PropTypes from 'prop-types';
 import Markdown from 'react-markdown/with-html';
-import { Box, Card, CardContent, Chip, Grid, Typography } from '@material-ui/core';
+import { Box, Card, CardContent, Grid, Typography } from '@material-ui/core';
 import { experimentalStyled } from '@material-ui/core/styles';
 
 interface OrganizationBriefProps {
   description: string;
-  tags: string[];
   title: string;
+  owner: string;
 }
 
 const MarkdownWrapper = experimentalStyled('div')(
@@ -25,8 +25,8 @@ const MarkdownWrapper = experimentalStyled('div')(
 const OrganizationBrief: FC<OrganizationBriefProps> = (props) => {
   const {
     description,
-    tags,
     title,
+    owner,
     ...other
   } = props;
 
@@ -54,23 +54,6 @@ const OrganizationBrief: FC<OrganizationBriefProps> = (props) => {
             >
               {title}
             </Typography>
-            <Box sx={{ mt: 3 }}>
-              <Typography
-                color="textSecondary"
-                variant="overline"
-              >
-                Tags
-              </Typography>
-              <Box sx={{ mt: 1 }}>
-                {tags.map((tag) => (
-                  <Chip
-                    key={tag}
-                    label={tag}
-                    variant="outlined"
-                  />
-                ))}
-              </Box>
-            </Box>
           </Grid>
         </Grid>
         <Box sx={{ mt: 3 }}>
@@ -85,6 +68,18 @@ const OrganizationBrief: FC<OrganizationBriefProps> = (props) => {
             <Markdown source={description} />
           </MarkdownWrapper>
         </Box>
+        <Box sx={{ mt: 3 }}>
+          <Typography
+            color="textSecondary"
+            sx={{ mb: 2 }}
+            variant="overline"
+          >
+            Owner
+          </Typography>
+          <MarkdownWrapper>
+            <Markdown source={owner} />
+          </MarkdownWrapper>
+        </Box>
       </CardContent>
     </Card>
   );
@@ -92,8 +87,8 @@ const OrganizationBrief: FC<OrganizationBriefProps> = (props) => {
 
 OrganizationBrief.propTypes = {
   description: PropTypes.string.isRequired,
-  tags: PropTypes.arrayOf(PropTypes.string).isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  owner: PropTypes.string.isRequired
 };
 
 export default OrganizationBrief;
