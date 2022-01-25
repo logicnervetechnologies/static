@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet-async';
 // import { formatDistanceToNowStrict } from 'date-fns';
 import {
   Box,
-  Button,
   Container,
   Divider,
   FormControl,
@@ -15,7 +14,6 @@ import {
   Tab,
   Tabs,
 } from '@material-ui/core';
-import SendIcon from '@material-ui/icons/Send';
 import { organizationApi } from '../../__realApi__/organizationApi';
 import { customerApi } from '../../__fakeApi__/customerApi';
 // import {
@@ -35,7 +33,6 @@ import useSettings from '../../hooks/useSettings';
 // import CalendarIcon from '../../icons/Calendar';
 // import CheckIcon from '../../icons/Check';
 // import ExclamationIcon from '../../icons/Exclamation';
-import ShareIcon from '../../icons/Share';
 import gtm from '../../lib/gtm';
 import type { Organization } from '../../types/organization';
 import type { Customer } from '../../types/customer';
@@ -231,27 +228,6 @@ const OrganizationDetails: FC = () => {
                     {`Deadline in ${formatDistanceToNowStrict(organization.endDate)}`}
                   </Typography>
                 </Box> */}
-              </Box>
-            </Grid>
-            <Grid item>
-              <Box sx={{ m: -1 }}>
-                <Button
-                  color="primary"
-                  startIcon={<ShareIcon fontSize="small" />}
-                  sx={{ m: 1 }}
-                  variant="text"
-                >
-                  Share
-                </Button>
-                <Button
-                  color="primary"
-                  // onClick={handleApplyModalOpen}
-                  startIcon={<SendIcon fontSize="small" />}
-                  sx={{ m: 1 }}
-                  variant="contained"
-                >
-                  Apply for a role
-                </Button>
               </Box>
             </Grid>
           </Grid>
