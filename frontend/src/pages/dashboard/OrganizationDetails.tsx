@@ -14,7 +14,6 @@ import {
   Select,
   Tab,
   Tabs,
-  Typography
 } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import { organizationApi } from '../../__realApi__/organizationApi';
@@ -189,12 +188,6 @@ const OrganizationDetails: FC = () => {
                   ))}
                 </Select>
               </FormControl>
-              <Typography
-                color="textPrimary"
-                variant="h5"
-              >
-                {organization.orgName}
-              </Typography>
               <Box
                 sx={{
                   alignItems: 'center',
