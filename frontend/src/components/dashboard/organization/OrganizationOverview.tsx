@@ -24,8 +24,8 @@ const OrganizationOverview: FC<OverviewProps> = (props) => {
       >
         <OrganizationBrief
           title={organization.orgName}
-          description="example"
-          owner="Test Name"
+          description={organization.address}
+          owner={organization.owner[0]}
         />
       </Grid>
     </Grid>
