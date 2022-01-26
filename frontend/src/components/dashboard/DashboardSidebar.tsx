@@ -77,10 +77,6 @@ const sections = [
         icon: <BriefcaseIcon fontSize="small" />,
         children: [
           {
-            title: 'Browse',
-            path: '/dashboard/organizations/browse'
-          },
-          {
             title: 'Details',
             path: '/dashboard/organizations/details'
           },
