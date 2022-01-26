@@ -4,6 +4,7 @@ export interface OrganizationRole {
 }
 
 export interface Organization {
+  uidMap: any;
   address: string | null;
   admins: [string];
   alwaysAskAddingPatient: boolean;

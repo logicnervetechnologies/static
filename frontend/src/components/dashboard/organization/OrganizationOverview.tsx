@@ -10,6 +10,10 @@ interface OverviewProps {
 
 const OrganizationOverview: FC<OverviewProps> = (props) => {
   const { organization, ...other } = props;
+  const ownerUid = organization.owner[0];
+  const uidObject = organization.uidMap[ownerUid];
+  const { fName, lName } = uidObject;
+
   return (
     <Grid
       container
@@ -25,7 +29,7 @@ const OrganizationOverview: FC<OverviewProps> = (props) => {
         <OrganizationBrief
           title={organization.orgName}
           description={organization.address}
-          owner={organization.owner[0]}
+          owner={`${fName} ${lName}`}
         />
       </Grid>
     </Grid>
