@@ -1,16 +1,15 @@
 import { useState } from 'react';
 import type { ChangeEvent, FC, MouseEvent } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import numeral from 'numeral';
 import PropTypes from 'prop-types';
 import {
   Avatar,
   Box,
-  Button,
+  // Button,
   Card,
-  Checkbox,
+  // Checkbox,
   Divider,
-  IconButton,
+  // IconButton,
   InputAdornment,
   Link,
   Tab,
@@ -24,8 +23,8 @@ import {
   TextField,
   Typography
 } from '@material-ui/core';
-import ArrowRightIcon from '../../../icons/ArrowRight';
-import PencilAltIcon from '../../../icons/PencilAlt';
+// import ArrowRightIcon from '../../../icons/ArrowRight';
+// import PencilAltIcon from '../../../icons/PencilAlt';
 import SearchIcon from '../../../icons/Search';
 import type { Customer } from '../../../types/customer';
 import getInitials from '../../../utils/getInitials';
@@ -35,16 +34,16 @@ interface OrganizationMemberListTableProps {
   members: Customer[];
 }
 
-type Sort =
-  | 'updatedAt|desc'
-  | 'updatedAt|asc'
-  | 'orders|desc'
-  | 'orders|asc';
+// type Sort =
+//   | 'updatedAt|desc'
+//   | 'updatedAt|asc'
+//   | 'orders|desc'
+//   | 'orders|asc';
 
-interface SortOption {
-  value: Sort;
-  label: string;
-}
+// interface SortOption {
+//   value: Sort;
+//   label: string;
+// }
 
 const tabs = [
   {
@@ -65,24 +64,24 @@ const tabs = [
   }
 ];
 
-const sortOptions: SortOption[] = [
-  {
-    label: 'Last update (newest)',
-    value: 'updatedAt|desc'
-  },
-  {
-    label: 'Last update (oldest)',
-    value: 'updatedAt|asc'
-  },
-  {
-    label: 'Total orders (highest)',
-    value: 'orders|desc'
-  },
-  {
-    label: 'Total orders (lowest)',
-    value: 'orders|asc'
-  }
-];
+// const sortOptions: SortOption[] = [
+//   {
+//     label: 'Last update (newest)',
+//     value: 'updatedAt|desc'
+//   },
+//   {
+//     label: 'Last update (oldest)',
+//     value: 'updatedAt|asc'
+//   },
+//   {
+//     label: 'Total orders (highest)',
+//     value: 'orders|desc'
+//   },
+//   {
+//     label: 'Total orders (lowest)',
+//     value: 'orders|asc'
+//   }
+// ];
 
 const applyFilters = (
   members: Customer[],
@@ -125,48 +124,48 @@ const applyPagination = (
 ): Customer[] => customers
   .slice(page * limit, page * limit + limit);
 
-const descendingComparator = (
-  a: Customer,
-  b: Customer,
-  orderBy: string
-): number => {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
+// const descendingComparator = (
+//   a: Customer,
+//   b: Customer,
+//   orderBy: string
+// ): number => {
+//   if (b[orderBy] < a[orderBy]) {
+//     return -1;
+//   }
 
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
+//   if (b[orderBy] > a[orderBy]) {
+//     return 1;
+//   }
 
-  return 0;
-};
+//   return 0;
+// };
 
-const getComparator = (order: 'asc' | 'desc', orderBy: string) => (
-  order === 'desc'
-    ? (a: Customer, b: Customer) => descendingComparator(a, b, orderBy)
-    : (a: Customer, b: Customer) => -descendingComparator(a, b, orderBy)
-);
+// const getComparator = (order: 'asc' | 'desc', orderBy: string) => (
+//   order === 'desc'
+//     ? (a: Customer, b: Customer) => descendingComparator(a, b, orderBy)
+//     : (a: Customer, b: Customer) => -descendingComparator(a, b, orderBy)
+// );
 
-const applySort = (customers: Customer[], sort: Sort): Customer[] => {
-  const [orderBy, order] = sort.split('|') as [string, 'asc' | 'desc'];
-  const comparator = getComparator(order, orderBy);
-  const stabilizedThis = customers.map((el, index) => [el, index]);
+// const applySort = (customers: Customer[], sort: Sort): Customer[] => {
+//   const [orderBy, order] = sort.split('|') as [string, 'asc' | 'desc'];
+//   const comparator = getComparator(order, orderBy);
+//   const stabilizedThis = customers.map((el, index) => [el, index]);
 
-  stabilizedThis.sort((a, b) => {
-    // @ts-ignore
-    const newOrder = comparator(a[0], b[0]);
+//   stabilizedThis.sort((a, b) => {
+//     // @ts-ignore
+//     const newOrder = comparator(a[0], b[0]);
 
-    if (newOrder !== 0) {
-      return newOrder;
-    }
+//     if (newOrder !== 0) {
+//       return newOrder;
+//     }
 
-    // @ts-ignore
-    return a[1] - b[1];
-  });
+//     // @ts-ignore
+//     return a[1] - b[1];
+//   });
 
-  // @ts-ignore
-  return stabilizedThis.map((el) => el[0]);
-};
+//   // @ts-ignore
+//   return stabilizedThis.map((el) => el[0]);
+// };
 
 const OrganizationMemberListTable: FC<OrganizationMemberListTableProps> = (props) => {
   const { members: customers, ...other } = props;
@@ -175,7 +174,7 @@ const OrganizationMemberListTable: FC<OrganizationMemberListTableProps> = (props
   const [page, setPage] = useState<number>(0);
   const [limit, setLimit] = useState<number>(10);
   const [query, setQuery] = useState<string>('');
-  const [sort, setSort] = useState<Sort>(sortOptions[0].value);
+  // const [sort, setSort] = useState<Sort>(sortOptions[0].value);
   const [filters, setFilters] = useState<any>({
     hasAcceptedMarketing: null,
     isProspect: null,
@@ -203,26 +202,26 @@ const OrganizationMemberListTable: FC<OrganizationMemberListTableProps> = (props
     setQuery(event.target.value);
   };
 
-  const handleSortChange = (event: ChangeEvent<HTMLInputElement>): void => {
-    setSort(event.target.value as Sort);
-  };
+  // const handleSortChange = (event: ChangeEvent<HTMLInputElement>): void => {
+  //   setSort(event.target.value as Sort);
+  // };
 
-  const handleSelectAllCustomers = (event: ChangeEvent<HTMLInputElement>): void => {
-    setSelectedCustomers(event.target.checked
-      ? customers.map((customer) => customer.id)
-      : []);
-  };
+  // const handleSelectAllCustomers = (event: ChangeEvent<HTMLInputElement>): void => {
+  //   setSelectedCustomers(event.target.checked
+  //     ? customers.map((customer) => customer.id)
+  //     : []);
+  // };
 
-  const handleSelectOneCustomer = (
-    event: ChangeEvent<HTMLInputElement>,
-    customerId: string
-  ): void => {
-    if (!selectedCustomers.includes(customerId)) {
-      setSelectedCustomers((prevSelected) => [...prevSelected, customerId]);
-    } else {
-      setSelectedCustomers((prevSelected) => prevSelected.filter((id) => id !== customerId));
-    }
-  };
+  // const handleSelectOneCustomer = (
+  //   event: ChangeEvent<HTMLInputElement>,
+  //   customerId: string
+  // ): void => {
+  //   if (!selectedCustomers.includes(customerId)) {
+  //     setSelectedCustomers((prevSelected) => [...prevSelected, customerId]);
+  //   } else {
+  //     setSelectedCustomers((prevSelected) => prevSelected.filter((id) => id !== customerId));
+  //   }
+  // };
 
   const handlePageChange = (event: MouseEvent<HTMLButtonElement> | null, newPage: number): void => {
     setPage(newPage);
@@ -233,12 +232,12 @@ const OrganizationMemberListTable: FC<OrganizationMemberListTableProps> = (props
   };
 
   const filteredCustomers = applyFilters(customers, query, filters);
-  const sortedCustomers = applySort(filteredCustomers, sort);
-  const paginatedCustomers = applyPagination(sortedCustomers, page, limit);
-  const enableBulkActions = selectedCustomers.length > 0;
-  const selectedSomeCustomers = selectedCustomers.length > 0
-    && selectedCustomers.length < customers.length;
-  const selectedAllCustomers = selectedCustomers.length === customers.length;
+  // const sortedCustomers = applySort(filteredCustomers, sort);
+  // const paginatedCustomers = applyPagination(sortedCustomers, page, limit);
+  const paginatedCustomers = applyPagination(filteredCustomers, page, limit);
+  // const enableBulkActions = selectedCustomers.length > 0;
+  // const selectedSomeCustomers = selectedCustomers.length > 0 && selectedCustomers.length < customers.length;
+  // const selectedAllCustomers = selectedCustomers.length === customers.length;
 
   return (
     <Card {...other}>
@@ -285,12 +284,12 @@ const OrganizationMemberListTable: FC<OrganizationMemberListTableProps> = (props
               )
             }}
             onChange={handleQueryChange}
-            placeholder="Search customers"
+            placeholder="Search Members"
             value={query}
             variant="outlined"
           />
         </Box>
-        <Box
+        {/* <Box
           sx={{
             m: 1,
             width: 240
@@ -314,9 +313,9 @@ const OrganizationMemberListTable: FC<OrganizationMemberListTableProps> = (props
               </option>
             ))}
           </TextField>
-        </Box>
+        </Box> */}
       </Box>
-      {enableBulkActions && (
+      {/* {enableBulkActions && (
         <Box sx={{ position: 'relative' }}>
           <Box
             sx={{
@@ -350,24 +349,24 @@ const OrganizationMemberListTable: FC<OrganizationMemberListTableProps> = (props
             </Button>
           </Box>
         </Box>
-      )}
+      )} */}
       <Scrollbar>
         <Box sx={{ minWidth: 700 }}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell padding="checkbox">
+                {/* <TableCell padding="checkbox">
                   <Checkbox
                     checked={selectedAllCustomers}
                     color="primary"
                     indeterminate={selectedSomeCustomers}
                     onChange={handleSelectAllCustomers}
                   />
-                </TableCell>
+                </TableCell> */}
                 <TableCell>
                   Name
                 </TableCell>
-                <TableCell>
+                {/* <TableCell>
                   Location
                 </TableCell>
                 <TableCell>
@@ -378,6 +377,9 @@ const OrganizationMemberListTable: FC<OrganizationMemberListTableProps> = (props
                 </TableCell>
                 <TableCell align="right">
                   Actions
+                </TableCell> */}
+                <TableCell align="right">
+                  Roles
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -391,7 +393,7 @@ const OrganizationMemberListTable: FC<OrganizationMemberListTableProps> = (props
                     key={customer.id}
                     selected={isCustomerSelected}
                   >
-                    <TableCell padding="checkbox">
+                    {/* <TableCell padding="checkbox">
                       <Checkbox
                         checked={isCustomerSelected}
                         color="primary"
@@ -401,7 +403,7 @@ const OrganizationMemberListTable: FC<OrganizationMemberListTableProps> = (props
                         )}
                         value={isCustomerSelected}
                       />
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell>
                       <Box
                         sx={{
@@ -436,7 +438,7 @@ const OrganizationMemberListTable: FC<OrganizationMemberListTableProps> = (props
                         </Box>
                       </Box>
                     </TableCell>
-                    <TableCell>
+                    {/* <TableCell>
                       {`${customer.city}, ${customer.state}, ${customer.country}`}
                     </TableCell>
                     <TableCell>
@@ -459,6 +461,9 @@ const OrganizationMemberListTable: FC<OrganizationMemberListTableProps> = (props
                       >
                         <ArrowRightIcon fontSize="small" />
                       </IconButton>
+                    </TableCell> */}
+                    <TableCell align="right">
+                      TODO
                     </TableCell>
                   </TableRow>
                 );
