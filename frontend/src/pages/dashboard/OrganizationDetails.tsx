@@ -69,7 +69,7 @@ const OrganizationDetails: FC = () => {
 
   const getOrganization = useCallback(async (orgNum: number) => {
     try {
-      const data : Organization = await organizationApi.getOrganization(auth.user.organizations[orgNum]);
+      const data: Organization = await organizationApi.getOrganization(auth.user.organizations[orgNum]);
       console.log(data);
       if (mounted.current && data !== null) {
         console.log('setting data');
@@ -83,7 +83,7 @@ const OrganizationDetails: FC = () => {
 
   const getBasicOrgInfoArray = useCallback(async (orgIds: any) => {
     try {
-      const data : any = await organizationApi.getOrganizationsBasic(orgIds);
+      const data: any = await organizationApi.getOrganizationsBasic(orgIds);
       console.log(data.orgs);
       if (data !== null) {
         setOrgBasicInfo(data.orgs);
@@ -283,18 +283,19 @@ const OrganizationDetails: FC = () => {
           <Divider />
           <Box sx={{ mt: 3 }}>
             {currentTab === 'overview'
-            && <OrganizationOverview organization={organization} />}
+              && <OrganizationOverview organization={organization} />}
             {currentTab === 'members'
-            && <OrganizationMemberListTable members={customers} />}
+              && <OrganizationMemberListTable members={customers} />}
             {/* {currentTab === 'activity'
             && <ProjectActivities activities={organization.activities} />} */}
             {currentTab === 'manage'
-            && (
-              <OrganizationManage
-                organization={organization}
-                user={auth.user}
-              />
-            )}
+              && (
+                <OrganizationManage
+                  organization={organization}
+                  user={auth.user}
+                  members={customers}
+                />
+              )}
           </Box>
         </Container>
       </Box>

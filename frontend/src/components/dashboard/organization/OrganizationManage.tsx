@@ -35,16 +35,19 @@ import {
 // import SearchIcon from '../../../icons/Search';
 import type { Organization } from '../../../types/organization';
 import type { User } from '../../../types/user';
+import type { Customer } from '../../../types/customer';
 // import getInitials from '../../../utils/getInitials';
 // import Scrollbar from '../../Scrollbar';
+import OrganizationMemberListTable from './OrganizationMemberListTable';
 
 interface OrganizationManageProps {
   organization: Organization;
   user: User;
+  members: Customer[];
 }
 
 const OrganizationManage: FC<OrganizationManageProps> = (props) => {
-  const { organization, user, ...other } = props;
+  const { organization, user, members, ...other } = props;
 
   const adminTable = (
     <Card {...other}>
@@ -118,6 +121,9 @@ const OrganizationManage: FC<OrganizationManageProps> = (props) => {
         {adminTable}
         <br />
         {rolesTable}
+        <br />
+        <OrganizationMemberListTable members={members} showActions />
+
       </Grid>
     </Grid>
   );
@@ -126,7 +132,8 @@ const OrganizationManage: FC<OrganizationManageProps> = (props) => {
 OrganizationManage.propTypes = {
   // @ts-ignore
   organization: PropTypes.object.isRequired,
-  user: PropTypes.any.isRequired
+  user: PropTypes.any.isRequired,
+  members: PropTypes.array.isRequired
 };
 
 export default OrganizationManage;

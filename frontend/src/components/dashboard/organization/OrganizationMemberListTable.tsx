@@ -27,6 +27,7 @@ import Scrollbar from '../../Scrollbar';
 
 interface OrganizationMemberListTableProps {
   members: Customer[];
+  showActions?: Boolean;
 }
 
 const tabs = [
@@ -90,7 +91,7 @@ const applyPagination = (
   .slice(page * limit, page * limit + limit);
 
 const OrganizationMemberListTable: FC<OrganizationMemberListTableProps> = (props) => {
-  const { members: customers, ...other } = props;
+  const { members: customers, showActions, ...other } = props;
   const [currentTab, setCurrentTab] = useState<string>('all');
   const [page, setPage] = useState<number>(0);
   const [limit, setLimit] = useState<number>(10);
@@ -190,6 +191,11 @@ const OrganizationMemberListTable: FC<OrganizationMemberListTableProps> = (props
                 <TableCell>
                   Name
                 </TableCell>
+                {showActions && (
+                  <TableCell>
+                    Actions
+                  </TableCell>
+                )}
                 <TableCell align="right">
                   Roles
                 </TableCell>
@@ -235,6 +241,11 @@ const OrganizationMemberListTable: FC<OrganizationMemberListTableProps> = (props
                       </Box>
                     </Box>
                   </TableCell>
+                  {showActions && (
+                    <TableCell>
+                      TODO
+                    </TableCell>
+                  )}
                   <TableCell align="right">
                     TODO
                   </TableCell>
@@ -258,7 +269,8 @@ const OrganizationMemberListTable: FC<OrganizationMemberListTableProps> = (props
 };
 
 OrganizationMemberListTable.propTypes = {
-  members: PropTypes.array.isRequired
+  members: PropTypes.array.isRequired,
+  showActions: PropTypes.bool,
 };
 
 export default OrganizationMemberListTable;
