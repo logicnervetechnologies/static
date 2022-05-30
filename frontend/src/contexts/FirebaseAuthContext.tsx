@@ -83,7 +83,9 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
       // The auth state only provides basic information.
       const idToken = await user.getIdToken();
       let setupComplete = false;
+      let avatar = 'N/A';
       let name = 'N/A';
+      let notifications = [];
       let fName = 'N/A';
       let lName = 'N/A';
       let organizations = [];
@@ -109,6 +111,7 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
                   emailVerified: false,
                   setupComplete: false,
                   organizations: [],
+                  notifications: [],
                   name: 'N/A',
                   fName: 'N/A',
                   lName: 'N/A',
@@ -126,8 +129,10 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
           if (response.status === 200) {
             const userObj = response.data;
             setupComplete = true;
+            avatar = userObj.avatar;
             fName = userObj.fName;
             lName = userObj.lName;
+            notifications = userObj.notifications;
             organizations = userObj.organizations;
             name = `${fName} ${lName}`;
             plan = 'N/A';
@@ -139,12 +144,13 @@ export const AuthProvider: FC<AuthProviderProps> = (props) => {
             isAuthenticated: true,
             user: {
               id: user.uid,
-              avatar: user.photoURL,
               email: user.email,
               emailVerified: user.emailVerified,
               setupComplete,
               name,
+              notifications,
               organizations,
+              avatar,
               fName,
               lName,
               plan

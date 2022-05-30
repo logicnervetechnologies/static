@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import type { ElementType, FC } from 'react';
+// import type { Notification } from '../../types/notification';
 import { subDays, subHours } from 'date-fns';
 import {
   Avatar,
@@ -20,43 +21,52 @@ import BellIcon from '../../icons/Bell';
 import ChatAltIcon from '../../icons/ChatAlt';
 import CreditCardIcon from '../../icons/CreditCard';
 import ShoppingCartIcon from '../../icons/ShoppingCart';
+// import useAuth from '../../hooks/useAuth';
+// interface Notification {
+//   id: string;
+//   title: string;
+//   description: string;
+//   type: string;
+//   createdAt: number;
+// }
 
-interface Notification {
-  id: string;
-  title: string;
-  description: string;
-  type: string;
-  createdAt: number;
-}
+// interface Notification {
+//   nid: string;
+//   notifData: string;
+//   notifHyperlink: string;
+//   date:string;
+// }
 
+// const { user } = useAuth();
+// const { notifications } = user;
 const now = new Date();
 
-const notifications: Notification[] = [
+const notifications = [
   {
     id: '5e8883f1b51cc1956a5a1ec0',
     createdAt: subHours(now, 2).getTime(),
-    description: 'Dummy text',
+    notifData: 'Dummy text',
     title: 'Your order is placed',
     type: 'order_placed'
   },
   {
     id: '5e8883f7ed1486d665d8be1e',
     createdAt: subDays(now, 1).getTime(),
-    description: 'You have 32 unread messages',
+    notifData: 'You have 32 unread messages',
     title: 'New message received',
     type: 'new_message'
   },
   {
     id: '5e8883fca0e8612044248ecf',
     createdAt: subDays(now, 3).getTime(),
-    description: 'Dummy text',
+    notifData: 'Dummy text',
     title: 'Your item is shipped',
     type: 'item_shipped'
   },
   {
     id: '5e88840187f6b09b431bae68',
     createdAt: subDays(now, 7).getTime(),
-    description: 'You have 32 unread messages',
+    notifData: 'You have 32 unread messages',
     title: 'New message received',
     type: 'new_message'
   }
@@ -132,7 +142,7 @@ const NotificationsPopover: FC = () => {
               <>
                 <List disablePadding>
                   {notifications.map((notification) => {
-                    const Icon = iconsMap[notification.type];
+                    const Icon = iconsMap.new_message;
 
                     return (
                       <ListItem
@@ -157,10 +167,10 @@ const NotificationsPopover: FC = () => {
                               underline="none"
                               variant="subtitle2"
                             >
-                              {notification.title}
+                              {notification.notifData}
                             </Link>
                           )}
-                          secondary={notification.description}
+                          secondary={notification.notifData}
                         />
                       </ListItem>
                     );
