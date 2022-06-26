@@ -11,14 +11,23 @@ import {
   Typography
 } from '@mui/material';
 import { UserCircle as UserCircleIcon } from '../../../icons/user-circle';
+import { useAuth } from '../../../hooks/use-auth';
 
 export const AccountGeneralSettings = (props) => {
   // To get the user from the authContext, you can use
-  // `const { user } = useAuth();`
-  const user = {
-    avatar: '/static/mock-images/avatars/avatar-anika_visser.png',
-    name: 'Anika Visser'
-  };
+  const { user } = useAuth();
+  if (user == null) {
+    const user = {
+      avatar: '/static/mock-images/avatars/avatar-anika_visser.png',
+      name: "Bingus Bongsus"
+    }
+  }
+  // if (nuser != null) {
+  //   user = {
+  //     avatar: '/static/mock-images/avatars/avatar-anika_visser.png',
+  //     name: nuser.fName + " " + nuser.lName
+  //   };
+  // }
 
   return (
     <Box

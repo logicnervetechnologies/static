@@ -23,3 +23,29 @@ export const firebaseConfig = {
 export const gtmConfig = {
   containerId: process.env.NEXT_PUBLIC_GTM_CONTAINER_ID
 };
+
+export const authURL = process.env.AUTH_URL
+
+const baseUrl = "http://localhost"
+
+export const lnRoute = {
+  auth: {
+    _: baseUrl + "/auth",
+    login: baseUrl + "/auth/login",
+    logout: baseUrl + "/auth/logout"
+  },
+  uds: {
+    adminAction: baseUrl + "/uds/adminAction",
+    createOrganization: baseUrl + "/uds/createOrganization",
+    getBasicOrganization: baseUrl + "/uds/getBasicOrganization",
+    getOrganization: baseUrl + "/uds/getOrganization",
+    getMyUserData: baseUrl + "/uds/getMyUserData",
+    userAction: baseUrl + "/uds/userAction"
+  }, 
+  dsi: {
+    create: baseUrl + "/dsi/create",
+    handle: baseUrl + "/dsi/handle",
+    read: baseUrl + "/dsi/read"
+  }
+};
+

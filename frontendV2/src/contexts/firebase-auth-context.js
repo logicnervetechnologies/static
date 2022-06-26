@@ -10,6 +10,10 @@ import {
   signOut
 } from 'firebase/auth';
 import { firebaseApp } from '../lib/firebase';
+import axios from 'axios';
+import { lnLogin } from '../__real-api__/authApi';
+import { udsApi } from '../__real-api__/udsApi';
+axios.defaults.withCredentials = true;
 
 const auth = getAuth(firebaseApp);
 
@@ -52,23 +56,50 @@ export const AuthProvider = (props) => {
   const { children } = props;
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  useEffect(() => onAuthStateChanged(auth, (user) => {
+  useEffect(() => onAuthStateChanged(auth, async (user) => {
     if (user) {
       // Here you should extract the complete user profile to make it available in your entire app.
       // The auth state only provides basic information.
+      console.log(user);
+      // await lnLogin(user);
+      console.log(process.env.LNURL)
+      const authResp = await lnLogin(user);
+      // const authResp = await axios.post('http://localhost/auth/login', {id_token: await user.getIdToken()})
+      // .catch((error)=> {console.log(error)});
+      console.log(authResp)
+      const udsResp = await udsApi.getMyUserData();
+      console.log(udsResp)
+      const newUserData = {
+            // id: user.uid,
+            // avatar: user.photoURL || undefined,
+            // email: user.email || 'anika.visser@devias.io',
+            // name: user.name || 'Anika Visser',
+            // plan: 'Premium'
+      }
+      if (udsResp != null) {
+        const newUser = udsResp.data;
+        newUserData = {
+            id: newUser.uid,
+            avatar: newUser.avatar,
+            email: newUser.email,
+            name: newUser.fName + ' ' + newUser.lName,
+            plan: 'Premium',
+            ...newUser
+        }
+      }
       dispatch({
         type: ActionType.AUTH_STATE_CHANGED,
         payload: {
           isAuthenticated: true,
           user: {
-            id: user.uid,
-            avatar: user.photoURL || undefined,
-            email: user.email || 'anika.visser@devias.io',
-            name: 'Anika Visser',
-            plan: 'Premium'
+            ...newUserData
           }
         }
       });
+      
+      console.log(user);
+      
+
     } else {
       dispatch({
         type: ActionType.AUTH_STATE_CHANGED,
@@ -82,6 +113,7 @@ export const AuthProvider = (props) => {
 
   const _signInWithEmailAndPassword = async (email, password) => {
     await signInWithEmailAndPassword(auth, email, password);
+    window.location.href = '/dashboard';
   };
 
   const signInWithGoogle = async () => {
@@ -95,6 +127,7 @@ export const AuthProvider = (props) => {
   };
 
   const logout = async () => {
+    await axios.post('http://localhost/auth/logout');
     await signOut(auth);
   };
 

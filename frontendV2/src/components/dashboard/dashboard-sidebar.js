@@ -99,6 +99,25 @@ const getSections = (t) => [
         ]
       },
       {
+        title: t('Organizations'),
+        path: '/dashboard/organizations',
+        icon: <UsersIcon fontSize="small" />,
+        children: [
+          {
+            title: t('List'),
+            path: '/dashboard/organizations'
+          },
+          {
+            title: t('Details'),
+            path: '/dashboard/organizations/1'
+          },
+          {
+            title: t('Manage'),
+            path: '/dashboard/organizations/1/edit'
+          }
+        ]
+      },
+      {
         title: t('Products'),
         path: '/dashboard/products',
         icon: <ShoppingBagIcon fontSize="small" />,
