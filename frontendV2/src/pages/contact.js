@@ -16,7 +16,7 @@ const Contact = () => {
     <>
       <Head>
         <title>
-          Contact | Material Kit Pro
+          Contact | Logic Nerve
         </title>
       </Head>
       <Box
@@ -90,8 +90,8 @@ const Contact = () => {
               sx={{ py: 3 }}
               variant="body1"
             >
-              Have questions about integrating our APIs? Fill out the form
-              and a senior web expert will be in touch shortly.
+              Have questions about using our product, integrating our APIs, or using a device on our network? Fill out the form
+              and one of our experts will get in touch with you.
             </Typography>
             <Typography
               sx={{ color: 'primary.main' }}

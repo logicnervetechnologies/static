@@ -96,6 +96,7 @@ export const ContactForm = () => {
             <MenuItem value="10-20">1-10</MenuItem>
             <MenuItem value="11-30">11-30</MenuItem>
             <MenuItem value="31-50">31-50</MenuItem>
+            <MenuItem value="51+">51+</MenuItem>
           </Select>
         </Grid>
         <Grid
@@ -107,11 +108,13 @@ export const ContactForm = () => {
             sx={{ mb: 1 }}
             variant="subtitle2"
           >
-            Team
+            Organization Type
           </Typography>
           <Select fullWidth>
-            <MenuItem value="engineering">Engineering</MenuItem>
-            <MenuItem value="design">Design</MenuItem>
+            <MenuItem value="nonprofitclinic">Nonprofit</MenuItem>
+            <MenuItem value="smallmedprac">Small Medical Practice</MenuItem>
+            <MenuItem value="largemedorg">Large Medical Organization</MenuItem>
+            <MenuItem value="healthdeviceproducer">Health Device Producer</MenuItem>
           </Select>
         </Grid>
         <Grid
@@ -122,13 +125,15 @@ export const ContactForm = () => {
             sx={{ mb: 1 }}
             variant="subtitle2"
           >
-            Project Budget *
+            Projected Annual Budget *
           </Typography>
           <Select
             fullWidth
             required
           >
-            <MenuItem value={20000}>$20,000+</MenuItem>
+            <MenuItem value={500}>$500+</MenuItem>
+            <MenuItem value={1000}>$1,000+</MenuItem>
+            <MenuItem value={10000}>$10,000+</MenuItem>
             <MenuItem value={50000}>$50,000+</MenuItem>
           </Select>
         </Grid>
