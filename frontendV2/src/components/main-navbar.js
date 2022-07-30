@@ -70,10 +70,10 @@ export const MainNavbar = (props) => {
                 underline="none"
                 variant="subtitle2"
               >
-                Live Demo
+                Dashboard
               </Link>
             </NextLink>
-            <NextLink
+            {/* <NextLink
               href="/browse"
               passHref
             >
@@ -99,7 +99,27 @@ export const MainNavbar = (props) => {
               >
                 Documentation
               </Link>
-            </NextLink>
+            </NextLink> */}
+            <Button
+              component="a"
+              href="/dashboard"
+              passHref
+              size="medium"
+              sx={{ ml: 2 }}
+              variant="contained"
+            >
+              Dashboard
+            </Button>
+            <Button
+              component="a"
+              href="/authentication/login"
+              passHref
+              size="medium"
+              sx={{ ml: 2 }}
+              variant="contained"
+            >
+              Login
+            </Button>
             <Button
               component="a"
               href="https://material-ui.com/store/items/devias-kit-pro"
