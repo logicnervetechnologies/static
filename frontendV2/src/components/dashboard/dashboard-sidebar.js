@@ -222,28 +222,52 @@ const getSections = (t) => [
   //     }
   //   ]
   // },
+  // {
+  //   title: t('Apps'),
+  //   items: [
+  //     // {
+  //     //   title: t('Kanban'),
+  //     //   path: '/dashboard/kanban',
+  //     //   icon: <ClipboardListIcon fontSize="small" />
+  //     // },
+  //     // {
+  //     //   title: t('Mail'),
+  //     //   path: '/dashboard/mail',
+  //     //   icon: <MailIcon fontSize="small" />
+  //     // },
+  //     // {
+  //     //   title: t('Chat'),
+  //     //   path: '/dashboard/chat',
+  //     //   icon: <ChatAlt2Icon fontSize="small" />
+  //     // },
+  //     {
+  //       title: t('Calendar'),
+  //       path: '/dashboard/calendar',
+  //       icon: <CalendarIcon fontSize="small" />
+  //     }
+  //   ]
+  // },
   {
-    title: t('Apps'),
+    title: t('Data'),
     items: [
-      // {
-      //   title: t('Kanban'),
-      //   path: '/dashboard/kanban',
-      //   icon: <ClipboardListIcon fontSize="small" />
-      // },
-      // {
-      //   title: t('Mail'),
-      //   path: '/dashboard/mail',
-      //   icon: <MailIcon fontSize="small" />
-      // },
-      // {
-      //   title: t('Chat'),
-      //   path: '/dashboard/chat',
-      //   icon: <ChatAlt2Icon fontSize="small" />
-      // },
       {
-        title: t('Calendar'),
-        path: '/dashboard/calendar',
-        icon: <CalendarIcon fontSize="small" />
+        title: t('Modules'),
+        path: '/dashboard/modules',
+        icon: <UsersIcon fontSize="small" />,
+        children: [
+          {
+            title: t('List'),
+            path: '/dashboard/modules'
+          },
+          {
+            title: t('Details'),
+            path: '/dashboard/modules/1'
+          },
+          {
+            title: t('Manage'),
+            path: '/dashboard/modules/1/edit'
+          }
+        ]
       }
     ]
   },

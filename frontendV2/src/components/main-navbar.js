@@ -102,16 +102,6 @@ export const MainNavbar = (props) => {
             </NextLink> */}
             <Button
               component="a"
-              href="/dashboard"
-              passHref
-              size="medium"
-              sx={{ ml: 2 }}
-              variant="contained"
-            >
-              Dashboard
-            </Button>
-            <Button
-              component="a"
               href="/authentication/login"
               passHref
               size="medium"

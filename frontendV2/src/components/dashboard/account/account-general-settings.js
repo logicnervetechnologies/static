@@ -81,8 +81,17 @@ export const AccountGeneralSettings = (props) => {
                 }}
               >
                 <TextField
-                  defaultValue={user.name}
-                  label="Full Name"
+                  defaultValue={user.fName}
+                  label="First Name"
+                  size="small"
+                  sx={{
+                    flexGrow: 1,
+                    mr: 3
+                  }}
+                />
+                <TextField
+                  defaultValue={user.lName}
+                  label="Last Name"
                   size="small"
                   sx={{
                     flexGrow: 1,
@@ -101,7 +110,7 @@ export const AccountGeneralSettings = (props) => {
                 }}
               >
                 <TextField
-                  defaultValue="dummy.account@gmail.com"
+                  defaultValue={user.email}
                   disabled
                   label="Email Address"
                   required
@@ -114,9 +123,9 @@ export const AccountGeneralSettings = (props) => {
                     }
                   }}
                 />
-                <Button>
+                {/* <Button>
                   Edit
-                </Button>
+                </Button> */}
               </Box>
             </Grid>
           </Grid>
@@ -194,7 +203,7 @@ export const AccountGeneralSettings = (props) => {
           </Grid>
         </CardContent>
       </Card>
-      <Card sx={{ mt: 4 }}>
+      {/* <Card sx={{ mt: 4 }}>
         <CardContent>
           <Grid
             container
@@ -229,7 +238,7 @@ export const AccountGeneralSettings = (props) => {
             </Grid>
           </Grid>
         </CardContent>
-      </Card>
+      </Card> */}
     </Box>
   );
 };
