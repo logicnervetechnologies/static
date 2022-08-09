@@ -65,10 +65,11 @@ const sortOptions = [
 ];
 
 const applyFilters = (organizations, filters) => organizations.filter((org) => {
+  console.log(org);
   if (filters.query) {
     let queryMatched = false;
-    const properties = ['email', 'orgName'];
-
+    //const properties = ['email', 'name'];
+    const properties = ['orgName'];
     properties.forEach((property) => {
       if ((org[property]).toLowerCase().includes(filters.query.toLowerCase())) {
         queryMatched = true;
@@ -160,6 +161,7 @@ const OrganizationList = () => {
     try {
       // const data = await organizationApi.getOrganizations();
       const data = await udsApi.getBasicOrganization(user.organizations);
+      console.log(data)
       if (data == null) data = [];
       // const data2 = await udsApi.
       if (isMounted()) {

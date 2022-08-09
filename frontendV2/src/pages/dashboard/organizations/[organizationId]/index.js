@@ -16,12 +16,13 @@ import {
 } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { customerApi } from '../../../../__fake-api__/customer-api';
+import { udsApi } from '../../../../__real-api__/udsApi';
 import { AuthGuard } from '../../../../components/authentication/auth-guard';
 import { DashboardLayout } from '../../../../components/dashboard/dashboard-layout';
-import { CustomerBasicDetails } from '../../../../components/dashboard/customer/customer-basic-details';
+import { OrganizationBasicDetails } from '../../../../components/dashboard/organization/organization-basic-details';
 import { CustomerDataManagement } from '../../../../components/dashboard/customer/customer-data-management';
 import { CustomerEmailsSummary } from '../../../../components/dashboard/customer/customer-emails-summary';
-import { CustomerInvoices } from '../../../../components/dashboard/customer/customer-invoices';
+import { OrganizationMembers } from '../../../../components/dashboard/organization/organization-members';
 import { CustomerPayment } from '../../../../components/dashboard/customer/customer-payment';
 import { CustomerLogs } from '../../../../components/dashboard/customer/customer-logs';
 import { useMounted } from '../../../../hooks/use-mounted';
@@ -32,25 +33,28 @@ import { getInitials } from '../../../../utils/get-initials';
 
 const tabs = [
   { label: 'Details', value: 'details' },
-  { label: 'Invoices', value: 'invoices' },
+  { label: 'Members', value: 'members' },
   { label: 'Logs', value: 'logs' }
 ];
 
-const CustomerDetails = () => {
+const OrganizationDetails = () => {
   const isMounted = useMounted();
-  const [customer, setCustomer] = useState(null);
+  const [organization, setOrganization] = useState(null);
   const [currentTab, setCurrentTab] = useState('details');
-
+  const splithref = window.location.href.split('/');
+  const organizationId = splithref[splithref.length - 1];
+  console.log(organizationId)
   useEffect(() => {
     gtm.push({ event: 'page_view' });
   }, []);
 
-  const getCustomer = useCallback(async () => {
+  const getOrganization = useCallback(async () => {
     try {
-      const data = await customerApi.getCustomer();
-
+      //const data = await customerApi.getCustomer();
+      const data = await udsApi.getOrganization(organizationId);
+      
       if (isMounted()) {
-        setCustomer(data);
+        setOrganization(data);
       }
     } catch (err) {
       console.error(err);
@@ -58,7 +62,7 @@ const CustomerDetails = () => {
   }, [isMounted]);
 
   useEffect(() => {
-      getCustomer();
+      getOrganization();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []);
@@ -67,7 +71,7 @@ const CustomerDetails = () => {
     setCurrentTab(value);
   };
 
-  if (!customer) {
+  if (!organization) {
     return null;
   }
 
@@ -75,7 +79,7 @@ const CustomerDetails = () => {
     <>
       <Head>
         <title>
-          Dashboard: Customer Details | Material Kit Pro
+          Dashboard: Organization Details | Material Kit Pro
         </title>
       </Head>
       <Box
@@ -89,7 +93,7 @@ const CustomerDetails = () => {
           <div>
             <Box sx={{ mb: 4 }}>
               <NextLink
-                href="/dashboard/customers"
+                href="/dashboard/organizations"
                 passHref
               >
                 <Link
@@ -105,7 +109,7 @@ const CustomerDetails = () => {
                     sx={{ mr: 1 }}
                   />
                   <Typography variant="subtitle2">
-                    Customers
+                    Organizations
                   </Typography>
                 </Link>
               </NextLink>
@@ -124,18 +128,18 @@ const CustomerDetails = () => {
                 }}
               >
                 <Avatar
-                  src={customer.avatar}
+                  src={organization.avatar}
                   sx={{
                     height: 64,
                     mr: 2,
                     width: 64
                   }}
                 >
-                  {getInitials(customer.name)}
+                  {getInitials(organization.orgName)}
                 </Avatar>
                 <div>
                   <Typography variant="h4">
-                    {customer.email}
+                    {organization.orgName}
                   </Typography>
                   <Box
                     sx={{
@@ -144,10 +148,10 @@ const CustomerDetails = () => {
                     }}
                   >
                     <Typography variant="subtitle2">
-                      user_id:
+                      orgId:
                     </Typography>
                     <Chip
-                      label={customer.id}
+                      label={organizationId}
                       size="small"
                       sx={{ ml: 1 }}
                     />
@@ -159,7 +163,7 @@ const CustomerDetails = () => {
                 sx={{ m: -1 }}
               >
                 <NextLink
-                  href="/dashboard/customers/1/edit"
+                  href={"/dashboard/organizations/" + organizationId + "/edit"}
                   passHref
                 >
                   <Button
@@ -213,14 +217,15 @@ const CustomerDetails = () => {
                   item
                   xs={12}
                 >
-                  <CustomerBasicDetails
-                    address1={customer.address1}
-                    address2={customer.address2}
-                    country={customer.country}
-                    email={customer.email}
-                    isVerified={!!customer.isVerified}
-                    phone={customer.phone}
-                    state={customer.state}
+                  <OrganizationBasicDetails
+                    address1={organization.address.street1}
+                    address2={organization.address.street2}
+                    country={organization.address.country}
+                    email={organization.contact.email}
+                    city={organization.address.city}
+                    isVerified={true}
+                    phone={organization.contact.number}
+                    state={organization.address.state_prov}
                   />
                 </Grid>
                 <Grid
@@ -243,7 +248,10 @@ const CustomerDetails = () => {
                 </Grid>
               </Grid>
             )}
-            {currentTab === 'invoices' && <CustomerInvoices />}
+            {currentTab === 'members' && <OrganizationMembers
+              members={organization.members}
+              udsMap={organization.udsMap}
+            />}
             {currentTab === 'logs' && <CustomerLogs />}
           </Box>
         </Container>
@@ -252,7 +260,7 @@ const CustomerDetails = () => {
   );
 };
 
-CustomerDetails.getLayout = (page) => (
+OrganizationDetails.getLayout = (page) => (
   <AuthGuard>
     <DashboardLayout>
       {page}
@@ -260,5 +268,5 @@ CustomerDetails.getLayout = (page) => (
   </AuthGuard>
 );
 
-export default CustomerDetails;
+export default OrganizationDetails;
 

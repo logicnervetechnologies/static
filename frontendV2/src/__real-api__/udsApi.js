@@ -28,12 +28,13 @@ class UdsApi {
     getBasicOrganization = async(orgIds) => {
         const udsResp = await axios.post(lnRoute.uds.getBasicOrganization, { orgIds }).catch((error) => {console.log(error)});
         console.log(udsResp)
-        return udsResp.orgs
+        return udsResp.data.orgs
     }
     getOrganization = async(orgId) => {
+        console.log(orgId)
         const udsResp = await axios.post(lnRoute.uds.getOrganization, { orgId }).catch((error) => {console.log(error)});
         console.log(udsResp)
-        return udsResp
+        return udsResp.data
     }
     userAction = async(actionObj) => {
         const udsResp = await axios.post(lnRoute.uds.userAction, actionObj).catch((error) => {console.log(error)});
