@@ -248,7 +248,7 @@ const getSections = (t) => [
   //   ]
   // },
   {
-    title: t('Data'),
+    title: t('My LN Health'),
     items: [
       {
         title: t('Modules'),
@@ -266,6 +266,25 @@ const getSections = (t) => [
           {
             title: t('Manage'),
             path: '/dashboard/modules/1/edit'
+          }
+        ]
+      },
+      {
+        title: t('My Health'),
+        path: '/dashboard/healthfiles',
+        icon: <UsersIcon fontSize="small" />,
+        children: [
+          {
+            title: t('List'),
+            path: '/dashboard/healthfiles'
+          },
+          {
+            title: t('Details'),
+            path: '/dashboard/healthfiles/1'
+          },
+          {
+            title: t('Manage'),
+            path: '/dashboard/healthfiles/1/edit'
           }
         ]
       }
