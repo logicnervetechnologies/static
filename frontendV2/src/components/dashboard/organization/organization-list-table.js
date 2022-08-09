@@ -61,6 +61,7 @@ export const OrganizationListTable = (props) => {
   const selectedSomeOrganizations = selectedOrganizations.length > 0
     && selectedOrganizations.length < organizations.length;
   const selectedAllOrganizations = selectedOrganizations.length === organizations.length;
+  console.log(organizations)
 
   return (
     <div {...other}>
@@ -127,13 +128,13 @@ export const OrganizationListTable = (props) => {
               return (
                 <TableRow
                   hover
-                  key={organization.id}
+                  key={organization.orgId}
                   selected={isOrganizationSelected}
                 >
                   <TableCell padding="checkbox">
                     <Checkbox
                       checked={isOrganizationSelected}
-                      onChange={(event) => handleSelectOneOrganization(event, organization.id)}
+                      onChange={(event) => handleSelectOneOrganization(event, organization.orgId)}
                       value={isOrganizationSelected}
                     />
                   </TableCell>
@@ -146,7 +147,7 @@ export const OrganizationListTable = (props) => {
                     >
                       <Box sx={{ ml: 1 }}>
                         <NextLink
-                          href="/dashboard/organizations/1"
+                          href={"/dashboard/organizations/" + organization.orgId}
                           passHref
                         >
                           <Link
@@ -166,7 +167,7 @@ export const OrganizationListTable = (props) => {
                     </Box>
                   </TableCell>
                   <TableCell>
-                    {`${organization.city}, ${organization.state}, ${organization.country}`}
+                    {`${organization.address.city}, ${organization.address.state_prov}, ${organization.address.country}`}
                   </TableCell>
                   <TableCell>
                     {organization.totalOrders}
@@ -180,16 +181,16 @@ export const OrganizationListTable = (props) => {
                     </Typography>
                   </TableCell>
                   <TableCell align="right">
-                    <NextLink
+                    {/* <NextLink
                       href="/dashboard/organizations/1/edit"
                       passHref
                     >
                       <IconButton component="a">
                         <PencilAltIcon fontSize="small" />
                       </IconButton>
-                    </NextLink>
+                    </NextLink> */}
                     <NextLink
-                      href="/dashboard/organizations/1"
+                      href={"/dashboard/organizations/" + organization.orgId}
                       passHref
                     >
                       <IconButton component="a">
