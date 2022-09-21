@@ -40,7 +40,7 @@ export const HomeDoctors = (props) => {
                 variant="subtitle1"
               >
                 Allows doctors to monitor patient health, easily export data to EMR systems,
-                and communicate with patients with LogicNerve's integration of IoMT 
+                and communicate with patients with LogicNerve&apos;s integration of IoMT 
                 devices, live notifications, and centralized platform.
               </Typography>
               <NextLink
