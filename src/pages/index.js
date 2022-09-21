@@ -20,7 +20,7 @@ const Home = () => {
     <>
       <Head>
         <title>
-          Material Kit Pro
+          LogicNerve
         </title>
       </Head>
       <main>

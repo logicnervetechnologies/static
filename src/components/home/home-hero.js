@@ -138,7 +138,7 @@ export const HomeHero = (props) => {
         >
           <img
             alt=""
-            src={`/static/home/hero_${theme.palette.mode}.png`}
+            src={`/hero_${theme.palette.mode}.png`}
           />
         </Box>
       </Box>
