@@ -8,7 +8,7 @@ export const HomePatients = (props) => {
   return (
     <Box
       sx={{
-        backgroundColor: 'background.paper',
+        backgroundColor: 'background.default',
         py: 15
       }}
       {...props}>
@@ -49,7 +49,7 @@ export const HomePatients = (props) => {
             xs={12}
           >
             <Typography variant="h3">
-              For patients
+              For Patients
             </Typography>
             <Typography
               color="textSecondary"
@@ -61,7 +61,7 @@ export const HomePatients = (props) => {
               and connect IoMT devices to their mobile devices to seamlessly integrate their devices
               with our central platform.
             </Typography>
-            <Box
+            {/* <Box
               sx={{
                 display: 'flex',
                 flexWrap: 'wrap',
@@ -88,7 +88,7 @@ export const HomePatients = (props) => {
               >
                 Preview Sketch
               </Button>
-            </Box>
+            </Box> */}
           </Grid>
         </Grid>
       </Container>

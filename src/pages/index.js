@@ -26,11 +26,11 @@ const Home = () => {
       <main>
         <HomeHero />
         <Divider />
+        <HomeDevelopers />
+        <Divider />
         <HomeDoctors />
         <Divider />
         <HomePatients />
-        <Divider />
-        <HomeDevelopers />
         {/* <HomeTestimonials /> */}
       </main>
     </>

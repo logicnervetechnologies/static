@@ -8,7 +8,7 @@ export const HomeDoctors = (props) => {
   return (
     <Box
       sx={{
-        backgroundColor: 'background.default',
+        backgroundColor: 'background.paper',
         py: 15
       }}
       {...props}>
@@ -43,7 +43,7 @@ export const HomeDoctors = (props) => {
                 and communicate with patients with LogicNerve&apos;s integration of IoMT 
                 devices, live notifications, and centralized platform.
               </Typography>
-              <NextLink
+              {/* <NextLink
                 href="/browse"
                 passHref
               >
@@ -54,7 +54,7 @@ export const HomeDoctors = (props) => {
                 >
                   Browse Components
                 </Button>
-              </NextLink>
+              </NextLink> */}
             </div>
           </Grid>
           <Grid
