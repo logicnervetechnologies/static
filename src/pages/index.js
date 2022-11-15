@@ -26,6 +26,8 @@ const Home = () => {
       <main>
         <HomeHero />
         <Divider />
+        <HomeFeatures />
+        <Divider />
         <HomeDevelopers />
         <Divider />
         <HomeDoctors />

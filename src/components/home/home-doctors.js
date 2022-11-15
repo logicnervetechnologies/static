@@ -8,7 +8,7 @@ export const HomeDoctors = (props) => {
   return (
     <Box
       sx={{
-        backgroundColor: 'background.paper',
+        backgroundColor: 'background.default',
         py: 15
       }}
       {...props}>

@@ -1,6 +1,6 @@
 .//contexts/amplify-context.js:              avatar: '/static/mock-images/avatars/avatar-anika_visser.png',
 .//contexts/amplify-context.js:          avatar: '/static/mock-images/avatars/avatar-anika_visser.png',
-.//components/home/home-testimonials.js:        src="/static/home/olivier.png"
+.//components/home/home-testimonials.js:        src="/static/home/olivier.png" 
 .//components/home/home-hero.js:            src={`/static/home/hero_${theme.palette.mode}.png`}
 .//components/home/home-patients.js:                src={`/static/home/designers_${theme.palette.mode}.png`}
 .//components/home/home-doctors.js:                src={`/static/home/developers_${theme.palette.mode}.png`}

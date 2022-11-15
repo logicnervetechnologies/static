@@ -12,7 +12,7 @@ export const HomeHero = (props) => {
   return (
     <Box
       sx={{
-        backgroundColor: 'background.paper',
+        backgroundColor: 'background.default',
         pt: 6
       }}
       {...props}>
@@ -35,6 +35,14 @@ export const HomeHero = (props) => {
           variant="h1"
         >
           LogicNerve
+        </Typography>
+        <Typography
+          align="center"
+          color="textSecondary"
+          variant="subtitle1"
+          sx={{ py: 3 }}
+        >
+          Deploy your healthcare innovations!
         </Typography>
         <Typography
           align="center"
@@ -68,9 +76,9 @@ export const HomeHero = (props) => {
             color="textSecondary"
             variant="caption"
           >
-            Available For:
+            Developed For:
           </Typography>
-          {['Doctors', 'Patients', 'Developers'].map((item) => (
+          {['Biotech Innovators', 'Medical Practitioners', 'Patients'].map((item) => (
             <Box
               key={item}
               sx={{
@@ -116,6 +124,19 @@ export const HomeHero = (props) => {
             </Button>
           </NextLink>
         </Box>
+        <Typography
+          align="center"
+          color="textSecondary"
+          variant="subtitle1"
+          sx={{ py: 3 }}
+        >
+        Logicnerve is a HIPAA compliant Biotech IoT deployment platform that allows innovators 
+        in the biotech space to develop and deploy their devices with ease for patient usage. 
+        Our platform is designed for easy integration with devices with and provides developers 
+        with abilities to view logs, deploy firmware updates, securely manage, and monitor device metadata while protecting PHI. 
+        Logicnerve simultaneously allows healthcare providers and patients an end to end secure platform to track their patient data using 
+        technology created by innovators, while giving capabilities to export their data easily to EMR platforms. 
+        </Typography>
       </Container>
       <Box
         sx={{

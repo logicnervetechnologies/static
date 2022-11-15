@@ -19,12 +19,12 @@ const sections = [
     title: 'Menu',
     links: [
       {
-        title: 'Browse Components',
-        href: '/browse'
+        title: 'Contact Us',
+        href: '#'
       },
       {
-        title: 'Documentation',
-        href: '/docs/welcome'
+        title: 'Sign up for updates',
+        href: '#'
       }
     ]
   },

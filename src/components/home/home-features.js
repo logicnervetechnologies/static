@@ -20,32 +20,33 @@ const getFeatures = (theme) => ([
   {
     icon: LockIcon,
     image: `/static/home/auth_${theme}.png`,
-    items: ['Amplify', 'Auth0', 'Firebase', 'JWT'],
-    subheader: 'Identity services fully integrated. Choose from:',
-    title: 'Auth System'
+    items: [
+      'Direct connection to the LN Cloud', 
+      'BT Relay connection through the LN Mobile App'
+    ],
+    subheader: 'Logicnerve’s infrastructure allows your IoT devices to be easily connected to the cloud.',
+    title: 'IoT connection options'
   },
   {
     icon: CogIcon,
     items: [
-      'Dashboard',
-      'Checkout',
-      'User Management',
-      'Product Management',
-      'Invoice Generator',
-      'Charts API',
-      'Landing/Home',
-      'And many more'
+      'Development',
+      'Test',
+      'Reserve',
+      'Pre-deployment',
+      'Deployed',
+      'Error',
     ],
-    subheader: 'Get started with ready-to-deploy templates.',
+    subheader: 'Developers can monitor devices between multiple states.',
     image: `/static/home/flows_${theme}.png`,
-    title: 'Management Pages'
+    title: 'Device State Monitoring'
   },
   {
     icon: TemplateIcon,
     image: `/static/home/landing_${theme}.png`,
-    items: ['Home or Landing', 'Contact Us', 'Blog', 'Pricing'],
-    subheader: 'We also have included all the necessary layouts for a startup.',
-    title: 'Landing Pages'
+    items: ['Pateint Verification', 'Automated Testing', 'EMR Relay'],
+    subheader: 'Developers have many features available to setup their devices for usage.',
+    title: 'Deployment Features'
   }
 ]);
 
@@ -84,8 +85,7 @@ export const HomeFeatures = (props) => {
               sx={{ py: 2 }}
               variant="subtitle1"
             >
-              Comes packed with 21 custom templates and many individual components built to meet
-              almost any type of admin or customer application requirements.
+               LogicNerve provides developers with a multitude of features to easily develop thier devices. 
             </Typography>
             {features.map((feature, index) => {
               const { icon: Icon, items, subheader, title } = feature;
