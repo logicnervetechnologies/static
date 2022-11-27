@@ -108,6 +108,10 @@ const getSections = (t) => [
             path: '/dashboard/organizations'
           },
           {
+            title: t('Create'),
+            path: '/dashboard/organizations/create'
+          },
+          {
             title: t('Details'),
             path: '/dashboard/organizations/1'
           },

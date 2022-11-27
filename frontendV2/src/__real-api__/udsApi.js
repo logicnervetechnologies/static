@@ -12,6 +12,7 @@ class UdsApi {
         return udsResp
     }
     createOrganization = async(orgName, orgAddress) => {
+        console.log("creating org")
         const nOrg = {
             orgName,
             orgAddress
