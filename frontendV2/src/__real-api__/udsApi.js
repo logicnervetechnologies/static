@@ -11,11 +11,23 @@ class UdsApi {
         console.log(udsResp)
         return udsResp
     }
-    createOrganization = async(orgName, orgAddress) => {
+    createOrganization = async(orgName, orgAddress, street1, street2, city, state_prov, country, postalCode, email, number) => {
         console.log("creating org")
         const nOrg = {
             orgName,
-            orgAddress
+            orgAddress,
+            address: {
+                city,
+                street1,
+                street2,
+                state_prov,
+                country,
+                postalCode
+            },
+            contact: {
+                email,
+                number,
+            }
         }
         const udsResp = await axios.post(lnRoute.uds.createOrganization, nOrg).catch((error) => {console.log(error)});
         console.log(udsResp)

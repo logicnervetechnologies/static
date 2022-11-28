@@ -111,16 +111,17 @@ const getSections = (t) => [
             title: t('Create'),
             path: '/dashboard/organizations/create'
           },
-          {
-            title: t('Details'),
-            path: '/dashboard/organizations/1'
-          },
-          {
-            title: t('Manage'),
-            path: '/dashboard/organizations/1/edit'
-          }
+          // {
+          //   title: t('Details'),
+          //   path: '/dashboard/organizations/1'
+          // },
+          // {
+          //   title: t('Manage'),
+          //   path: '/dashboard/organizations/1/edit'
+          // }
         ]
-      }//,
+      },
+      //,
       // {
       //   title: t('Products'),
       //   path: '/dashboard/products',
@@ -166,6 +167,34 @@ const getSections = (t) => [
       //     }
       //   ]
       // }
+    ]
+  },
+  {
+    title: t('Development'),
+    items: [
+      {
+        title: t('Data Schematics'),
+        path: '/dashboard/schematics',
+        icon: <UsersIcon fontSize="small" />,
+        children: [
+          {
+            title: t('List'),
+            path: '/dashboard/schematics'
+          },
+          {
+            title: t('Create'),
+            path: '/dashboard/schematics/create'
+          },
+          // {
+          //   title: t('Details'),
+          //   path: '/dashboard/organizations/1'
+          // },
+          // {
+          //   title: t('Manage'),
+          //   path: '/dashboard/organizations/1/edit'
+          // }
+        ]
+      },
     ]
   },
   // {

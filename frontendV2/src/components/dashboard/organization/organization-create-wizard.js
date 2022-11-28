@@ -287,20 +287,33 @@ export const OrganizationCreateWizard = () => {
   const [statereg, setStateReg] = useState("")
   const handleStateRegChange = e => {setStateReg(e.target.value)}
 
-  const [street, setStreet] = useState("")
-  const handleStreetChange = e => {setStreet(e.target.value)}
+  const [street1, setStreet1] = useState("")
+  const handleStreet1Change = e => {setStreet1(e.target.value)}
+
+  const [street2, setStreet2] = useState("")
+  const handleStreet2Change = e => {setStreet2(e.target.value)}
+
+  const [postalCode, setPostalCode] = useState("");
+  const handlePostalCodeChange = e => {setPostalCode(e.target.value)}
 
   const [phone, setPhone] = useState("");
   const handlePhoneChange = e => {setPhone(e.target.value)}
 
+  const [email, setEmail] = useState("");
+  const handleEmailChange = e => {setEmail(e.target.value)}
+
 
   const executeCreate = async (event) => {
     event.preventDefault()
-    console.log("time to bing bong")
     console.log(orgName)
-    const orgAddress = street + ", " + city + ", " + statereg + ", " + country;
+    const orgAddress = street1 + " " + street2 + ", " + city + ", " + statereg + " " + postalCode + ", " + country;
     console.log(orgAddress)
-    await udsApi.createOrganization(orgName, orgAddress)
+    console.log(phone)
+    console.log(email)
+    const resp = await udsApi.createOrganization(orgName, orgAddress, street1, street2, city, statereg, country, postalCode, email, phone);
+    console.log(resp)
+    if ('orgId' in resp.data) window.location.href = `/dashboard/organizations/${resp.data.orgId}`
+    else window.location.href= `/500`
   }
 
 
@@ -345,11 +358,13 @@ export const OrganizationCreateWizard = () => {
           >
             <TextField
               fullWidth
-              label="Street Address"
-              name="street"
+              label="Email"
+              type={"email"}
+              value={email}
+              onChange={handleEmailChange}
+              helperText="Email for your organization."
               required
-              value={street}
-              onChange={handleStreetChange}
+              name="Email"
             />
           </Grid>
           <Grid
@@ -364,6 +379,33 @@ export const OrganizationCreateWizard = () => {
               required
               value={phone}
               onChange={handlePhoneChange}
+            />
+          </Grid>
+          <Grid
+            item
+            md={6}
+            xs={12}
+          >
+            <TextField
+              fullWidth
+              label="Street Address"
+              name="street1"
+              required
+              value={street1}
+              onChange={handleStreet1Change}
+            />
+          </Grid>
+          <Grid
+            item
+            md={6}
+            xs={12}
+          >
+            <TextField
+              fullWidth
+              label="Apt/Suite"
+              name="street2"
+              value={street2}
+              onChange={handleStreet2Change}
             />
           </Grid>
           <Grid
@@ -411,6 +453,20 @@ export const OrganizationCreateWizard = () => {
               onChange={handleCityChange}
               label="City"
               name="city"
+            />
+          </Grid>
+          <Grid
+            item
+            md={6}
+            xs={12}
+          >
+            <TextField
+              fullWidth
+              label="Postal Code"
+              name="postalCode"
+              required
+              value={postalCode}
+              onChange={handlePostalCodeChange}
             />
           </Grid>
           {/* <Grid
