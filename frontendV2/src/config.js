@@ -43,6 +43,7 @@ export const lnRoute = {
     userAction: baseUrl + "/uds/userAction"
   }, 
   dsi: {
+    createSchema: baseUrl + "/dsi/createSchema",
     create: baseUrl + "/dsi/create",
     handle: baseUrl + "/dsi/handle",
     read: baseUrl + "/dsi/read"

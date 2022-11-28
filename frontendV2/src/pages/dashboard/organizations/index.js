@@ -223,7 +223,7 @@ const OrganizationList = () => {
     <>
       <Head>
         <title>
-          Dashboard: Organizations List | Material Kit Pro
+          Dashboard: Organizations List
         </title>
       </Head>
       <Box

@@ -4,6 +4,18 @@ axios.defaults.withCredentials = true;
 
 
 class DsiApi {
+
+    createSchema = async(orgId, name, parameters ) => {
+        let success = true
+        console.log(orgId)
+        const dsiResp = await axios.post(lnRoute.dsi.createSchema, {orgId, type: name, parameters}).catch((error) => {
+            console.log(error)
+            success = false
+        });
+        console.log(dsiResp);
+        return success
+    }
+
     create = async(type) => {
         const dsiResp = await axios.post(lnRoute.dsi.create, {type}).catch((error) => {console.log(error)});
         console.log(dsiResp)

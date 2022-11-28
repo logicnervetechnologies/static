@@ -140,7 +140,8 @@ const OrganizationList = () => {
   const isMounted = useMounted();
   const queryRef = useRef(null);
   const [organizations, setOrganizations] = useState([]);
-  const [selectOrg, setSelectOrg] = useState(organizations[0] || " ")
+  const [schematics, setSchematics] = useState([]);
+  const [selectOrg, setSelectOrg] = useState(organizations[0] || " ");
   const [currentTab, setCurrentTab] = useState('all');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);

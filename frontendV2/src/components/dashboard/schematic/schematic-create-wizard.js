@@ -7,80 +7,113 @@ import {
   CardHeader,
   Divider,
   Grid,
+  IconButton,
   Switch,
   TextField,
   Typography
 } from '@mui/material';
-import { useState } from 'react';
+import ClearIcon from '@mui/icons-material/Clear';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useMounted } from '../../../hooks/use-mounted';
 import { udsApi } from '../../../__real-api__/udsApi';
+import { useAuth } from '../../../hooks/use-auth';
+import { dsiApi } from '../../../__real-api__/dsiApi';
 
-const countries = [
-  { text: 'Afghanistan', value: 'AF' },
-  { text: 'Albania', value: 'AL' },
-  { text: 'Algeria', value: 'DZ' },
-  { text: 'American Samoa', value: 'AS' },
-  { text: 'Andorra', value: 'AD' }
+const ptypes = [
+  { text: 'Number', value: 'number' },
+  { text: 'String/Text', value: 'string' }
 ];
 
 
 export const SchematicCreateWizard = () => {
-
+  const isMounted = useMounted();
   const [schemName, setSchemName] = useState("");
   const handleSchemNameChange = e => { setSchemName(e.target.value) }
 
-  const [country, setCountry] = useState("");
-  const handleCountryChange = e => {
-    if (e == null) {
-      setCountry("")
-      return
-    }
-    setCountry(e.value)
-  }
-
   const [numParams, setNumParams] = useState(1);
   const [params, setParams] = useState([["",""]]);
+  const [errorPname, setErrorPname] = useState([""]);
+  const [organizations, setOrganizations] = useState([]);
+
+  const [selectOrg, setSelectOrg] = useState(organizations[0] || " ");
+
+  const handleSelectOrgChange = (event) => {
+    setSelectOrg(event.target.value);
+  };
+
+
+
+
   const handleParamNameChange = (e, i) => {
+    if(e.target.value.match(/[%<>\\$'"`\[\]; :?*,.{}~|@]/)) {
+      let errs = [...errorPname]
+      errs[i] = "Forbidden character: %<>\\$'\"`\[\]; :?*,.{}~|@"
+      setErrorPname(errs)
+    } else {
+      let errs = [...errorPname]
+      errs[i] = ""
+      setErrorPname(errs)
+    }
     let items = [...params];
-    let item = {...params[i]};
-    item[0] = e.target.value;
-    items[i] = item;
+    items[i][0] = e.target.value
     setParams(items)
   }
   const handleParamTypeChange = (e, i) => {
+    let x = e.value
+    if (x== null) x= ""
     let items = [...params];
-    let item = {...params[i]};
-    item[1] = e.target.value;
-    items[i] = item;
+    items[i][1] = x
     setParams(items)
   }
 
-  const [city, setCity] = useState("");
-  const handleCityChange = e => {setCity(e.target.value)}
+  const handleAddParameter = e => {
+    e.preventDefault()
+    setNumParams(numParams+1)
+    let nparams = [...params, ["",""]]
+    setParams(nparams)
+  }
 
-  const [statereg, setStateReg] = useState("")
-  const handleStateRegChange = e => {setStateReg(e.target.value)}
+  const handleRemoveParameter = (e, index) => {
+    let p = params
+    p.splice(index, 1)
+    setParams(p)
+    setNumParams(numParams-1)
+  }
 
-  const [street1, setStreet1] = useState("")
-  const handleStreet1Change = e => {setStreet1(e.target.value)}
+  const { user } = useAuth();
+  const getOrganizations = useCallback(async () => {
+    try {
+      // const data = await organizationApi.getOrganizations();
+      const data = await udsApi.getBasicOrganization(user.organizations);
+      console.log(data)
+      if (data == null) data = [];
+      // const data2 = await udsApi.
+      if (isMounted()) {
+        setOrganizations(data);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  }, [isMounted]);
 
-  const [street2, setStreet2] = useState("")
-  const handleStreet2Change = e => {setStreet2(e.target.value)}
-
-  const [postalCode, setPostalCode] = useState("");
-  const handlePostalCodeChange = e => {setPostalCode(e.target.value)}
-
-  const [phone, setPhone] = useState("");
-  const handlePhoneChange = e => {setPhone(e.target.value)}
-
-  const [email, setEmail] = useState("");
-  const handleEmailChange = e => {setEmail(e.target.value)}
-
+  useEffect(() => {
+    getOrganizations();
+  },
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  []);
 
   const executeCreate = async (event) => {
     event.preventDefault()
 
-    console.log(params)
-
+    let restructParams = params.map((e) => {
+      return {
+        "name": e[0],
+        "type": e[1]
+      }
+    })
+    const r = await dsiApi.createSchema(selectOrg, schemName, restructParams);
+    if (r) window.location.href="/dashboard/schematics"
+    
     // console.log(orgName)
     // const orgAddress = street1 + " " + street2 + ", " + city + ", " + statereg + " " + postalCode + ", " + country;
     // console.log(orgAddress)
@@ -108,17 +141,52 @@ export const SchematicCreateWizard = () => {
             item
             md={6}
             xs={12}
+            marginBottom={1}
           >
             <TextField
-              fullWidth
+              
               label="Name"
               value={schemName}
               onChange={handleSchemNameChange}
               helperText="The name of your data schematic created"
               required
               name="name"
-            />
-          </Grid>
+            /> 
+      <TextField
+                label="Organization"
+                name="sort"
+                onChange={handleSelectOrgChange}
+                helperText="The organization associated with the schematic"
+                select
+                SelectProps={{ native: true }}
+                sx={{ ml: 2 }}
+                value={selectOrg}
+              >
+                {organizations.map((org) => (
+                  <option
+                    key={org.orgId}
+                    value={org.orgId}
+                  >
+                    {org.orgName}
+                  </option>
+                ))}
+              </TextField>
+        </Grid>
+      <Divider />
+
+      <Grid
+            marginTop={1}
+            md={6}
+            xs={12}
+          >
+        <Button
+          color="secondary"
+          variant="outlined"
+          onClick={handleAddParameter}
+        >
+          Add Parameter
+        </Button>
+        </Grid>
       <CardContent title="Enter Parameter Information">
         <Grid
           container
@@ -134,203 +202,59 @@ export const SchematicCreateWizard = () => {
               xs={12}
             >
               <TextField
-                fullWidth
                 label="Parameter Name"
                 value={p[0]}
+                fullWidth
                 key={index}
                 onChange={(e) => {
                   handleParamNameChange(e, index)
                 }}
+                helperText={errorPname[index]} // error message
+                error={!!errorPname[index]}
                 required
                 name="parametername"
               />
             </Grid>
             <Grid
-              item
-              md={6}
-              xs={12}
-            >
-              <TextField
-                fullWidth
-                label="Field Type"
-                key={index}
-                value={p[1]}
-                onChange={(e) =>  handleParamTypeChange(e, index)}
-                required
-                name="fieldtype"
-              />
-            </Grid>
-            </>)
-            })
-          }
-
-          {/* <Grid
             item
-            md={6}
-            xs={12}
-          >
-            <TextField
-              fullWidth
-              label="Email"
-              type={"email"}
-              value={email}
-              onChange={handleEmailChange}
-              helperText="Email for your organization."
-              required
-              name="Email"
-            />
-          </Grid>
-          <Grid
-            item
-            md={6}
-            xs={12}
-          >
-            <TextField
-              fullWidth
-              label="Phone Number"
-              name="phone"
-              required
-              value={phone}
-              onChange={handlePhoneChange}
-            />
-          </Grid>
-          <Grid
-            item
-            md={6}
-            xs={12}
-          >
-            <TextField
-              fullWidth
-              label="Street Address"
-              name="street1"
-              required
-              value={street1}
-              onChange={handleStreet1Change}
-            />
-          </Grid>
-          <Grid
-            item
-            md={6}
-            xs={12}
-          >
-            <TextField
-              fullWidth
-              label="Apt/Suite"
-              name="street2"
-              value={street2}
-              onChange={handleStreet2Change}
-            />
-          </Grid>
-          <Grid
-            item
-            md={6}
+            md={4}
             xs={12}
           >
             <Autocomplete
               getOptionLabel={(option) => option.text}
-              options={countries}
-              onChange={(event, selectedValue) => handleCountryChange(selectedValue)}
+              options={ptypes}
+              onChange={(event, selectedValue) => handleParamTypeChange(selectedValue, index)}
               renderInput={(params) => (
+                <>
                 <TextField {...params}
                            fullWidth
                            required
-                           label="Country"
-                           name="country"
+                           label="Paramter Type"
+                           name="paramtype"
                 />
+                </>
               )}
             />
           </Grid>
           <Grid
             item
-            md={6}
+            md={1}
             xs={12}
           >
-            <TextField
-              fullWidth
-              value={statereg}
-              onChange={handleStateRegChange}
-              required
-              label="State/Region"
-              name="state"
-            />
+          <IconButton 
+              sx={{ visibility: "visible" }}
+              onClick={(e) => {handleRemoveParameter(e, index)}}
+            >        <ClearIcon />
+            </IconButton>
           </Grid>
-          <Grid
-            item
-            md={6}
-            xs={12}
-          >
-            <TextField
-              fullWidth
-              value={city}
-              required
-              onChange={handleCityChange}
-              label="City"
-              name="city"
-            />
-          </Grid>
-          <Grid
-            item
-            md={6}
-            xs={12}
-          >
-            <TextField
-              fullWidth
-              label="Postal Code"
-              name="postalCode"
-              required
-              value={postalCode}
-              onChange={handlePostalCodeChange}
-            />
-          </Grid> */}
-          {/* <Grid
-            item
-            md={6}
-            xs={12}
-          >
-            <Typography
-              gutterBottom
-              variant="subtitle2"
-            >
-              Public Profile
-            </Typography>
-            <Typography
-              color="textSecondary"
-              variant="body2"
-            >
-              Means that anyone viewing your profile will
-              be able to see your contacts details
-            </Typography>
-            <Switch
-              edge="start"
-              name="isPublic"
-            />
-          </Grid>
-          <Grid 
-            item
-            md={6}
-            xs={12}
-          >
-            <Typography
-              gutterBottom
-              variant="subtitle2"
-            >
-              Available to hire
-            </Typography>
-            <Typography
-              color="textSecondary"
-              variant="body2"
-            >
-              Toggling this will let your teammates know
-              that you are available for acquiring new projects
-            </Typography>
-            <Switch
-              color="primary"
-              edge="start"
-              name="canHire"
-            />
-          </Grid>*/}
+          <br />
+            </>)
+            })
+          }
+
         </Grid>
       </CardContent>
+      
       <Divider />
       <Grid
             item
@@ -342,6 +266,7 @@ export const SchematicCreateWizard = () => {
         You will be the default administrator for this schematic. You can add other adminstrators and members later.
       </Typography>
       </Grid>
+      
       <CardActions
         sx={{
           justifyContent: 'flex-end',

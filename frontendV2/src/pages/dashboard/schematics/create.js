@@ -135,8 +135,6 @@ const applySort = (organizations, sort) => {
   return stabilizedThis.map((el) => el[0]);
 };
 
-const applyPagination = (organizations, page, rowsPerPage) => organizations.slice(page * rowsPerPage,
-  page * rowsPerPage + rowsPerPage);
 
 const OrganizationCreate = () => {
   const isMounted = useMounted();
@@ -180,46 +178,6 @@ const OrganizationCreate = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []);
 
-  const handleTabsChange = (event, value) => {
-    const updatedFilters = {
-      ...filters,
-      hasAcceptedMarketing: undefined,
-      isProspect: undefined,
-      isReturning: undefined
-    };
-
-    if (value !== 'all') {
-      updatedFilters[value] = true;
-    }
-
-    setFilters(updatedFilters);
-    setCurrentTab(value);
-  };
-
-  const handleQueryChange = (event) => {
-    event.preventDefault();
-    setFilters((prevState) => ({
-      ...prevState,
-      query: queryRef.current?.value
-    }));
-  };
-
-  const handleSortChange = (event) => {
-    setSort(event.target.value);
-  };
-
-  const handlePageChange = (event, newPage) => {
-    setPage(newPage);
-  };
-
-  const handleRowsPerPageChange = (event) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-  };
-
-  // Usually query is done on backend with indexing solutions
-  const filteredOrganizations = applyFilters(organizations, filters);
-  const sortedOrganizations = applySort(filteredOrganizations, sort);
-  const paginatedOrganizations = applyPagination(sortedOrganizations, page, rowsPerPage);
 
   return (
     <>
