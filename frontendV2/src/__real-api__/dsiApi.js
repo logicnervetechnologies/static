@@ -15,6 +15,15 @@ class DsiApi {
         console.log(dsiResp);
         return success
     }
+    getSchemasOrg = async(orgId) => {
+        const dsiResp = await axios.post(lnRoute.dsi.getSchemasOrg, {orgId}).catch((error) => {
+            console.log(error)
+        });
+        console.log("REsp:")
+        console.log(dsiResp)
+        if (typeof(dsiResp) == 'object' && 'data' in dsiResp) return dsiResp.data
+        else return []
+    }
 
     create = async(type) => {
         const dsiResp = await axios.post(lnRoute.dsi.create, {type}).catch((error) => {console.log(error)});

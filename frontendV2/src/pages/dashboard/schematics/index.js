@@ -25,6 +25,8 @@ import { Search as SearchIcon } from '../../../icons/search';
 import { Upload as UploadIcon } from '../../../icons/upload';
 import { gtm } from '../../../lib/gtm';
 import { useAuth } from '../../../hooks/use-auth';
+import { dsiApi } from '../../../__real-api__/dsiApi';
+import { SchematicListTable } from '../../../components/dashboard/schematic/schematic-list-table';
 
 const tabs = [
   {
@@ -64,14 +66,14 @@ const sortOptions = [
   }
 ];
 
-const applyFilters = (organizations, filters) => organizations.filter((org) => {
-  console.log(org);
+const applyFilters = (schematics, filters) => schematics.filter((schem) => {
+  console.log(schem);
   if (filters.query) {
     let queryMatched = false;
     //const properties = ['email', 'name'];
-    const properties = ['orgName'];
+    const properties = ['type'];
     properties.forEach((property) => {
-      if ((org[property]).toLowerCase().includes(filters.query.toLowerCase())) {
+      if ((schem[property]).toLowerCase().includes(filters.query.toLowerCase())) {
         queryMatched = true;
       }
     });
@@ -79,18 +81,6 @@ const applyFilters = (organizations, filters) => organizations.filter((org) => {
     if (!queryMatched) {
       return false;
     }
-  }
-
-  if (filters.hasAcceptedMarketing && !org.hasAcceptedMarketing) {
-    return false;
-  }
-
-  if (filters.isProspect && !org.isProspect) {
-    return false;
-  }
-
-  if (filters.isReturning && !org.isReturning) {
-    return false;
   }
 
   return true;
@@ -138,6 +128,7 @@ const applyPagination = (organizations, page, rowsPerPage) => organizations.slic
 
 const OrganizationList = () => {
   const isMounted = useMounted();
+  const isMounted2 = useMounted();
   const queryRef = useRef(null);
   const [organizations, setOrganizations] = useState([]);
   const [schematics, setSchematics] = useState([]);
@@ -173,9 +164,29 @@ const OrganizationList = () => {
       console.error(err);
     }
   }, [isMounted]);
+  const getSchematics = useCallback(async () => {
+    try {
+      // const data = await organizationApi.getOrganizations();
+      if (isMounted) {
+        const data = await dsiApi.getSchemasOrg(selectOrg);
+        console.log(data)
+        console.log(data)
+        if (data == null) data = [];
+        // const data2 = await udsApi.
+        console.log(data)
+        if (isMounted() && isMounted2()) {
+          setSchematics(data);
+        }
+      }
+
+    } catch (err) {
+      console.error(err);
+    }
+  }, [isMounted2]);
 
   useEffect(() => {
       getOrganizations();
+      getSchematics();
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []);
@@ -208,8 +219,11 @@ const OrganizationList = () => {
     setSort(event.target.value);
   };
 
-  const handleSelectOrgChange = (event) => {
+  const handleSelectOrgChange = async (event) => {
     setSelectOrg(event.target.value);
+    const data = await dsiApi.getSchemasOrg(selectOrg);
+    setSchematics(data)
+    console.log(data)
   };
 
   const handlePageChange = (event, newPage) => {
@@ -221,9 +235,9 @@ const OrganizationList = () => {
   };
 
   // Usually query is done on backend with indexing solutions
-  const filteredOrganizations = applyFilters(organizations, filters);
-  const sortedOrganizations = applySort(filteredOrganizations, sort);
-  const paginatedOrganizations = applyPagination(sortedOrganizations, page, rowsPerPage);
+  const filteredSchematics = applyFilters(schematics, filters);
+  const sortedSchematics = applySort(filteredSchematics, sort);
+  const paginatedSchematics = applyPagination(sortedSchematics, page, rowsPerPage);
 
   return (
     <>
@@ -346,7 +360,7 @@ const OrganizationList = () => {
                       </InputAdornment>
                     )
                   }}
-                  placeholder="Search organizations"
+                  placeholder="Search Schematics"
                 />
               </Box>
               <TextField
@@ -367,10 +381,12 @@ const OrganizationList = () => {
                   </option>
                 ))}
               </TextField>
-            </Box>
-            <OrganizationListTable
-              organizations={paginatedOrganizations}
-              organizationsCount={filteredOrganizations.length}
+            </Box>{
+
+            }
+            <SchematicListTable
+              schematics={paginatedSchematics}
+              schematicsCount={filteredSchematics.length}
               onPageChange={handlePageChange}
               onRowsPerPageChange={handleRowsPerPageChange}
               rowsPerPage={rowsPerPage}

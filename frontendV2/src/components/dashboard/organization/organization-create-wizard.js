@@ -312,7 +312,7 @@ export const OrganizationCreateWizard = () => {
     console.log(email)
     const resp = await udsApi.createOrganization(orgName, orgAddress, street1, street2, city, statereg, country, postalCode, email, phone);
     console.log(resp)
-    if ('orgId' in resp.data) window.location.href = `/dashboard/organizations/${resp.data.orgId}`
+    if ('orgId' in resp.data) window.location.href = `/dashboard/organizations`
     else window.location.href= `/500`
   }
 

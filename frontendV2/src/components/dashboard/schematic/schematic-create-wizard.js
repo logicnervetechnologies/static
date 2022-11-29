@@ -152,7 +152,7 @@ export const SchematicCreateWizard = () => {
               required
               name="name"
             /> 
-      <TextField
+            <TextField
                 label="Organization"
                 name="sort"
                 onChange={handleSelectOrgChange}
