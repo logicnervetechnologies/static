@@ -68,6 +68,7 @@ const sortOptions = [
 
 const applyFilters = (schematics, filters) => schematics.filter((schem) => {
   console.log(schem);
+
   if (filters.query) {
     let queryMatched = false;
     //const properties = ['email', 'name'];
@@ -131,12 +132,23 @@ const OrganizationList = () => {
   const isMounted2 = useMounted();
   const queryRef = useRef(null);
   const [organizations, setOrganizations] = useState([]);
+  const [filteredSchematics, setFilteredSchematics] = useState([])
+  const [sortedSchematics, setSortedSchematics] = useState([])
+  const [paginatedSchematics, setPaginatedSchematics] = useState([])
   const [schematics, setSchematics] = useState([]);
   const [selectOrg, setSelectOrg] = useState(organizations[0] || " ");
   const [currentTab, setCurrentTab] = useState('all');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [sort, setSort] = useState(sortOptions[0].value);
+  const [table, setTable] = useState(<SchematicListTable
+    schematics={paginatedSchematics}
+    schematicsCount={filteredSchematics.length}
+    onPageChange={handlePageChange}
+    onRowsPerPageChange={handleRowsPerPageChange}
+    rowsPerPage={rowsPerPage}
+    page={page}
+  />);
   const [filters, setFilters] = useState({
     query: '',
     hasAcceptedMarketing: undefined,
@@ -209,20 +221,54 @@ const OrganizationList = () => {
 
   const handleQueryChange = (event) => {
     event.preventDefault();
-    setFilters((prevState) => ({
-      ...prevState,
-      query: queryRef.current?.value
-    }));
+    let f = filters
+    f.query = queryRef.current?.value
+    setFilters(f);
+    const fS = applyFilters(schematics, f)
+    console.log(filters)
+    setFilteredSchematics(fS);
+    console.log("s:")
+    console.log(fS)
+    const sS = applySort(fS, sort)
+    setSortedSchematics(sS);
+    console.log(sortedSchematics)
+    const pS = applyPagination(sS, page, rowsPerPage)
+    setPaginatedSchematics(pS);
+    handleTableChange(pS, fS)
   };
 
   const handleSortChange = (event) => {
     setSort(event.target.value);
   };
 
+  const handleTableChange = (pS, fS) =>{
+    setTable(            <SchematicListTable
+      schematics={pS}
+      schematicsCount={fS.length}
+      onPageChange={handlePageChange}
+      onRowsPerPageChange={handleRowsPerPageChange}
+      rowsPerPage={rowsPerPage}
+      page={page}
+    />)
+  }
+
   const handleSelectOrgChange = async (event) => {
     setSelectOrg(event.target.value);
-    const data = await dsiApi.getSchemasOrg(selectOrg);
+    console.log(event)
+    const data = await dsiApi.getSchemasOrg(event.target.value);
     setSchematics(data)
+    console.log("filters")
+    const fS = applyFilters(data, filters)
+    setFilteredSchematics(fS);
+    console.log("s:")
+    console.log(schematics)
+    const sS = applySort(fS, sort)
+    setSortedSchematics(sS);
+    console.log(sortedSchematics)
+    const pS = applyPagination(sS, page, rowsPerPage)
+    setPaginatedSchematics(pS);
+    handleTableChange(pS, fS)
+
     console.log(data)
   };
 
@@ -235,9 +281,9 @@ const OrganizationList = () => {
   };
 
   // Usually query is done on backend with indexing solutions
-  const filteredSchematics = applyFilters(schematics, filters);
-  const sortedSchematics = applySort(filteredSchematics, sort);
-  const paginatedSchematics = applyPagination(sortedSchematics, page, rowsPerPage);
+  // const filteredSchematics = applyFilters(schematics, filters);
+  // const sortedSchematics = applySort(filteredSchematics, sort);
+  // const paginatedSchematics = applyPagination(sortedSchematics, page, rowsPerPage);
 
   return (
     <>
@@ -382,16 +428,8 @@ const OrganizationList = () => {
                 ))}
               </TextField>
             </Box>{
-
+              table
             }
-            <SchematicListTable
-              schematics={paginatedSchematics}
-              schematicsCount={filteredSchematics.length}
-              onPageChange={handlePageChange}
-              onRowsPerPageChange={handleRowsPerPageChange}
-              rowsPerPage={rowsPerPage}
-              page={page}
-            />
           </Card>
         </Container>
       </Box>
