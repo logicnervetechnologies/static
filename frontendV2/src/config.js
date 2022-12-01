@@ -45,6 +45,7 @@ export const lnRoute = {
   dsi: {
     createSchema: baseUrl + "/dsi/createSchema",
     getSchemasOrg: baseUrl + "/dsi/getSchemas",
+    getSchema: baseUrl + "/dsi/getSchema",
     create: baseUrl + "/dsi/create",
     handle: baseUrl + "/dsi/handle",
     read: baseUrl + "/dsi/read"
