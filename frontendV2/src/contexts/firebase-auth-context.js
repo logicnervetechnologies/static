@@ -69,13 +69,14 @@ export const AuthProvider = (props) => {
       console.log(authResp)
       const udsResp = await udsApi.getMyUserData();
       console.log(udsResp)
-      const newUserData = {
-            // id: user.uid,
-            // avatar: user.photoURL || undefined,
-            // email: user.email || 'anika.visser@devias.io',
-            // name: user.name || 'Anika Visser',
-            // plan: 'Premium'
-      }
+      const newUserData = null;
+      // const newUserData = {
+      //       // id: user.uid,
+      //       // avatar: user.photoURL || undefined,
+      //       // email: user.email || 'anika.visser@devias.io',
+      //       // name: user.name || 'Anika Visser',
+      //       // plan: 'Premium'
+      // }
       if (udsResp != null) {
         const newUser = udsResp.data;
         newUserData = {
@@ -83,7 +84,7 @@ export const AuthProvider = (props) => {
             avatar: newUser.avatar,
             email: newUser.email,
             name: newUser.fName + ' ' + newUser.lName,
-            plan: 'Premium',
+            plan: 'Developer',
             ...newUser
         }
       }

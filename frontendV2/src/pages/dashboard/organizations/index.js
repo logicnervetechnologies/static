@@ -242,7 +242,7 @@ const OrganizationList = () => {
             >
               <Grid item>
                 <Typography variant="h4">
-                  Organizations
+                  My Organizations
                 </Typography>
               </Grid>
               <Grid item>
@@ -260,7 +260,7 @@ const OrganizationList = () => {
                 mt: 3
               }}
             >
-              <Button
+              {/* <Button
                 startIcon={<UploadIcon fontSize="small" />}
                 sx={{ m: 1 }}
               >
@@ -271,7 +271,7 @@ const OrganizationList = () => {
                 sx={{ m: 1 }}
               >
                 Export
-              </Button>
+              </Button> */}
             </Box>
           </Box>
           <Card>

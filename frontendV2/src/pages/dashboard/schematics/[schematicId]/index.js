@@ -20,6 +20,7 @@ import { udsApi } from '../../../../__real-api__/udsApi';
 import { AuthGuard } from '../../../../components/authentication/auth-guard';
 import { DashboardLayout } from '../../../../components/dashboard/dashboard-layout';
 import { OrganizationBasicDetails } from '../../../../components/dashboard/organization/organization-basic-details';
+import { SchematicParameters } from '../../../../components/dashboard/schematic/schematic-parameters';
 import { CustomerDataManagement } from '../../../../components/dashboard/customer/customer-data-management';
 import { CustomerEmailsSummary } from '../../../../components/dashboard/customer/customer-emails-summary';
 import { OrganizationMembers } from '../../../../components/dashboard/organization/organization-members';
@@ -35,8 +36,8 @@ import { SchematicBasicDetails } from '../../../../components/dashboard/schemati
 
 const tabs = [
   { label: 'Details', value: 'details' },
-  { label: 'Members', value: 'members' },
-  { label: 'Logs', value: 'logs' }
+  // { label: 'Members', value: 'members' },
+  // { label: 'Logs', value: 'logs' }
 ];
 
 const SchematicDetails = () => {
@@ -164,7 +165,7 @@ const SchematicDetails = () => {
                 item
                 sx={{ m: -1 }}
               >
-                <NextLink
+                {/* <NextLink
                   href={"/dashboard/organizations/" + schematicId + "/edit"}
                   passHref
                 >
@@ -187,7 +188,7 @@ const SchematicDetails = () => {
                   variant="contained"
                 >
                   Actions
-                </Button>
+                </Button> */}
               </Grid>
             </Grid>
             <Tabs
@@ -224,16 +225,18 @@ const SchematicDetails = () => {
                     orgId={schematic.orgId}
                     author={schematic.author}
                     type={schematic.type}
-                    parameters={schematic.parameters}
                   />
                 </Grid>
                 <Grid
                   item
                   xs={12}
                 >
-                  <CustomerPayment />
+
+                  <SchematicParameters
+                    parameters={schematic.parameters}
+                  />
                 </Grid>
-                <Grid
+                {/* <Grid
                   item
                   xs={12}
                 >
@@ -244,14 +247,14 @@ const SchematicDetails = () => {
                   xs={12}
                 >
                   <CustomerDataManagement />
-                </Grid>
+                </Grid> */}
               </Grid>
             )}
-            {currentTab === 'members' && <OrganizationMembers
+            {/* {currentTab === 'members' && <OrganizationMembers
               members={schematic.members}
               udsMap={schematic.udsMap}
             />}
-            {currentTab === 'logs' && <CustomerLogs />}
+            {currentTab === 'logs' && <CustomerLogs />} */}
           </Box>
         </Container>
       </Box>

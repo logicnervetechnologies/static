@@ -4,7 +4,7 @@ import { PropertyList } from '../../property-list';
 import { PropertyListItem } from '../../property-list-item';
 
 export const SchematicBasicDetails = (props) => {
-  const { schemaId, orgId, author, type, parameters, ...other } = props;
+  const { schemaId, orgId, author, type, ...other } = props;
   const mdUp = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
   const align = mdUp ? 'horizontal' : 'vertical';
@@ -33,7 +33,7 @@ export const SchematicBasicDetails = (props) => {
           value={author}
         />
       </PropertyList>
-      <CardActions
+      {/* <CardActions
         sx={{
           flexWrap: 'wrap',
           px: 3,
@@ -50,7 +50,7 @@ export const SchematicBasicDetails = (props) => {
         <Button sx={{ m: 1 }}>
           Login as Customer
         </Button>
-      </CardActions>
+      </CardActions> */}
     </Card>
   );
 };
@@ -59,6 +59,5 @@ SchematicBasicDetails.propTypes = {
   schemaId: PropTypes.string,
   orgId: PropTypes.string,
   author: PropTypes.string,
-  type: PropTypes.string,
-  parameters: PropTypes.array
+  type: PropTypes.string
 };

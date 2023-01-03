@@ -2,16 +2,19 @@ import { MenuItem, Popover } from '@mui/material';
 
 const organizations = [
   'Acme Inc',
-  'Division Inc'
+  'Division Inc',
+  'Developer View',
+  'Provider View',
+  'Patient View'
 ];
 
 export const OrganizationPopover = (props) => {
-  const { anchorEl, onClose, open, ...other } = props;
+  const { anchorEl, onClose, open, changeView, views, ...other } = props;
 
   const handleChange = (organization) => {
+    changeView?.(organization);
     onClose?.();
   };
-
   return (
     <Popover
       anchorEl={anchorEl}
@@ -25,12 +28,12 @@ export const OrganizationPopover = (props) => {
       PaperProps={{ sx: { width: 248 } }}
       transitionDuration={0}
       {...other}>
-      {organizations.map((organization) => (
+      {views.map((view) => (
         <MenuItem
-          key={organization}
-          onClick={() => handleChange(organization)}
+          key={view}
+          onClick={() => handleChange(view)}
         >
-          {organization}
+          {view}
         </MenuItem>
       ))}
     </Popover>
