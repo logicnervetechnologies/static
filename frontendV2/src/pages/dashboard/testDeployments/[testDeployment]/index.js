@@ -18,6 +18,7 @@ const TestDeployment = () => {
   const splithref = window.location.href.split('/');
   const testDsid = splithref[splithref.length - 1];
   const [tDData, setTDData] = useState({})
+  const [tDChart, setTDChart] = useState(<></>)
 
   const getTDData = useCallback(async () => {
     try {
@@ -26,6 +27,7 @@ const TestDeployment = () => {
       
       if (isMounted()) {
         setTDData(res.data);
+        setTDChart(<TestDeploymentCharting tDData={res.data} />)
         console.log("ham")
       }
     } catch (err) {
@@ -66,7 +68,7 @@ const TestDeployment = () => {
         <Container maxWidth="md">
           <Box sx={{ mb: 4 }}>
             <NextLink
-              href={"/dashboard/schematics/" + testDsid}
+              href={"/dashboard/testDeployments/" + testDsid}
               passHref
             >
               <Link
@@ -150,7 +152,7 @@ const TestDeployment = () => {
             </div>
           </Box>
           <Box mt={3}>
-            <TestDeploymentCharting tDData={tDData} />
+                {tDChart}
           </Box>
         </Container>
       </Box>

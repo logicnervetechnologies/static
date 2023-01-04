@@ -9,6 +9,8 @@ import { useAuth } from '../../../hooks/use-auth';
 import { TDChart } from './td-chart';
 import { dsiApi } from '../../../__real-api__/dsiApi';
 import { lnRoute } from '../../../config';
+import { CodeBlock, dracula } from "react-code-blocks";
+import { useState } from 'react';
 
 
 const ptypes = [
@@ -19,10 +21,30 @@ const ptypes = [
 
 export const TestDeploymentCharting = (props) => {
   const {tDData, ...other} = props;
+  console.log("tddata")
+  console.log(tDData)
   const {schemaId, dsid, params} = tDData;
-
   const { user } = useAuth();
 
+  const [hdata, setHdata] = useState(tDData.data)
+
+  const convertHdataToTDForm = (params, hdata) => {
+    const keys = Object.keys(params)
+    keys.push("time")
+    var tmp = {}
+    keys.forEach((k) => {
+      tmp[k] = []
+    })
+    hdata.forEach((e) => {
+      keys.forEach((k) => {
+        tmp[k].push(e[k])
+      })
+    })
+    return tmp
+  }
+  
+  const [parameterizedData, setParamaterizedData] = useState(convertHdataToTDForm(params, tDData.data))
+  console.log(parameterizedData)
 
   // const executeCreateTestDeploy = async (event) => {
   //   event.preventDefault();
@@ -33,6 +55,9 @@ export const TestDeploymentCharting = (props) => {
   //   if (res) window.location.href="/dashboard/testDeployments"
   // }
 
+  const code = `
+  "${schemaId}"
+  `
 
 
   return (
@@ -57,12 +82,22 @@ export const TestDeploymentCharting = (props) => {
       THIS TEST DEPLOYMENT CANNOT BE USED FOR COMMERCIAL MEDICAL DATA COLLECTION. 
       <br /><br />
       Creator of test deployment: {user.name}
-      <br />
+      <br /><br />
       
     </Typography>
+    
     </Grid>
-    <Grid>
-
+    <Grid
+      item
+      md={6}
+      xs={12}
+    >
+      <CodeBlock
+        text={code}
+        language={"python"}
+        showLineNumbers={true}
+        theme={dracula}
+      />
     </Grid>
     
     <CardActions
@@ -76,7 +111,7 @@ export const TestDeploymentCharting = (props) => {
         type="submit"
         variant="contained"
       >
-        Create Test Deployment
+        Refresh Data
       </Button>
     </CardActions>
   </Box>
