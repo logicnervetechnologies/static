@@ -43,6 +43,11 @@ export const lnRoute = {
     userAction: baseUrl + "/uds/userAction"
   }, 
   dsi: {
+    testCreateDE: baseUrl + "/dsi/testCreateDE",
+    testRetreiveDE: baseUrl + "/dsi/testRetrieveDE",
+    testIngest: baseUrl + "/dsi/testIngest",
+    createDE: baseUrl + "/dsi/createDE",
+    retreiveDE: baseUrl + "/dsi/retrieveDE",
     createSchema: baseUrl + "/dsi/createSchema",
     getSchemasOrg: baseUrl + "/dsi/getSchemas",
     getSchema: baseUrl + "/dsi/getSchema",

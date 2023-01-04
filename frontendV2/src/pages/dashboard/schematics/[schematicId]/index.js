@@ -82,7 +82,7 @@ const SchematicDetails = () => {
     <>
       <Head>
         <title>
-          Dashboard: Schematic Details
+          {schematic.type}: Schematic Details
         </title>
       </Head>
       <Box
@@ -165,8 +165,8 @@ const SchematicDetails = () => {
                 item
                 sx={{ m: -1 }}
               >
-                {/* <NextLink
-                  href={"/dashboard/organizations/" + schematicId + "/edit"}
+                <NextLink
+                  href={"/dashboard/schematics/" + schematicId + "/testDeploy"}
                   passHref
                 >
                   <Button
@@ -177,10 +177,10 @@ const SchematicDetails = () => {
                     sx={{ m: 1 }}
                     variant="outlined"
                   >
-                    Edit
+                    Create Test Deployment
                   </Button>
                 </NextLink>
-                <Button
+                {/* <Button
                   endIcon={(
                     <ChevronDownIcon fontSize="small" />
                   )}

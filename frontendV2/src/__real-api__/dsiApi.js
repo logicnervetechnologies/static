@@ -5,6 +5,27 @@ axios.defaults.withCredentials = true;
 
 class DsiApi {
 
+    createTestDE = async(schemaId) => {
+        console.log(schemaId)
+        let success = true
+        const dsiResp = await axios.post(lnRoute.dsi.testCreateDE, {schemaId}).catch((error) => {
+            console.log(error)
+            success = false
+        });
+        console.log(dsiResp)
+        return success
+    }
+    retrieveTestDE = async(dsid) => {
+        console.log(dsid)
+        let success = true
+        const dsiResp = await axios.post(lnRoute.dsi.testRetreiveDE, {dsid}).catch((error) => {
+            console.log(error)
+            success = false
+        });
+        console.log(dsiResp)
+        return dsiResp
+    }
+
     createSchema = async(orgId, name, parameters ) => {
         let success = true
         console.log(orgId)

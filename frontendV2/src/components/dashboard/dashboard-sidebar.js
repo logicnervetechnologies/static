@@ -94,6 +94,21 @@ const getSections = (t, selectedView) => {
             path: '/dashboard/schematics/create'
           }
         ]
+      },
+      {
+        title: t('Testing'),
+        path: '/dashboard/testDeployments',
+        icon: <ClipboardListIcon fontSize="small" />,
+        children: [
+          {
+            title: t('Test Deployments'),
+            path: '/dashboard/testDeployments'
+          },
+          {
+            title: t('Test Logs'),
+            path: '/dashboard/schematics/logs'
+          }
+        ]
       }
     ]
   })
@@ -319,9 +334,7 @@ export const DashboardSidebar = (props) => {
                     color="neutral.400"
                     variant="body2"
                   >
-                    {t('Your tier')}
-                    {' '}
-                    : Premium
+                    {t('Click to Change')}
                   </Typography>
                 </div>
                 <SelectorIcon
