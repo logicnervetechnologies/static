@@ -2,9 +2,9 @@ import { Box, Card, CardContent, CardHeader } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { Chart } from '../../chart';
 
-export const TDChart = () => {
+export const TDChart = (props) => {
   const theme = useTheme();
-
+  const {x, y, label} = props;
   const chartOptions = {
     chart: {
       background: 'transparent',
@@ -44,32 +44,19 @@ export const TDChart = () => {
         color: theme.palette.divider,
         show: true
       },
-      categories: [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec'
-      ]
+      categories: x
     }
   };
 
   const chartSeries = [
     {
-      name: 'New Customers',
-      data: [31, 40, 28, 51, 42, 109, 100, 120, 80, 42, 90, 140]
+      name: label,
+      data: y
     },
-    {
-      name: 'Up/Cross-Selling',
-      data: [11, 32, 45, 32, 34, 52, 41, 80, 96, 140, 30, 100]
-    }
+    // {
+    //   name: 'Up/Cross-Selling',
+    //   data: [11, 32, 45, 32, 34, 52, 41, 80, 96, 140, 30, 100]
+    // }
   ];
 
   return (
@@ -80,7 +67,7 @@ export const TDChart = () => {
       }}
     >
       <Card>
-        <CardHeader title="Sales Revenue" />
+        <CardHeader title={label} />
         <CardContent>
           <Chart
             height={360}
