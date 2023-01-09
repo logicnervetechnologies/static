@@ -21,14 +21,13 @@ import { SwitchHorizontalOutlined as SwitchHorizontalOutlinedIcon } from '../../
 export const AccountPopover = (props) => {
   const { anchorEl, onClose, open, ...other } = props;
   const router = useRouter();
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
   // To get the user from the authContext, you can use
   // `const { user } = useAuth();`
-  const user = {
+  const user2 = {
     avatar: '/static/mock-images/avatars/avatar-anika_visser.png',
     name: 'Anika Visser'
   };
-
   const handleLogout = async () => {
     try {
       onClose?.();
@@ -81,7 +80,7 @@ export const AccountPopover = (props) => {
             color="textSecondary"
             variant="body2"
           >
-            Acme Inc
+            LogicNerve Account
           </Typography>
         </Box>
       </Box>

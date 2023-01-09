@@ -24,36 +24,38 @@ export const gtmConfig = {
   containerId: process.env.NEXT_PUBLIC_GTM_CONTAINER_ID
 };
 
-export const authURL = process.env.AUTH_URL
 
-const baseUrl = "http://localhost"
+const baseUrl = process.env.NEXT_PUBLIC_BASIS_URL;
+const authUrl = process.env.NEXT_PUBLIC_AUTH_URL;
+const udsUrl = process.env.NEXT_PUBLIC_UDS_URL;
+const dsiUrl = process.env.NEXT_PUBLIC_DSI_URL;
 
 export const lnRoute = {
   auth: {
-    _: baseUrl + "/auth",
-    login: baseUrl + "/auth/login",
-    logout: baseUrl + "/auth/logout"
+    _: authUrl + "/auth",
+    login: authUrl + "/auth/login",
+    logout: authUrl + "/auth/logout"
   },
   uds: {
-    adminAction: baseUrl + "/uds/adminAction",
-    createOrganization: baseUrl + "/uds/createOrganization",
-    getBasicOrganization: baseUrl + "/uds/getBasicOrganization",
-    getOrganization: baseUrl + "/uds/getOrganization",
-    getMyUserData: baseUrl + "/uds/getMyUserData",
-    userAction: baseUrl + "/uds/userAction"
+    adminAction: udsUrl + "/uds/adminAction",
+    createOrganization: udsUrl + "/uds/createOrganization",
+    getBasicOrganization: udsUrl + "/uds/getBasicOrganization",
+    getOrganization: udsUrl + "/uds/getOrganization",
+    getMyUserData: udsUrl + "/uds/getMyUserData",
+    userAction: udsUrl + "/uds/userAction"
   }, 
   dsi: {
-    testCreateDE: baseUrl + "/dsi/testCreateDE",
-    testRetreiveDE: baseUrl + "/dsi/testRetrieveDE",
-    testIngest: baseUrl + "/dsi/testIngest",
-    createDE: baseUrl + "/dsi/createDE",
-    retreiveDE: baseUrl + "/dsi/retrieveDE",
-    createSchema: baseUrl + "/dsi/createSchema",
-    getSchemasOrg: baseUrl + "/dsi/getSchemas",
-    getSchema: baseUrl + "/dsi/getSchema",
-    create: baseUrl + "/dsi/create",
-    handle: baseUrl + "/dsi/handle",
-    read: baseUrl + "/dsi/read"
+    testCreateDE: dsiUrl + "/dsi/testCreateDE",
+    testRetreiveDE: dsiUrl + "/dsi/testRetrieveDE",
+    testIngest: dsiUrl + "/dsi/testIngest",
+    createDE: dsiUrl + "/dsi/createDE",
+    retreiveDE: dsiUrl + "/dsi/retrieveDE",
+    createSchema: dsiUrl + "/dsi/createSchema",
+    getSchemasOrg: dsiUrl + "/dsi/getSchemas",
+    getSchema: dsiUrl + "/dsi/getSchema",
+    create: dsiUrl + "/dsi/create",
+    handle: dsiUrl + "/dsi/handle",
+    read: dsiUrl + "/dsi/read"
   }
 };
 

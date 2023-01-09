@@ -22,6 +22,7 @@ import { ContactsPopover } from './contacts-popover';
 import { ContentSearchDialog } from './content-search-dialog';
 import { NotificationsPopover } from './notifications-popover';
 import { LanguagePopover } from './language-popover';
+import { useAuth } from '../../hooks/use-auth';
 
 const languages = {
   en: '/static/icons/uk_flag.svg',
@@ -199,11 +200,11 @@ const AccountButton = () => {
   const anchorRef = useRef(null);
   const [openPopover, setOpenPopover] = useState(false);
   // To get the user from the authContext, you can use
-  // `const { user } = useAuth();`
-  const user = {
-    avatar: '/static/mock-images/avatars/avatar-anika_visser.png',
-    name: 'Anika Visser'
-  };
+  const { user } = useAuth();
+  // const user = {
+  //   avatar: '/static/mock-images/avatars/avatar-anika_visser.png',
+  //   name: 'Anika Visser'
+  // };
 
   const handleOpenPopover = () => {
     setOpenPopover(true);

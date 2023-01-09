@@ -70,7 +70,7 @@ const applyFilters = (schematics, filters) => schematics.filter((schem) => {
   if (filters.query) {
     let queryMatched = false;
     //const properties = ['email', 'name'];
-    const properties = ['type'];
+    const properties = ['dsid'];
     properties.forEach((property) => {
       if ((schem[property]).toLowerCase().includes(filters.query.toLowerCase())) {
         queryMatched = true;

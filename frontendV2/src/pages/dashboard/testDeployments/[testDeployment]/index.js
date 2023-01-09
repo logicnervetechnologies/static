@@ -68,7 +68,7 @@ const TestDeployment = () => {
         <Container maxWidth="md">
           <Box sx={{ mb: 4 }}>
             <NextLink
-              href={"/dashboard/testDeployments/" + testDsid}
+              href={"/dashboard/testDeployments/"}
               passHref
             >
               <Link
@@ -84,7 +84,7 @@ const TestDeployment = () => {
                   sx={{ mr: 1 }}
                 />
                 <Typography variant="subtitle2">
-                  {tDData.dsid}
+                  Test Deployments
                 </Typography>
               </Link>
             </NextLink>
