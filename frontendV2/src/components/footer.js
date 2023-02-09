@@ -41,7 +41,7 @@ const sections = [
       },
       {
         title: 'Contact',
-        href: '#'
+        href: 'contact'
       }
     ]
   },
@@ -99,10 +99,10 @@ export const Footer = (props) => (
             sx={{ mt: 1 }}
             variant="caption"
           >
-            © 2021 Devias.
+            © 2023 LogicNerve
           </Typography>
         </Grid>
-        {sections.map((section, index) => (
+        {/* {sections.map((section, index) => (
           <Grid
             item
             key={section.title}
@@ -157,14 +157,14 @@ export const Footer = (props) => (
               ))}
             </List>
           </Grid>
-        ))}
+        ))} */}
       </Grid>
-      <Divider
+      {/* <Divider
         sx={{
           borderColor: (theme) => alpha(theme.palette.primary.contrastText, 0.12),
           my: 6
         }}
-      />
+      /> */}
       <Typography
         color="textSecondary"
         variant="caption"

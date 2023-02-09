@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import Head from 'next/head';
 import { Divider } from '@mui/material';
 import { MainLayout } from '../components/main-layout';
-import { HomeClients } from '../components/home/home-clients';
+import { HomeCore } from '../components/home/home-core';
 import { HomeHero } from '../components/home/home-hero';
-import { HomeDevelopers } from '../components/home/home-developers';
-import { HomeDesigners } from '../components/home/home-designers';
+import { HomeAbout } from '../components/home/home-about';
+import { HomeMission } from '../components/home/home-mission';
 import { HomeFeatures } from '../components/home/home-features';
 import { HomeTestimonials } from '../components/home/home-testimonials';
 import { gtm } from '../lib/gtm';
@@ -19,19 +19,19 @@ const Home = () => {
     <>
       <Head>
         <title>
-          Material Kit Pro
+          LogicNerve
         </title>
       </Head>
       <main>
         <HomeHero />
         <Divider />
-        <HomeDevelopers />
+        <HomeMission />
         <Divider />
-        <HomeDesigners />
-        <HomeTestimonials />
-        <HomeFeatures />
+        <HomeAbout />
+        {/* <HomeTestimonials />
+        <HomeFeatures /> */}
         <Divider />
-        <HomeClients />
+        <HomeCore />
       </main>
     </>
   );

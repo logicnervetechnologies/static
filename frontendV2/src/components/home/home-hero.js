@@ -34,7 +34,7 @@ export const HomeHero = (props) => {
           align="center"
           variant="h1"
         >
-          Material Kit Pro v5.2
+          LogicNerve
         </Typography>
         <Typography
           align="center"
@@ -42,8 +42,7 @@ export const HomeHero = (props) => {
           variant="subtitle1"
           sx={{ py: 3 }}
         >
-          A professional kit that comes with ready-to-use MUI© components developed with one
-          common goal in mind, help you build faster &amp; beautiful applications.
+          A low-code platform to develop, deploy, and manage smart-health devices.
         </Typography>
         <Box
           sx={{
@@ -69,7 +68,7 @@ export const HomeHero = (props) => {
           >
             Available For:
           </Typography>
-          {['JavaScript', 'TypeScript', 'Figma', 'Sketch'].map((item) => (
+          {['Doctors', 'Patients', 'Researchers', 'Device Creators'].map((item) => (
             <Box
               key={item}
               sx={{
@@ -102,7 +101,7 @@ export const HomeHero = (props) => {
           }}
         >
           <NextLink
-            href="/browse"
+            href="/about"
             passHref
           >
             <Button
@@ -110,11 +109,11 @@ export const HomeHero = (props) => {
               size="large"
               variant="outlined"
             >
-              Browse Components
+              About
             </Button>
           </NextLink>
           <NextLink
-            href="/dashboard"
+            href="/contact"
             passHref
           >
             <Button
@@ -122,37 +121,13 @@ export const HomeHero = (props) => {
               size="large"
               variant="contained"
             >
-              Live Demo
+              Contact
             </Button>
           </NextLink>
         </Box>
       </Container>
-      <Box
-        sx={{
-          maxWidth: 980,
-          width: '100%',
-          mx: 'auto'
-        }}
-      >
-        <Box
-          sx={{
-            position: 'relative',
-            pt: 'calc(600 / 980 * 100%)',
-            '& img': {
-              height: 'auto',
-              position: 'absolute',
-              top: 0,
-              width: '100%'
-            }
-          }}
-        >
-          <img
-            alt=""
-            src={`/static/home/hero_${theme.palette.mode}.png`}
-          />
-        </Box>
-      </Box>
-      <Box sx={{ py: 8 }}>
+      
+      {/* <Box sx={{ py: 8 }}>
         <Container
           maxWidth="md"
           sx={{
@@ -303,7 +278,7 @@ export const HomeHero = (props) => {
             </Typography>
           </Box>
         </Container>
-      </Box>
+      </Box> */}
     </Box>
   );
 };

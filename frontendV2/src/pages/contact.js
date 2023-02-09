@@ -45,14 +45,14 @@ const Contact = () => {
             }}
           >
             <NextLink
-              href="/dashboard"
+              href="/"
               passHref
             >
               <Button
                 component="a"
                 startIcon={<ArrowLeftIcon fontSize="small" />}
               >
-                Dashboard
+                Home
               </Button>
             </NextLink>
             <Typography
@@ -80,32 +80,19 @@ const Contact = () => {
                 <MailIcon fontSize="small" />
               </Avatar>
               <Typography variant="overline">
-                Contact sales
+                Contact us
               </Typography>
             </Box>
             <Typography variant="h1">
-              Talk to our account expert
+              Reach out!
             </Typography>
             <Typography
               sx={{ py: 3 }}
               variant="body1"
             >
-              Have questions about using our product, integrating our APIs, or using a device on our network? Fill out the form
+              Have questions about our product? Fill out the form
               and one of our experts will get in touch with you.
             </Typography>
-            <Typography
-              sx={{ color: 'primary.main' }}
-              variant="h6"
-            >
-              Join 3,000+ forward-thinking companies:
-            </Typography>
-            <Box sx={{ pt: 2 }}>
-              <img
-                alt="logoipsum1"
-                src="/static/contact/contact_logos.svg"
-                style={{ maxWidth: '100%' }}
-              />
-            </Box>
           </Container>
         </Box>
         <Box
