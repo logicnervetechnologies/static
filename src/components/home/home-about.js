@@ -40,7 +40,7 @@ export const HomeAbout = (props) => {
                 variant="subtitle1"
               >
                 We level the playing field by providing startups with the infrastructure to develop and manage their biotech devices.
-We believe that unifying patients' medical data through a single application will ultimately lead to better patient care.
+We believe that unifying patients&apos; medical data through a single application will ultimately lead to better patient care.
 Therefore, our goal is to become the primary platform to develop and deploy medical devices. 
               </Typography>
             </div>
