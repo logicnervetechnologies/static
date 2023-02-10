@@ -19,12 +19,12 @@ const sections = [
     title: 'Menu',
     links: [
       {
-        title: 'Contact Us',
-        href: '#'
+        title: 'Browse Components',
+        href: '/browse'
       },
       {
-        title: 'Sign up for updates',
-        href: '#'
+        title: 'Documentation',
+        href: '/docs/welcome'
       }
     ]
   },
@@ -41,7 +41,7 @@ const sections = [
       },
       {
         title: 'Contact',
-        href: '#'
+        href: 'contact'
       }
     ]
   },
@@ -67,11 +67,12 @@ export const Footer = (props) => (
       borderTopColor: 'divider',
       borderTopStyle: 'solid',
       borderTopWidth: 1,
-      pb: 6,
-      pt: {
-        md: 15,
-        xs: 6
-      }
+      // pb: 6,
+      // pt: {
+      //   md: 15,
+      //   xs: 6
+      // }
+      p: 4
     }}
     {...props}>
     <Container maxWidth="lg">
@@ -93,16 +94,16 @@ export const Footer = (props) => (
           }}
           xs={12}
         >
-          <Logo />
+          {/* <Logo /> */}
           <Typography
             color="textSecondary"
             sx={{ mt: 1 }}
             variant="caption"
           >
-            © 2021 Devias.
+            © 2023 LogicNerve
           </Typography>
         </Grid>
-        {sections.map((section, index) => (
+        {/* {sections.map((section, index) => (
           <Grid
             item
             key={section.title}
@@ -157,14 +158,14 @@ export const Footer = (props) => (
               ))}
             </List>
           </Grid>
-        ))}
+        ))} */}
       </Grid>
-      <Divider
+      {/* <Divider
         sx={{
           borderColor: (theme) => alpha(theme.palette.primary.contrastText, 0.12),
           my: 6
         }}
-      />
+      /> */}
       <Typography
         color="textSecondary"
         variant="caption"

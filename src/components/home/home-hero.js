@@ -12,8 +12,12 @@ export const HomeHero = (props) => {
   return (
     <Box
       sx={{
-        backgroundColor: 'background.default',
-        pt: 6
+        backgroundColor: 'background.paper',
+        pt: 6,
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center'
       }}
       {...props}>
       <Container
@@ -21,7 +25,7 @@ export const HomeHero = (props) => {
         sx={{
           alignItems: 'center',
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
         }}
       >
         <Typography
@@ -42,17 +46,7 @@ export const HomeHero = (props) => {
           variant="subtitle1"
           sx={{ py: 3 }}
         >
-          Deploy your healthcare innovations!
-        </Typography>
-        <Typography
-          align="center"
-          color="textSecondary"
-          variant="subtitle1"
-          sx={{ py: 3 }}
-        >
-          A HIPAA compliant Biotech IoMT data tracking platform, providing healthcare 
-          providers and patients an easily integrated end to end secure platform 
-          to track data using technology created by innovators.
+          A low-code platform to develop, deploy, and manage smart-health devices.
         </Typography>
         <Box
           sx={{
@@ -76,9 +70,9 @@ export const HomeHero = (props) => {
             color="textSecondary"
             variant="caption"
           >
-            Developed For:
+            Available For:
           </Typography>
-          {['Biotech Innovators', 'Medical Practitioners', 'Patients'].map((item) => (
+          {['Doctors', 'Patients', 'Researchers', 'Device Creators'].map((item) => (
             <Box
               key={item}
               sx={{
@@ -110,60 +104,33 @@ export const HomeHero = (props) => {
             }
           }}
         >
+          {/* <NextLink
+            href="/about"
+            passHref
+          >
+            <Button
+              component="a"
+              size="large"
+              variant="outlined"
+            >
+              About
+            </Button>
+          </NextLink> */}
           <NextLink
-            href="/dashboard"
+            href="/contact"
             passHref
           >
             <Button
               component="a"
               size="large"
               variant="contained"
-              disabled
             >
-              Coming Soon
+              Contact
             </Button>
           </NextLink>
         </Box>
-        <Typography
-          align="center"
-          color="textSecondary"
-          variant="subtitle1"
-          sx={{ py: 3 }}
-        >
-        Logicnerve is a HIPAA compliant Biotech IoT deployment platform that allows innovators 
-        in the biotech space to develop and deploy their devices with ease for patient usage. 
-        Our platform is designed for easy integration with devices with and provides developers 
-        with abilities to view logs, deploy firmware updates, securely manage, and monitor device metadata while protecting PHI. 
-        Logicnerve simultaneously allows healthcare providers and patients an end to end secure platform to track their patient data using 
-        technology created by innovators, while giving capabilities to export their data easily to EMR platforms. 
-        </Typography>
       </Container>
-      <Box
-        sx={{
-          maxWidth: 980,
-          width: '100%',
-          mx: 'auto'
-        }}
-      >
-        <Box
-          sx={{
-            position: 'relative',
-            pt: 'calc(600 / 980 * 100%)',
-            '& img': {
-              height: 'auto',
-              position: 'absolute',
-              top: 0,
-              width: '100%'
-            }
-          }}
-        >
-          <img
-            alt=""
-            src={`/hero_${theme.palette.mode}.png`}
-          />
-        </Box>
-      </Box>
-      <Box sx={{ py: 8 }}>
+      {/* <Box sx={{ py: 8 }}>
         <Container
           maxWidth="md"
           sx={{
@@ -314,7 +281,7 @@ export const HomeHero = (props) => {
             </Typography>
           </Box>
         </Container>
-      </Box>
+      </Box> */}
     </Box>
   );
 };
