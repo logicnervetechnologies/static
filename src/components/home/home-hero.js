@@ -9,6 +9,16 @@ import { Template as TemplateIcon } from '../../icons/template';
 export const HomeHero = (props) => {
   const theme = useTheme();
 
+  const scrollDown = (e) => {
+    e.preventDefault()
+    window.scroll({
+      top: window.innerHeight,
+      // document.body.offsetHeight,
+      left: 0, 
+      behavior: 'smooth',
+    });
+  }
+
   return (
     <Box
       sx={{
@@ -70,7 +80,7 @@ export const HomeHero = (props) => {
             color="textSecondary"
             variant="caption"
           >
-            Available For:
+            Serves:
           </Typography>
           {['Doctors', 'Patients', 'Researchers', 'Device Creators'].map((item) => (
             <Box
@@ -91,6 +101,22 @@ export const HomeHero = (props) => {
             </Box>
           ))}
         </Box>
+        <Typography
+          align="center"
+          color="textSecondary"
+          variant="subtitle1"
+          sx={{ py: 3 }}
+        >
+          Interested in effortlessly deploy your biotech innovations with our low-code tools?
+        </Typography>
+        <Typography
+          align="center"
+          color="textSecondary"
+          variant="subtitle1"
+          sx={{ py: 3 }}
+        >
+          Learn more about our goals and contact us!
+        </Typography>
         <Box
           sx={{
             display: 'flex',
@@ -104,18 +130,20 @@ export const HomeHero = (props) => {
             }
           }}
         >
-          {/* <NextLink
-            href="/about"
+          <NextLink
+            href="#"
             passHref
           >
             <Button
               component="a"
               size="large"
               variant="outlined"
+              onClick={scrollDown}
             >
-              About
+              Learn
             </Button>
-          </NextLink> */}
+          </NextLink>
+          
           <NextLink
             href="/contact"
             passHref

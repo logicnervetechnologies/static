@@ -1,4 +1,5 @@
-import { Box, Card, Container, Grid, Link, Typography } from '@mui/material';
+import { Box, Button, Card, Container, Grid, Link, Typography } from '@mui/material';
+import NextLink from 'next/link';
 
 export const HomeCore = (props) => (
 <Box
@@ -13,7 +14,7 @@ export const HomeCore = (props) => (
       sx={{ pb: 6 }}
       variant="h3"
     >
-      Core Competencies
+      Our Strengths
     </Typography>
     <Grid
       container
@@ -36,7 +37,7 @@ export const HomeCore = (props) => (
             sx={{ color: 'textPrimary' }}
             variant="h5"
           >
-            HIPAA & SOC 2 Compliant
+            Private & Secure
           </Typography>
           <Typography
             sx={{
@@ -45,7 +46,8 @@ export const HomeCore = (props) => (
             }}
             variant="body2"
           >
-            Private and Secure
+            We ensure products we publicaly release are HIPAA and SOC 2 Compliant. 
+            Patients and providers can take comfort in the fact their data isn't publicly accessible. 
           </Typography>
         </Card>
       </Grid>
@@ -66,7 +68,7 @@ export const HomeCore = (props) => (
             sx={{ color: 'textPrimary' }}
             variant="h5"
           >
-            Business focused
+            Business-Centric
           </Typography>
           <Typography
             sx={{
@@ -75,7 +77,8 @@ export const HomeCore = (props) => (
             }}
             variant="body2"
           >
-            Allows business to focus on their innovations without having to spend resources managing the deployment of their devices
+            Focus on your innovations. Don't worry about spending valuable time and resources on cloud infrastructure, compliance requirements, and software interfaces for handling the data. 
+            We&apos;ll handle that for you. 
           </Typography>
         </Card>
       </Grid>
@@ -96,7 +99,7 @@ export const HomeCore = (props) => (
             sx={{ color: 'textPrimary' }}
             variant="h5"
           >
-            Patient data transparency
+            Patient Data Transparency
           </Typography>
           <Typography
             sx={{
@@ -105,7 +108,7 @@ export const HomeCore = (props) => (
             }}
             variant="body2"
           >
-            Allows patients and healthcare providers to easily view their data
+            Patients can easily log in and view the data collected about them in an easily digestible manner. 
           </Typography>
         </Card>
       </Grid>
@@ -126,7 +129,7 @@ export const HomeCore = (props) => (
             sx={{ color: 'textPrimary' }}
             variant="h5"
           >
-            Low Code
+            Low-Code
           </Typography>
           <Typography
             sx={{
@@ -135,11 +138,60 @@ export const HomeCore = (props) => (
             }}
             variant="body2"
           >
-            Easy for developers to use
+            Don&apos;t have much coding experience? Don&apos;t worry, we&apos;re all about making it easy for developers
+            to interface their devices with our platform. 
           </Typography>
         </Card>
       </Grid>
     </Grid>
+  </Container>
+  <Container maxWidth='lg'>
+  <Grid
+        item
+        md={6}
+        xs={12}
+        spacing={3}
+        mt={4}
+      >
+        <Card
+          sx={{
+            height: '100%',
+            p: 3,
+            position: 'relative'
+          }}
+          variant="outlined"
+        >
+          <Typography
+            sx={{ color: 'textPrimary' }}
+            variant="h5"
+          >
+            Contact Us
+          </Typography>
+          <Typography
+            sx={{
+              color: 'textPrimary',
+              py: 2
+            }}
+            variant="body2"
+          >
+            We're currently under development, but if you want to be on the waitlist for this technology, reach out and contact us!  
+
+          </Typography>
+          <NextLink
+              href="/contact"
+              passHref
+              ml={4}
+            >
+              <Button
+                component="a"
+                size="small"
+                variant="contained"
+              >
+                Contact Us
+              </Button>
+            </NextLink>
+        </Card>
+      </Grid>
   </Container>
 </Box>
 );

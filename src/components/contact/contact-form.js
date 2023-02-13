@@ -37,12 +37,11 @@ export const ContactForm = () => {
             sx={{ mb: 1 }}
             variant="subtitle2"
           >
-            Company Name*
+            Company Name
           </Typography>
           <TextField
             fullWidth
             name="company"
-            required
           />
         </Grid>
         <Grid
@@ -72,12 +71,11 @@ export const ContactForm = () => {
             sx={{ mb: 1 }}
             variant="subtitle2"
           >
-            Phone Number *
+            Phone Number
           </Typography>
           <TextField
             fullWidth
             name="phone"
-            required
             type="tel"
           />
         </Grid>
@@ -112,12 +110,12 @@ export const ContactForm = () => {
           </Typography>
           <Select fullWidth>
             <MenuItem value="nonprofitclinic">Nonprofit</MenuItem>
-            <MenuItem value="smallmedprac">Small Medical Practice</MenuItem>
-            <MenuItem value="largemedorg">Large Medical Organization</MenuItem>
+            <MenuItem value="researcher">Research</MenuItem>
+            <MenuItem value="medorg">Medical Organization</MenuItem>
             <MenuItem value="healthdeviceproducer">Health Device Producer</MenuItem>
           </Select>
         </Grid>
-        <Grid
+        {/* <Grid
           item
           xs={12}
         >
@@ -136,7 +134,7 @@ export const ContactForm = () => {
             <MenuItem value={10000}>$10,000+</MenuItem>
             <MenuItem value={50000}>$50,000+</MenuItem>
           </Select>
-        </Grid>
+        </Grid> */}
         <Grid
           item
           xs={12}
@@ -180,22 +178,11 @@ export const ContactForm = () => {
         {' '}
         <Link
           color="textPrimary"
-          href="#"
+          href="/policies"
           underline="always"
           variant="subtitle2"
         >
-          Privacy Policy
-        </Link>
-        {' '}
-        and
-        {' '}
-        <Link
-          color="textPrimary"
-          href="#"
-          underline="always"
-          variant="subtitle2"
-        >
-          Cookie Policy
+          Privacy and Cookie Policies
         </Link>
         .
       </Typography>

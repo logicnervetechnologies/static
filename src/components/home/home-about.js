@@ -39,7 +39,8 @@ export const HomeAbout = (props) => {
                 sx={{ my: 3 }}
                 variant="subtitle1"
               >
-                We level the playing field by providing startups with the infrastructure to develop and manage their biotech devices.
+                We level the playing field by providing biotech startups with the infrastructure to develop and manage their devices, 
+                while simultaneously allowing patients&apos; data to easily uploaded and viewed by medical providers.
 We believe that unifying patients&apos; medical data through a single application will ultimately lead to better patient care.
 Therefore, our goal is to become the primary platform to develop and deploy medical devices. 
               </Typography>
