@@ -72,7 +72,7 @@ const Policies = () => {
             <br/><br/>
             We will regularly review our policies and procedures to ensure compliance with HIPAA regulations. We will also periodically audit our internal processes and procedures to confirm that we are in compliance with the law. If any violations of HIPAA regulations occur, we will take immediate steps to rectify the situation and prevent similar violations in the future.
             <br/><br/>
-            We are committed to providing our customers with the highest quality of service and to protecting their privacy. We strive to ensure that our customers' confidential information is always kept secure and confidential.
+            We are committed to providing our customers with the highest quality of service and to protecting their privacy. We strive to ensure that our customers&apos; confidential information is always kept secure and confidential.
             </Typography>
           </Container>
         </Box>
@@ -103,11 +103,11 @@ const Policies = () => {
             >
 At LogicNerve, we take the privacy of our customers seriously. We use cookies on our website to provide a better user experience and to improve our services. Our cookies are used to collect anonymous information about how our customers use our website and to help us improve our services. We do not use cookies to track or collect any personally identifiable information.
 <br/><br/>
-We may also use third-party services to track the performance of our website and to provide additional services. These third-party services may place cookies on our customers' computers and we do not have control over these cookies.
+We may also use third-party services to track the performance of our website and to provide additional services. These third-party services may place cookies on our customers&apos; computers and we do not have control over these cookies.
 <br/><br/>
-We will never sell or rent any of our customers' personal information to any third parties. We also do not store any credit card information on our website.
+We will never sell or rent any of our customers&apos; personal information to any third parties. We also do not store any credit card information on our website.
 <br/><br/>
-We will always strive to ensure that our website is secure and that our customers' data is always kept safe. We regularly review our security measures and update them as needed to protect our customers' data. Additionally, we will delete any cookies from our website upon request.
+We will always strive to ensure that our website is secure and that our customers&apos; data is always kept safe. We regularly review our security measures and update them as needed to protect our customers&apos; data. Additionally, we will delete any cookies from our website upon request.
 <br/><br/>
 If you have any questions or concerns about our cookie policy, please contact us.
             </Typography>

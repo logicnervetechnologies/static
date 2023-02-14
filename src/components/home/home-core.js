@@ -47,7 +47,7 @@ export const HomeCore = (props) => (
             variant="body2"
           >
             We ensure products we publicaly release are HIPAA and SOC 2 Compliant. 
-            Patients and providers can take comfort in the fact their data isn't publicly accessible. 
+            Patients and providers can take comfort in the fact their data isn&apos;t publicly accessible. 
           </Typography>
         </Card>
       </Grid>
@@ -77,7 +77,7 @@ export const HomeCore = (props) => (
             }}
             variant="body2"
           >
-            Focus on your innovations. Don't worry about spending valuable time and resources on cloud infrastructure, compliance requirements, and software interfaces for handling the data. 
+            Focus on your innovations. Don&apos;t worry about spending valuable time and resources on cloud infrastructure, compliance requirements, and software interfaces for handling the data. 
             We&apos;ll handle that for you. 
           </Typography>
         </Card>
@@ -174,7 +174,7 @@ export const HomeCore = (props) => (
             }}
             variant="body2"
           >
-            We're currently under development, but if you want to be on the waitlist for this technology, reach out and contact us!  
+            We&apos;re currently under development, but if you want to be on the waitlist for this technology, reach out and contact us!  
 
           </Typography>
           <NextLink
