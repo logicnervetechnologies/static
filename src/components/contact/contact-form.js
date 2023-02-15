@@ -1,9 +1,63 @@
 import { Box, Button, Grid, Link, MenuItem, Select, TextField, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { submitForm } from '../../__real-api__/submitContact';
 
 export const ContactForm = () => {
-  const handleSubmit = (event) => {
+
+  // constructor = (props) => {
+  //   super(props);
+  //   this.handleSubmit = this.handleSubmit.bind(this);
+  //   this.input = React.createRef();
+  // }
+
+
+  const [name, setName] = useState('')
+  const changeName = (e) => {
+    setName(e.target.value)
+  }
+  const [cname, setCName] = useState('')
+  const changeCName = (e) => {
+    setCName(e.target.value)
+  }
+
+  const [nemail, setEmail] = useState('')
+  const changeEmail = (e) => {
+    setEmail(e.target.value)
+  }
+
+  const [phone, setPhone] = useState('')
+  const changePhone = (e) => {
+    setPhone(e.target.value)
+  }
+  const [cSize, setCSize] = useState('')
+  const changeCSize = (e) => {
+    setCSize(e.target.value)
+  }
+  const [oType, setOType] = useState('')
+  const changeOType = (e) => {
+    setOType(e.target.value)
+  }
+  const [message, setMessage] = useState('')
+  const changeMessage = (e) => {
+    setMessage(e.target.value)
+  }
+
+  const handleSubmit = async (event) => {
+    // console.log(ref1.current.getValue())
     event.preventDefault();
+    const d = {
+      name,
+      cname,
+      nemail,
+      phone,
+      cSize,
+      oType,
+      message
+    }
+    console.log(d)
+    const res = await submitForm(d);
   };
+
 
   return (
     <form onSubmit={handleSubmit}>
@@ -26,6 +80,8 @@ export const ContactForm = () => {
             fullWidth
             name="name"
             required
+            value={name}
+            onChange={changeName}
           />
         </Grid>
         <Grid
@@ -42,6 +98,8 @@ export const ContactForm = () => {
           <TextField
             fullWidth
             name="company"
+            value={cname}
+            onChange={changeCName}
           />
         </Grid>
         <Grid
@@ -60,6 +118,8 @@ export const ContactForm = () => {
             name="email"
             type="email"
             required
+            value={nemail}
+            onChange={changeEmail}
           />
         </Grid>
         <Grid
@@ -77,6 +137,8 @@ export const ContactForm = () => {
             fullWidth
             name="phone"
             type="tel"
+            value={phone}
+            onChange={changePhone}
           />
         </Grid>
         <Grid
@@ -90,7 +152,7 @@ export const ContactForm = () => {
           >
             Company Size
           </Typography>
-          <Select fullWidth>
+          <Select fullWidth value={cSize} onChange={changeCSize}>
             <MenuItem value="10-20">1-10</MenuItem>
             <MenuItem value="11-30">11-30</MenuItem>
             <MenuItem value="31-50">31-50</MenuItem>
@@ -108,7 +170,7 @@ export const ContactForm = () => {
           >
             Organization Type
           </Typography>
-          <Select fullWidth>
+          <Select fullWidth value={oType} onChange={changeOType}>
             <MenuItem value="nonprofitclinic">Nonprofit</MenuItem>
             <MenuItem value="researcher">Research</MenuItem>
             <MenuItem value="medorg">Medical Organization</MenuItem>
@@ -151,6 +213,8 @@ export const ContactForm = () => {
             required
             multiline
             rows={6}
+            value={message}
+            onChange={changeMessage}
           />
         </Grid>
       </Grid>
@@ -165,6 +229,7 @@ export const ContactForm = () => {
           fullWidth
           size="large"
           variant="contained"
+          type='submit'
         >
           Let&apos;s Talk
         </Button>
