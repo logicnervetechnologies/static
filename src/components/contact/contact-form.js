@@ -56,6 +56,7 @@ export const ContactForm = () => {
     }
     console.log(d)
     const res = await submitForm(d);
+    window.location.href = '/reachedOut';
   };
 
 
