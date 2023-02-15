@@ -5,7 +5,7 @@ import { Box, Button, Container, Typography, useMediaQuery } from '@mui/material
 import { useTheme } from '@mui/material/styles';
 import { gtm } from '../lib/gtm';
 
-const ServerError = () => {
+const NotFound = () => {
   const theme = useTheme();
   const mobileDevice = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -17,7 +17,7 @@ const ServerError = () => {
     <>
       <Head>
         <title>
-          Error: Server Error | Material Kit Pro
+          Thanks for reaching out! | Material Kit Pro
         </title>
       </Head>
       <Box
@@ -35,7 +35,7 @@ const ServerError = () => {
             align="center"
             variant={mobileDevice ? 'h4' : 'h1'}
           >
-            500: Internal Server Error
+            Thanks for reaching out!
           </Typography>
           <Typography
             align="center"
@@ -43,9 +43,7 @@ const ServerError = () => {
             sx={{ mt: 0.5 }}
             variant="subtitle2"
           >
-            You either tried some shady route or you
-            came here by mistake. Whichever it is, try using the
-            navigation.
+            We wil try to get back to you as soon as we can!
           </Typography>
           <Box
             sx={{
@@ -54,16 +52,16 @@ const ServerError = () => {
               mt: 6
             }}
           >
-            <Box
+            {/* <Box
               alt="Under development"
               component="img"
-              src={`/static/error/error500_${theme.palette.mode}.svg`}
+              src={`/static/error/error404_${theme.palette.mode}.svg`}
               sx={{
                 height: 'auto',
                 maxWidth: '100%',
                 width: 400
               }}
-            />
+            /> */ }
           </Box>
           <Box
             sx={{
@@ -80,7 +78,7 @@ const ServerError = () => {
                 component="a"
                 variant="outlined"
               >
-               Back to Home
+                Back to Home
               </Button>
             </NextLink>
           </Box>
@@ -90,5 +88,4 @@ const ServerError = () => {
   );
 };
 
-export default ServerError;
-
+export default NotFound;
