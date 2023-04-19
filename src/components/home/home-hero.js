@@ -48,7 +48,7 @@ export const HomeHero = (props) => {
           align="center"
           variant="h1"
         >
-          Indici
+          Invici
         </Typography>
         <Typography
           align="center"
