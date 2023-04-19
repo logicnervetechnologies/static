@@ -17,7 +17,7 @@ const Home = () => {
     <>
       <Head>
         <title>
-          Indici
+          Invici
         </title>
       </Head>
       <main>
