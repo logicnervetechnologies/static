@@ -17,7 +17,7 @@ const Home = () => {
     <>
       <Head>
         <title>
-          LogicNerve
+          Indici
         </title>
       </Head>
       <main>
@@ -28,8 +28,8 @@ const Home = () => {
         <HomeAbout />
         {/* <HomeTestimonials />
         <HomeFeatures /> */}
-        <Divider />
-        <HomeCore />
+        {/* <Divider /> */}
+        {/* <HomeCore /> */}
       </main>
     </>
   );

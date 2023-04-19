@@ -1,4 +1,4 @@
-import { Box, Button, Container, Grid, Typography } from '@mui/material';
+import { Box, Button, Container, Fab, Grid, Typography } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { flexbox } from '@mui/system';
 import { ExternalLink as ExternalLinkIcon } from '../../icons/external-link';
@@ -20,7 +20,7 @@ export const HomeMission = (props) => {
           justifyContent="center"
           spacing={3}
         >
-          <Grid
+          {/* <Grid
             item
             md={6}
             sm={8}
@@ -38,7 +38,7 @@ export const HomeMission = (props) => {
                 height='300'
               />
             </Box>
-          </Grid>
+          </Grid> */}
           <Grid
             item
             md={6}
@@ -52,7 +52,7 @@ export const HomeMission = (props) => {
               sx={{ my: 3 }}
               variant="subtitle1"
             >
-              We want to solve the issue of patient data transparency in a world where smart-health devices are becoming increasingly prevalent.
+              We solve the issue of inventory management through Automation and AI.
             </Typography>
           </Grid>
         </Grid>

@@ -100,7 +100,7 @@ export const Footer = (props) => (
             sx={{ mt: 1 }}
             variant="caption"
           >
-            © 2023 LogicNerve
+            © 2023 Indici Inc.
           </Typography>
         </Grid>
         {/* {sections.map((section, index) => (

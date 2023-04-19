@@ -48,7 +48,7 @@ export const HomeHero = (props) => {
           align="center"
           variant="h1"
         >
-          LogicNerve
+          Indici
         </Typography>
         <Typography
           align="center"
@@ -56,7 +56,7 @@ export const HomeHero = (props) => {
           variant="subtitle1"
           sx={{ py: 3 }}
         >
-          A low-code platform to develop, deploy, and manage smart-health devices.
+          Simplifying inventory in an ever digitizing world.
         </Typography>
         <Box
           sx={{
@@ -80,9 +80,9 @@ export const HomeHero = (props) => {
             color="textSecondary"
             variant="caption"
           >
-            Serves:
+            Integrates with:
           </Typography>
-          {['Doctors', 'Patients', 'Researchers', 'Device Creators'].map((item) => (
+          {['Shopify'].map((item) => (
             <Box
               key={item}
               sx={{
@@ -107,7 +107,7 @@ export const HomeHero = (props) => {
           variant="subtitle1"
           sx={{ py: 3 }}
         >
-          Interested in effortlessly deploy your biotech innovations with our low-code tools?
+          Interested in effortlessly handling inventory through invoice parsing and data generation? 
         </Typography>
         <Typography
           align="center"
@@ -115,7 +115,7 @@ export const HomeHero = (props) => {
           variant="subtitle1"
           sx={{ py: 3 }}
         >
-          Learn more about our goals and contact us!
+          Learn more and contact us!
         </Typography>
         <Box
           sx={{
