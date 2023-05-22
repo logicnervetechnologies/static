@@ -71,6 +71,7 @@ export const ContactForm = () => {
         console.log(file);
         setFile(file); // storing file
     }
+    const base_url = ''
     const uploadFile = () => {
         const formData = new FormData();        
         formData.append('file', file); // appending file
@@ -92,20 +93,6 @@ export const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-            <div className="file-upload">
-                <input type="file" ref={el} onChange={handleFChange} />                
-                <div className="progessBar" style={{ width: progress }}>
-                   {progress}
-                </div>
-                <button onClick={uploadFile} className="upbutton">                   
-                    Upload
-                </button>
-            <hr />
-            {/* displaying received video*/}
-            {data.path && <video src={data.path} autoPlay controls />}
-            </div>
-        </div>
 
 
       <Grid

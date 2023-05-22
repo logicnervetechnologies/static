@@ -56,7 +56,7 @@ export const HomeHero = (props) => {
           variant="subtitle1"
           sx={{ py: 3 }}
         >
-          Simplifying inventory in an ever digitizing world.
+          Leveraging AI to simplify retail in an ever digitizing world.
         </Typography>
         <Box
           sx={{
@@ -107,7 +107,11 @@ export const HomeHero = (props) => {
           variant="subtitle1"
           sx={{ py: 3 }}
         >
-          Interested in effortlessly handling inventory through invoice parsing and data generation? 
+          We aim to leverage AI in tools to assist digital retailers in areas such as inventory management, product listing generation, and pricing optimization. Interested in effortlessly handling inventory through invoice parsing and data generation? 
+          {/* The company's AI algorithms analyze large amounts of data to identify trends and customer preferences, and then create personalized experiences for customers. 
+          In addition, Invici provides retailers with analytics on customer behavior, allowing them to make informed decisions and improve the customer experience. 
+          As a result, digital retailers can save time and money by using Invici's AI tools. */}
+
         </Typography>
         <Typography
           align="center"
